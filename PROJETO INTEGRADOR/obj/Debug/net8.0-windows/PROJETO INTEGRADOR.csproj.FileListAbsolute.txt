@@ -1,0 +1,17 @@
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\bin\Debug\net8.0-windows\PROJETO INTEGRADOR.exe
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\bin\Debug\net8.0-windows\PROJETO INTEGRADOR.deps.json
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\bin\Debug\net8.0-windows\PROJETO INTEGRADOR.runtimeconfig.json
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\bin\Debug\net8.0-windows\PROJETO INTEGRADOR.dll
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\bin\Debug\net8.0-windows\PROJETO INTEGRADOR.pdb
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO_INTEGRADOR.Form1.resources
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO INTEGRADOR.csproj.GenerateResource.cache
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO INTEGRADOR.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO INTEGRADOR.AssemblyInfoInputs.cache
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO INTEGRADOR.AssemblyInfo.cs
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO INTEGRADOR.csproj.CoreCompileInputs.cache
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO INTEGRADOR.dll
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\refint\PROJETO INTEGRADOR.dll
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO INTEGRADOR.pdb
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO INTEGRADOR.genruntimeconfig.cache
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\ref\PROJETO INTEGRADOR.dll
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO_INTEGRADOR.Cadastro.resources
