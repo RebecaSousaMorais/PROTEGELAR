@@ -17,3 +17,4 @@ C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGR
 C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO_INTEGRADOR.Cadastro.resources
 C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO_INTEGRADOR.Properties.Resources.resources
 C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO INTEGRADOR.sourcelink.json
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO_INTEGRADOR.RecuperarSenha.resources

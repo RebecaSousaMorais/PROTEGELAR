@@ -40,18 +40,21 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_entrar_login_Click(object sender, EventArgs e)
         {
-
+            // Ao clicar sera feita autenticação do usuario
         }
 
         private void btn_criarConta_login_Click(object sender, EventArgs e)
         {
+            // Ao clicar leva o usuario a tela de cadastro
             Cadastro TelaCadastro = new Cadastro();
             TelaCadastro.ShowDialog();
         }
 
         private void lbl_esqueceuSenha_Login_Click(object sender, EventArgs e)
         {
-
+            // Ao clicar leva o usuario a tela de recuperar senha
+            RecuperarSenha TelarecuperarSenha = new RecuperarSenha();
+            TelarecuperarSenha.ShowDialog();
         }
 
         private void Form1_Load(object sender, EventArgs e)

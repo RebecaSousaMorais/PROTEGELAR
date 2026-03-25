@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            chk_mostrarSenha_cadastro = new CheckBox();
             btn_voltar_cadastro = new Button();
             btn_criarConta_cadastro = new Button();
             txt_confirmarSenha_cadastro = new TextBox();
@@ -44,7 +45,6 @@
             lbl_email_cadastro = new Label();
             lbl_nomeCompleto_cadastro = new Label();
             lbl_cadastro = new Label();
-            chk_mostrarSenha_cadastro = new CheckBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -73,10 +73,21 @@
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
+            // chk_mostrarSenha_cadastro
+            // 
+            chk_mostrarSenha_cadastro.AutoSize = true;
+            chk_mostrarSenha_cadastro.Location = new Point(442, 237);
+            chk_mostrarSenha_cadastro.Name = "chk_mostrarSenha_cadastro";
+            chk_mostrarSenha_cadastro.Size = new Size(102, 19);
+            chk_mostrarSenha_cadastro.TabIndex = 15;
+            chk_mostrarSenha_cadastro.Text = "Mostrar Senha";
+            chk_mostrarSenha_cadastro.UseVisualStyleBackColor = true;
+            chk_mostrarSenha_cadastro.CheckedChanged += chk_mostrarSenha_cadastro_CheckedChanged;
+            // 
             // btn_voltar_cadastro
             // 
             btn_voltar_cadastro.BackColor = Color.FromArgb(242, 101, 34);
-            btn_voltar_cadastro.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_voltar_cadastro.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_voltar_cadastro.ForeColor = Color.White;
             btn_voltar_cadastro.Location = new Point(310, 336);
             btn_voltar_cadastro.Name = "btn_voltar_cadastro";
@@ -89,7 +100,7 @@
             // btn_criarConta_cadastro
             // 
             btn_criarConta_cadastro.BackColor = Color.FromArgb(242, 101, 34);
-            btn_criarConta_cadastro.Font = new Font("Arial", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_criarConta_cadastro.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_criarConta_cadastro.ForeColor = Color.White;
             btn_criarConta_cadastro.Location = new Point(88, 336);
             btn_criarConta_cadastro.Name = "btn_criarConta_cadastro";
@@ -204,25 +215,14 @@
             // lbl_cadastro
             // 
             lbl_cadastro.AutoSize = true;
-            lbl_cadastro.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_cadastro.Font = new Font("Arial Black", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_cadastro.ForeColor = Color.FromArgb(27, 79, 114);
             lbl_cadastro.Location = new Point(198, 31);
             lbl_cadastro.Name = "lbl_cadastro";
-            lbl_cadastro.Size = new Size(196, 37);
+            lbl_cadastro.Size = new Size(216, 45);
             lbl_cadastro.TabIndex = 0;
             lbl_cadastro.Text = "CADASTRO";
             lbl_cadastro.Click += label1_Click;
-            // 
-            // chk_mostrarSenha_cadastro
-            // 
-            chk_mostrarSenha_cadastro.AutoSize = true;
-            chk_mostrarSenha_cadastro.Location = new Point(442, 237);
-            chk_mostrarSenha_cadastro.Name = "chk_mostrarSenha_cadastro";
-            chk_mostrarSenha_cadastro.Size = new Size(102, 19);
-            chk_mostrarSenha_cadastro.TabIndex = 15;
-            chk_mostrarSenha_cadastro.Text = "Mostrar Senha";
-            chk_mostrarSenha_cadastro.UseVisualStyleBackColor = true;
-            chk_mostrarSenha_cadastro.CheckedChanged += chk_mostrarSenha_cadastro_CheckedChanged;
             // 
             // Cadastro
             // 

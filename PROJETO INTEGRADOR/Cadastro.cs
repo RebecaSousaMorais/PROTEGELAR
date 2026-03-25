@@ -66,12 +66,14 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_voltar_cadastro_Click(object sender, EventArgs e)
         {
+            // Ao clicar retorna a tela de Login
             Form1 TelaLogin = new Form1();
             TelaLogin.ShowDialog();
         }
 
         private void btn_criarConta_cadastro_Click(object sender, EventArgs e)
         {
+            // Ao clicar o cadastro é realizado e é criada a conta do usuario
 
         }
 

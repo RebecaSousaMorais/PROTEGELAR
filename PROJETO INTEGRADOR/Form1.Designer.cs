@@ -35,11 +35,11 @@
             txt_email_login = new TextBox();
             txt_senha_login = new TextBox();
             panel1 = new Panel();
+            chk_mostrarSenha_login = new CheckBox();
             pictureBox1 = new PictureBox();
             lbl_esqueceuSenha_Login = new Label();
             btn_criarConta_login = new Button();
             btn_entrar_login = new Button();
-            chk_mostrarSenha_login = new CheckBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -111,6 +111,17 @@
             panel1.TabIndex = 5;
             panel1.Paint += panel1_Paint;
             // 
+            // chk_mostrarSenha_login
+            // 
+            chk_mostrarSenha_login.AutoSize = true;
+            chk_mostrarSenha_login.Location = new Point(445, 317);
+            chk_mostrarSenha_login.Name = "chk_mostrarSenha_login";
+            chk_mostrarSenha_login.Size = new Size(102, 19);
+            chk_mostrarSenha_login.TabIndex = 9;
+            chk_mostrarSenha_login.Text = "Mostrar Senha";
+            chk_mostrarSenha_login.UseVisualStyleBackColor = true;
+            chk_mostrarSenha_login.CheckedChanged += chk_mostrarSenha_login_CheckedChanged;
+            // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
@@ -133,10 +144,11 @@
             // btn_criarConta_login
             // 
             btn_criarConta_login.BackColor = Color.FromArgb(242, 101, 34);
+            btn_criarConta_login.Font = new Font("Arial", 12F);
             btn_criarConta_login.ForeColor = Color.White;
-            btn_criarConta_login.Location = new Point(400, 418);
+            btn_criarConta_login.Location = new Point(394, 418);
             btn_criarConta_login.Name = "btn_criarConta_login";
-            btn_criarConta_login.Size = new Size(95, 29);
+            btn_criarConta_login.Size = new Size(105, 29);
             btn_criarConta_login.TabIndex = 6;
             btn_criarConta_login.Text = "Criar Conta";
             btn_criarConta_login.UseVisualStyleBackColor = false;
@@ -145,6 +157,7 @@
             // btn_entrar_login
             // 
             btn_entrar_login.BackColor = Color.FromArgb(242, 101, 34);
+            btn_entrar_login.Font = new Font("Arial", 12F);
             btn_entrar_login.ForeColor = Color.White;
             btn_entrar_login.Location = new Point(132, 418);
             btn_entrar_login.Name = "btn_entrar_login";
@@ -153,17 +166,6 @@
             btn_entrar_login.Text = "Entrar";
             btn_entrar_login.UseVisualStyleBackColor = false;
             btn_entrar_login.Click += btn_entrar_login_Click;
-            // 
-            // chk_mostrarSenha_login
-            // 
-            chk_mostrarSenha_login.AutoSize = true;
-            chk_mostrarSenha_login.Location = new Point(445, 317);
-            chk_mostrarSenha_login.Name = "chk_mostrarSenha_login";
-            chk_mostrarSenha_login.Size = new Size(102, 19);
-            chk_mostrarSenha_login.TabIndex = 9;
-            chk_mostrarSenha_login.Text = "Mostrar Senha";
-            chk_mostrarSenha_login.UseVisualStyleBackColor = true;
-            chk_mostrarSenha_login.CheckedChanged += chk_mostrarSenha_login_CheckedChanged;
             // 
             // Form1
             // 
