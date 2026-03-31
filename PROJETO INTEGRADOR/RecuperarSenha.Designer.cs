@@ -57,7 +57,7 @@
             btn_voltar_recuperarSenha.BackColor = Color.FromArgb(242, 101, 34);
             btn_voltar_recuperarSenha.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_voltar_recuperarSenha.ForeColor = Color.White;
-            btn_voltar_recuperarSenha.Location = new Point(399, 221);
+            btn_voltar_recuperarSenha.Location = new Point(374, 221);
             btn_voltar_recuperarSenha.Name = "btn_voltar_recuperarSenha";
             btn_voltar_recuperarSenha.Size = new Size(139, 32);
             btn_voltar_recuperarSenha.TabIndex = 15;
@@ -80,7 +80,7 @@
             btn_recuperarSenha.BackColor = Color.FromArgb(242, 101, 34);
             btn_recuperarSenha.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_recuperarSenha.ForeColor = Color.White;
-            btn_recuperarSenha.Location = new Point(231, 221);
+            btn_recuperarSenha.Location = new Point(215, 221);
             btn_recuperarSenha.Name = "btn_recuperarSenha";
             btn_recuperarSenha.Size = new Size(141, 31);
             btn_recuperarSenha.TabIndex = 3;

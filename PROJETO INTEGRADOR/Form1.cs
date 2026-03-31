@@ -40,7 +40,23 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_entrar_login_Click(object sender, EventArgs e)
         {
-            // Ao clicar sera feita autenticação do usuario
+            string email = txt_email_login.Text;
+            string senha = txt_senha_login.Text;
+
+            // Esta validação é apenas uma simulação.
+            // Quando integrar com banco de dados, substitua por uma consulta real.
+            if (email == "admin@teste.com" && senha == "1234")
+            {
+                MessageBox.Show("Login realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Exemplo: abrir tela principal
+                Home TelaH = new Home();
+                TelaH.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Email ou senha inválidos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btn_criarConta_login_Click(object sender, EventArgs e)
@@ -58,9 +74,12 @@ namespace PROJETO_INTEGRADOR
         }
 
         private void Form1_Load(object sender, EventArgs e)
+            // Centraliza tela, e deixa a senha em char *
         {
             panel1.Left = (this.ClientSize.Width - panel1.Width) / 2;
             panel1.Top = (this.ClientSize.Height - panel1.Height) / 2;
+
+            txt_senha_login.UseSystemPasswordChar = true;
         }
 
         private void chk_mostrarSenha_login_CheckedChanged(object sender, EventArgs e)

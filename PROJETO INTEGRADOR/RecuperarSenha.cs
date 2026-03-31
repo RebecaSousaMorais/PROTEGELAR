@@ -35,7 +35,26 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_recuperarSenha_Click(object sender, EventArgs e)
         {
-            // Ao clicar sera enviado um email com código para o email inserido 
+            // Ao clicar sera enviado um email com código para o email inserido
+            string email = txt_email_recuperarSenha.Text;
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MessageBox.Show("Digite seu email para recuperar a senha.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // É uma simulação.
+            // Integrar com API/SMTP
+
+            if(email == "admin@teste.com")
+            {
+                MessageBox.Show("Um e-mail com instruções de recuperação foi enviado.", "Recuperação de Senha", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Usuario não encontrado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
