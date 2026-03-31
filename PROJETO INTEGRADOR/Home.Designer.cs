@@ -56,9 +56,9 @@
             btn_novoOrcamento.BackColor = Color.FromArgb(242, 101, 34);
             btn_novoOrcamento.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_novoOrcamento.ForeColor = Color.White;
-            btn_novoOrcamento.Location = new Point(85, 273);
+            btn_novoOrcamento.Location = new Point(97, 298);
             btn_novoOrcamento.Name = "btn_novoOrcamento";
-            btn_novoOrcamento.Size = new Size(151, 23);
+            btn_novoOrcamento.Size = new Size(151, 36);
             btn_novoOrcamento.TabIndex = 2;
             btn_novoOrcamento.Text = "Novo Orçamento";
             btn_novoOrcamento.UseVisualStyleBackColor = false;
@@ -68,9 +68,9 @@
             btn_gerenciarServico.BackColor = Color.FromArgb(242, 101, 34);
             btn_gerenciarServico.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_gerenciarServico.ForeColor = Color.White;
-            btn_gerenciarServico.Location = new Point(353, 273);
+            btn_gerenciarServico.Location = new Point(351, 298);
             btn_gerenciarServico.Name = "btn_gerenciarServico";
-            btn_gerenciarServico.Size = new Size(172, 23);
+            btn_gerenciarServico.Size = new Size(172, 36);
             btn_gerenciarServico.TabIndex = 3;
             btn_gerenciarServico.Text = "Gerenciar Serviços";
             btn_gerenciarServico.UseVisualStyleBackColor = false;
@@ -83,7 +83,7 @@
             panel1.Controls.Add(lbl_Home);
             panel1.Controls.Add(btn_gerenciarServico);
             panel1.Controls.Add(btn_novoOrcamento);
-            panel1.Location = new Point(63, 12);
+            panel1.Location = new Point(66, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(676, 393);
             panel1.TabIndex = 4;
@@ -94,9 +94,9 @@
             btn_logout.BackColor = Color.FromArgb(242, 101, 34);
             btn_logout.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_logout.ForeColor = Color.White;
-            btn_logout.Location = new Point(529, 38);
+            btn_logout.Location = new Point(569, 16);
             btn_logout.Name = "btn_logout";
-            btn_logout.Size = new Size(80, 23);
+            btn_logout.Size = new Size(80, 28);
             btn_logout.TabIndex = 6;
             btn_logout.Text = "Sair";
             btn_logout.UseVisualStyleBackColor = false;
