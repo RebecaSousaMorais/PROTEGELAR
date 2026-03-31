@@ -33,8 +33,8 @@
             btn_novoOrcamento = new Button();
             btn_gerenciarServico = new Button();
             panel1 = new Panel();
-            pictureBox1 = new PictureBox();
             btn_logout = new Button();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -53,26 +53,31 @@
             // 
             // btn_novoOrcamento
             // 
+            btn_novoOrcamento.BackColor = Color.FromArgb(242, 101, 34);
             btn_novoOrcamento.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_novoOrcamento.ForeColor = Color.White;
             btn_novoOrcamento.Location = new Point(85, 273);
             btn_novoOrcamento.Name = "btn_novoOrcamento";
             btn_novoOrcamento.Size = new Size(151, 23);
             btn_novoOrcamento.TabIndex = 2;
             btn_novoOrcamento.Text = "Novo Orçamento";
-            btn_novoOrcamento.UseVisualStyleBackColor = true;
+            btn_novoOrcamento.UseVisualStyleBackColor = false;
             // 
             // btn_gerenciarServico
             // 
+            btn_gerenciarServico.BackColor = Color.FromArgb(242, 101, 34);
             btn_gerenciarServico.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_gerenciarServico.ForeColor = Color.White;
             btn_gerenciarServico.Location = new Point(353, 273);
             btn_gerenciarServico.Name = "btn_gerenciarServico";
             btn_gerenciarServico.Size = new Size(172, 23);
             btn_gerenciarServico.TabIndex = 3;
             btn_gerenciarServico.Text = "Gerenciar Serviços";
-            btn_gerenciarServico.UseVisualStyleBackColor = true;
+            btn_gerenciarServico.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.None;
             panel1.Controls.Add(btn_logout);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(lbl_Home);
@@ -84,6 +89,19 @@
             panel1.TabIndex = 4;
             panel1.Paint += panel1_Paint;
             // 
+            // btn_logout
+            // 
+            btn_logout.BackColor = Color.FromArgb(242, 101, 34);
+            btn_logout.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_logout.ForeColor = Color.White;
+            btn_logout.Location = new Point(529, 38);
+            btn_logout.Name = "btn_logout";
+            btn_logout.Size = new Size(80, 23);
+            btn_logout.TabIndex = 6;
+            btn_logout.Text = "Sair";
+            btn_logout.UseVisualStyleBackColor = false;
+            btn_logout.Click += btn_logout_Click;
+            // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
@@ -92,17 +110,6 @@
             pictureBox1.Size = new Size(202, 163);
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
-            // 
-            // btn_logout
-            // 
-            btn_logout.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_logout.Location = new Point(529, 38);
-            btn_logout.Name = "btn_logout";
-            btn_logout.Size = new Size(80, 23);
-            btn_logout.TabIndex = 6;
-            btn_logout.Text = "Sair";
-            btn_logout.UseVisualStyleBackColor = true;
-            btn_logout.Click += btn_logout_Click;
             // 
             // Home
             // 
