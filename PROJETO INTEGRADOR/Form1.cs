@@ -6,6 +6,8 @@ namespace PROJETO_INTEGRADOR
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void lbl_login_Click(object sender, EventArgs e)
@@ -50,8 +52,9 @@ namespace PROJETO_INTEGRADOR
                 MessageBox.Show("Login realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Exemplo: abrir tela principal
-                Home TelaH = new Home();
-                TelaH.ShowDialog();
+                Home TelaHome = new Home();
+                TelaHome.ShowDialog();
+                this.Close();
             }
             else
             {
@@ -64,6 +67,7 @@ namespace PROJETO_INTEGRADOR
             // Ao clicar leva o usuario a tela de cadastro
             Cadastro TelaCadastro = new Cadastro();
             TelaCadastro.ShowDialog();
+            this.Close();
         }
 
         private void lbl_esqueceuSenha_Login_Click(object sender, EventArgs e)
@@ -71,6 +75,7 @@ namespace PROJETO_INTEGRADOR
             // Ao clicar leva o usuario a tela de recuperar senha
             RecuperarSenha TelarecuperarSenha = new RecuperarSenha();
             TelarecuperarSenha.ShowDialog();
+            this.Close();
         }
 
         private void Form1_Load(object sender, EventArgs e)

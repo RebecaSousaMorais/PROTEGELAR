@@ -16,6 +16,8 @@ namespace PROJETO_INTEGRADOR
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void Home_Load(object sender, EventArgs e)
@@ -53,6 +55,20 @@ namespace PROJETO_INTEGRADOR
 
             // Close the current parent form (if needed)
             this.Close();
+        }
+
+        private void btn_novoOrcamento_Click(object sender, EventArgs e)
+        {
+            Servicos TelaServicos = new Servicos();
+            TelaServicos.ShowDialog();
+            this.Hide();
+        }
+
+        private void btn_gerenciarServico_Click(object sender, EventArgs e)
+        {
+            Editar_Servicos TelaEditar = new Editar_Servicos();
+            TelaEditar.Show();
+            this.Hide();
         }
     }
 }

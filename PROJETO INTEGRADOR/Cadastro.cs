@@ -25,6 +25,8 @@ namespace PROJETO_INTEGRADOR
 
             txt_senha_cadastro.UseSystemPasswordChar = true;
             txt_confirmarSenha_cadastro.UseSystemPasswordChar = true;
+
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -72,6 +74,7 @@ namespace PROJETO_INTEGRADOR
             // Ao clicar retorna a tela de Login
             Form1 TelaLogin = new Form1();
             TelaLogin.ShowDialog();
+            this.Close();
         }
 
         private void btn_criarConta_cadastro_Click(object sender, EventArgs e)

@@ -62,6 +62,7 @@
             btn_novoOrcamento.TabIndex = 2;
             btn_novoOrcamento.Text = "Novo Orçamento";
             btn_novoOrcamento.UseVisualStyleBackColor = false;
+            btn_novoOrcamento.Click += btn_novoOrcamento_Click;
             // 
             // btn_gerenciarServico
             // 
@@ -74,6 +75,7 @@
             btn_gerenciarServico.TabIndex = 3;
             btn_gerenciarServico.Text = "Gerenciar Serviços";
             btn_gerenciarServico.UseVisualStyleBackColor = false;
+            btn_gerenciarServico.Click += btn_gerenciarServico_Click;
             // 
             // panel1
             // 
