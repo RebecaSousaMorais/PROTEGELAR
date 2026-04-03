@@ -16,6 +16,9 @@ namespace PROJETO_INTEGRADOR
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Inicia a tela maximizada
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void Cadastro_Load(object sender, EventArgs e)
@@ -128,10 +131,15 @@ namespace PROJETO_INTEGRADOR
         private void chk_mostrarSenha_cadastro_CheckedChanged(object sender, EventArgs e)
         {
             // Se o checkbox estiver marcado, mostra o texto. Se não, oculta
-            bool ocultar = ! chk_mostrarSenha_cadastro.Checked;
-           
+            bool ocultar = !chk_mostrarSenha_cadastro.Checked;
+
             txt_senha_cadastro.UseSystemPasswordChar = ocultar;
-            txt_confirmarSenha_cadastro.UseSystemPasswordChar= ocultar;
+            txt_confirmarSenha_cadastro.UseSystemPasswordChar = ocultar;
+        }
+
+        private void lbl_endResidencial_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

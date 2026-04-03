@@ -4,9 +4,11 @@ namespace PROJETO_INTEGRADOR
     {
         public Form1()
         {
+            // Mantem a posição centralizada
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 
+            // Inicia a tela maximizada
             this.WindowState = FormWindowState.Maximized;
         }
 

@@ -15,6 +15,9 @@ namespace PROJETO_INTEGRADOR
         public Orcamento()
         {
             InitializeComponent();
+
+            // Inicia a tela maximizada
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

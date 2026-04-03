@@ -15,6 +15,14 @@ namespace PROJETO_INTEGRADOR
         public Perfil()
         {
             InitializeComponent();
+
+            // Inicia a tela maximizada
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void lbl_perfil_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

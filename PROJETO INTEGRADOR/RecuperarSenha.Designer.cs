@@ -63,7 +63,7 @@
             btn_voltar_recuperarSenha.TabIndex = 15;
             btn_voltar_recuperarSenha.Text = "Voltar";
             btn_voltar_recuperarSenha.UseVisualStyleBackColor = false;
-            btn_voltar_recuperarSenha.Click += btn_voltar_recuperarSenha_Click;
+            btn_voltar_recuperarSenha.Click += btn_voltar_Click;
             // 
             // lbl_textoRecSenha
             // 
@@ -91,17 +91,19 @@
             // lbl_email_recSenha
             // 
             lbl_email_recSenha.AutoSize = true;
+            lbl_email_recSenha.Font = new Font("Arial", 12F);
             lbl_email_recSenha.Location = new Point(152, 160);
             lbl_email_recSenha.Name = "lbl_email_recSenha";
-            lbl_email_recSenha.Size = new Size(41, 15);
+            lbl_email_recSenha.Size = new Size(53, 18);
             lbl_email_recSenha.TabIndex = 2;
             lbl_email_recSenha.Text = "E-mail";
             // 
             // txt_email_recuperarSenha
             // 
+            txt_email_recuperarSenha.Font = new Font("Arial", 12F);
             txt_email_recuperarSenha.Location = new Point(215, 157);
             txt_email_recuperarSenha.Name = "txt_email_recuperarSenha";
-            txt_email_recuperarSenha.Size = new Size(298, 23);
+            txt_email_recuperarSenha.Size = new Size(298, 26);
             txt_email_recuperarSenha.TabIndex = 1;
             // 
             // lbl_recuperarSenha

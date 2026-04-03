@@ -1,5 +1,9 @@
+# Segredos
+.env
+.env.local
+ 
+# Pastas de compilação (Não subir!)
+[Bb]in/
+[Oo]bj/
 .vs/
-bin/
-obj/
 *.user
-*.suo
