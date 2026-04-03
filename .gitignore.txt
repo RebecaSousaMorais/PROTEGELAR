@@ -1,9 +1,22 @@
-# Segredos
+# Ignora o arquivo de chaves e e-mail pessoal
 .env
 .env.local
+*.env
  
-# Pastas de compilação (Não subir!)
+# --- ARQUIVOS DO VISUAL STUDIO ---
+# Ignora as pastas de compilação que o VS cria sozinho
 [Bb]in/
 [Oo]bj/
 .vs/
+.vscode/
+ 
+# Ignorar arquivos de configuração de usuário e logs
 *.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.log
+ 
+# --- ARQUIVOS DO SISTEMA ---
+Thumbs.db
+Desktop.ini
