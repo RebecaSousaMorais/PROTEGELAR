@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|solutionrelative:projeto integrador\\recuperarsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|c:\\users\\rebeca.smorais\\downloads\\protegelar-main\\protegelar-main\\projeto integrador\\recuperarsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\projeto integrador\\recuperarsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|solutionrelative:projeto integrador\\recuperarsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -96,7 +96,7 @@
               "RelativeDocumentMoniker": "PROJETO INTEGRADOR\\RecuperarSenha.cs",
               "ToolTip": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\RecuperarSenha.cs",
               "RelativeToolTip": "PROJETO INTEGRADOR\\RecuperarSenha.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAYwCwAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwA4AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-02T22:23:40.198Z",
               "EditorCaption": ""
@@ -110,8 +110,7 @@
               "ToolTip": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\RecuperarSenha.cs [Projeto]",
               "RelativeToolTip": "PROJETO INTEGRADOR\\RecuperarSenha.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-03T00:06:47.808Z",
-              "EditorCaption": " [Projeto]"
+              "WhenOpened": "2026-04-03T00:06:47.808Z"
             },
             {
               "$type": "Document",
@@ -123,8 +122,7 @@
               "RelativeToolTip": "PROJETO INTEGRADOR\\RecuperarSenha.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-03T00:06:46.895Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-03T00:06:46.895Z"
             },
             {
               "$type": "Document",
@@ -136,8 +134,7 @@
               "RelativeToolTip": "PROJETO INTEGRADOR\\.env",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-02T23:47:59.268Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T23:47:59.268Z"
             },
             {
               "$type": "Document",

@@ -12,10 +12,11 @@ namespace PROJETO_INTEGRADOR
     public partial class RecuperarSenha : Form
     {
         // Variável global para validar o código na próxima etapa
-        private string tokenGerado = string.Empty;
+       // private string tokenGerado = string.Empty;
 
         public RecuperarSenha()
         {
+            /*
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 
@@ -43,10 +44,12 @@ namespace PROJETO_INTEGRADOR
             {
                 MessageBox.Show("Erro ao localizar .env: " + ex.Message);
             }
+            */
         }
 
         private async void btn_recuperarSenha_Click(object sender, EventArgs e)
         {
+            /*
             // Configurações de Segurança de Rede para evitar erros de SSL/TLS
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
@@ -127,6 +130,7 @@ namespace PROJETO_INTEGRADOR
                 {
                     MessageBox.Show("Falha na conexão: " + ex.Message, "Erro Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                */
             }
         }
 
