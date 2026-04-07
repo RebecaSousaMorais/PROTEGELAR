@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|c:\\users\\rebeca.smorais\\downloads\\protegelar-main\\protegelar-main\\projeto integrador\\recuperarsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|solutionrelative:projeto integrador\\recuperarsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|c:\\users\\rebeca.smorais\\downloads\\protegelar-main\\protegelar-main\\projeto integrador\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|solutionrelative:projeto integrador\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\projeto integrador\\recuperarsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|solutionrelative:projeto integrador\\recuperarsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|c:\\users\\rebeca.smorais\\downloads\\protegelar-main\\protegelar-main\\projeto integrador\\redefinirsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|solutionrelative:projeto integrador\\redefinirsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|c:\\users\\rebeca.smorais\\downloads\\protegelar-main\\protegelar-main\\projeto integrador\\redefinirsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|solutionrelative:projeto integrador\\redefinirsenha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|c:\\users\\rebeca.smorais\\downloads\\protegelar-main\\protegelar-main\\projeto integrador\\cadastro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|solutionrelative:projeto integrador\\cadastro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|c:\\users\\rebeca.smorais\\downloads\\protegelar-main\\protegelar-main\\projeto integrador\\cadastro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|solutionrelative:projeto integrador\\cadastro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|c:\\users\\rebeca.smorais\\downloads\\protegelar-main\\protegelar-main\\projeto integrador\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84FA628F-DD21-4418-BBC4-09102A2391EE}|PROJETO INTEGRADOR\\PROJETO INTEGRADOR.csproj|solutionrelative:projeto integrador\\perfil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,85 +18,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 39,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Cadastro.cs",
-              "DocumentMoniker": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\Cadastro.cs",
-              "RelativeDocumentMoniker": "PROJETO INTEGRADOR\\Cadastro.cs",
-              "ToolTip": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\Cadastro.cs",
-              "RelativeToolTip": "PROJETO INTEGRADOR\\Cadastro.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAawEwAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T23:33:22.586Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Cadastro.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\Cadastro.cs",
-              "RelativeDocumentMoniker": "PROJETO INTEGRADOR\\Cadastro.cs",
-              "ToolTip": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\Cadastro.cs [Projeto]",
-              "RelativeToolTip": "PROJETO INTEGRADOR\\Cadastro.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T23:33:20.621Z",
-              "EditorCaption": " [Projeto]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RecuperarSenha.cs",
-              "DocumentMoniker": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\RecuperarSenha.cs",
-              "RelativeDocumentMoniker": "PROJETO INTEGRADOR\\RecuperarSenha.cs",
-              "ToolTip": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\RecuperarSenha.cs",
-              "RelativeToolTip": "PROJETO INTEGRADOR\\RecuperarSenha.cs",
-              "ViewState": "AgIAAJYAAAAAAAAAAAA4wLsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T22:23:40.198Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RedefinirSenha.cs",
-              "DocumentMoniker": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\RedefinirSenha.cs",
-              "RelativeDocumentMoniker": "PROJETO INTEGRADOR\\RedefinirSenha.cs",
-              "ToolTip": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\RedefinirSenha.cs",
-              "RelativeToolTip": "PROJETO INTEGRADOR\\RedefinirSenha.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAUwCgAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T23:38:11.247Z",
-              "EditorCaption": ""
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RecuperarSenha.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\RecuperarSenha.cs",
-              "RelativeDocumentMoniker": "PROJETO INTEGRADOR\\RecuperarSenha.cs",
-              "ToolTip": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\RecuperarSenha.cs [Projeto]",
-              "RelativeToolTip": "PROJETO INTEGRADOR\\RecuperarSenha.cs [Projeto]",
+              "Title": "Perfil.cs",
+              "DocumentMoniker": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\Perfil.cs",
+              "RelativeDocumentMoniker": "PROJETO INTEGRADOR\\Perfil.cs",
+              "ToolTip": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\Perfil.cs",
+              "RelativeToolTip": "PROJETO INTEGRADOR\\Perfil.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-03T00:06:47.808Z",
-              "EditorCaption": " [Projeto]"
+              "WhenOpened": "2026-04-07T00:44:45.149Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RedefinirSenha.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\RedefinirSenha.cs",
-              "RelativeDocumentMoniker": "PROJETO INTEGRADOR\\RedefinirSenha.cs",
-              "ToolTip": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\RedefinirSenha.cs [Projeto]",
-              "RelativeToolTip": "PROJETO INTEGRADOR\\RedefinirSenha.cs [Projeto]",
+              "DocumentIndex": 0,
+              "Title": "Perfil.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\Perfil.cs",
+              "RelativeDocumentMoniker": "PROJETO INTEGRADOR\\Perfil.cs",
+              "ToolTip": "C:\\Users\\rebeca.smorais\\Downloads\\PROTEGELAR-main\\PROTEGELAR-main\\PROJETO INTEGRADOR\\Perfil.cs [Projeto]",
+              "RelativeToolTip": "PROJETO INTEGRADOR\\Perfil.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T21:46:02.493Z",
+              "WhenOpened": "2026-04-07T00:43:54.957Z",
               "EditorCaption": " [Projeto]"
             }
           ]
