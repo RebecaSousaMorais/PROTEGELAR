@@ -29,18 +29,24 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            lbl_token = new Label();
+            txt_validarToken = new TextBox();
             btn_voltar_recuperarSenha = new Button();
             lbl_textoRecSenha = new Label();
             btn_recuperarSenha = new Button();
             lbl_email_recSenha = new Label();
             txt_email_recuperarSenha = new TextBox();
             lbl_recuperarSenha = new Label();
+            btn_validarToken = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(btn_validarToken);
+            panel1.Controls.Add(lbl_token);
+            panel1.Controls.Add(txt_validarToken);
             panel1.Controls.Add(btn_voltar_recuperarSenha);
             panel1.Controls.Add(lbl_textoRecSenha);
             panel1.Controls.Add(btn_recuperarSenha);
@@ -51,13 +57,33 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(776, 426);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
+            // 
+            // lbl_token
+            // 
+            lbl_token.AutoSize = true;
+            lbl_token.Font = new Font("Arial", 12F);
+            lbl_token.Location = new Point(106, 210);
+            lbl_token.Name = "lbl_token";
+            lbl_token.Size = new Size(103, 18);
+            lbl_token.TabIndex = 17;
+            lbl_token.Text = "Insira o Token";
+            // 
+            // txt_validarToken
+            // 
+            txt_validarToken.Font = new Font("Arial", 12F);
+            txt_validarToken.Location = new Point(215, 207);
+            txt_validarToken.Name = "txt_validarToken";
+            txt_validarToken.Size = new Size(298, 26);
+            txt_validarToken.TabIndex = 16;
+            txt_validarToken.TextChanged += txt_validarToken_TextChanged;
             // 
             // btn_voltar_recuperarSenha
             // 
             btn_voltar_recuperarSenha.BackColor = Color.FromArgb(242, 101, 34);
             btn_voltar_recuperarSenha.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_voltar_recuperarSenha.ForeColor = Color.White;
-            btn_voltar_recuperarSenha.Location = new Point(374, 221);
+            btn_voltar_recuperarSenha.Location = new Point(610, 30);
             btn_voltar_recuperarSenha.Name = "btn_voltar_recuperarSenha";
             btn_voltar_recuperarSenha.Size = new Size(139, 32);
             btn_voltar_recuperarSenha.TabIndex = 15;
@@ -80,7 +106,7 @@
             btn_recuperarSenha.BackColor = Color.FromArgb(242, 101, 34);
             btn_recuperarSenha.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_recuperarSenha.ForeColor = Color.White;
-            btn_recuperarSenha.Location = new Point(215, 221);
+            btn_recuperarSenha.Location = new Point(215, 288);
             btn_recuperarSenha.Name = "btn_recuperarSenha";
             btn_recuperarSenha.Size = new Size(141, 31);
             btn_recuperarSenha.TabIndex = 3;
@@ -117,6 +143,19 @@
             lbl_recuperarSenha.TabIndex = 0;
             lbl_recuperarSenha.Text = "RECUPERAR SENHA";
             // 
+            // btn_validarToken
+            // 
+            btn_validarToken.BackColor = Color.FromArgb(242, 101, 34);
+            btn_validarToken.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_validarToken.ForeColor = Color.White;
+            btn_validarToken.Location = new Point(393, 288);
+            btn_validarToken.Name = "btn_validarToken";
+            btn_validarToken.Size = new Size(120, 31);
+            btn_validarToken.TabIndex = 18;
+            btn_validarToken.Text = "Validar Token";
+            btn_validarToken.UseVisualStyleBackColor = false;
+            btn_validarToken.Click += btn_validarToken_Click;
+            // 
             // RecuperarSenha
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -140,5 +179,8 @@
         private Button btn_recuperarSenha;
         private Label lbl_textoRecSenha;
         private Button btn_voltar_recuperarSenha;
+        private Label lbl_token;
+        private TextBox txt_validarToken;
+        private Button btn_validarToken;
     }
 }

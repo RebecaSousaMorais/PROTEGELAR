@@ -59,10 +59,10 @@
             // lbl_Email_login
             // 
             lbl_Email_login.AutoSize = true;
-            lbl_Email_login.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Email_login.Font = new Font("Arial", 12F);
             lbl_Email_login.Location = new Point(103, 275);
             lbl_Email_login.Name = "lbl_Email_login";
-            lbl_Email_login.Size = new Size(43, 15);
+            lbl_Email_login.Size = new Size(53, 18);
             lbl_Email_login.TabIndex = 1;
             lbl_Email_login.Text = "E-mail";
             lbl_Email_login.Click += lbl_Email_login_Click;
@@ -70,27 +70,29 @@
             // lbl_Senha_login
             // 
             lbl_Senha_login.AutoSize = true;
-            lbl_Senha_login.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Senha_login.Font = new Font("Arial", 12F);
             lbl_Senha_login.Location = new Point(103, 316);
             lbl_Senha_login.Name = "lbl_Senha_login";
-            lbl_Senha_login.Size = new Size(43, 15);
+            lbl_Senha_login.Size = new Size(53, 18);
             lbl_Senha_login.TabIndex = 2;
             lbl_Senha_login.Text = "Senha";
             lbl_Senha_login.Click += lbl_Senha_login_Click;
             // 
             // txt_email_login
             // 
+            txt_email_login.Font = new Font("Arial", 12F);
             txt_email_login.Location = new Point(159, 272);
             txt_email_login.Name = "txt_email_login";
-            txt_email_login.Size = new Size(280, 23);
+            txt_email_login.Size = new Size(280, 26);
             txt_email_login.TabIndex = 3;
             txt_email_login.TextChanged += txt_email_login_TextChanged;
             // 
             // txt_senha_login
             // 
+            txt_senha_login.Font = new Font("Arial", 12F);
             txt_senha_login.Location = new Point(159, 313);
             txt_senha_login.Name = "txt_senha_login";
-            txt_senha_login.Size = new Size(280, 23);
+            txt_senha_login.Size = new Size(280, 26);
             txt_senha_login.TabIndex = 4;
             txt_senha_login.TextChanged += txt_senha_login_TextChanged;
             // 
@@ -107,19 +109,19 @@
             panel1.Controls.Add(lbl_Senha_login);
             panel1.Controls.Add(txt_email_login);
             panel1.Controls.Add(lbl_Email_login);
-            panel1.Location = new Point(198, 35);
+            panel1.Location = new Point(188, 22);
             panel1.Name = "panel1";
-            panel1.Size = new Size(616, 500);
+            panel1.Size = new Size(626, 513);
             panel1.TabIndex = 5;
             panel1.Paint += panel1_Paint;
             // 
             // chk_mostrarSenha_login
             // 
             chk_mostrarSenha_login.AutoSize = true;
-            chk_mostrarSenha_login.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chk_mostrarSenha_login.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             chk_mostrarSenha_login.Location = new Point(445, 315);
             chk_mostrarSenha_login.Name = "chk_mostrarSenha_login";
-            chk_mostrarSenha_login.Size = new Size(106, 19);
+            chk_mostrarSenha_login.Size = new Size(129, 22);
             chk_mostrarSenha_login.TabIndex = 9;
             chk_mostrarSenha_login.Text = "Mostrar Senha";
             chk_mostrarSenha_login.UseVisualStyleBackColor = true;
@@ -128,7 +130,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(192, 24);
+            pictureBox1.Location = new Point(194, 22);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(201, 159);
             pictureBox1.TabIndex = 8;
@@ -137,10 +139,10 @@
             // lbl_esqueceuSenha_Login
             // 
             lbl_esqueceuSenha_Login.AutoSize = true;
-            lbl_esqueceuSenha_Login.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_esqueceuSenha_Login.Location = new Point(159, 339);
+            lbl_esqueceuSenha_Login.Font = new Font("Arial", 12F);
+            lbl_esqueceuSenha_Login.Location = new Point(159, 342);
             lbl_esqueceuSenha_Login.Name = "lbl_esqueceuSenha_Login";
-            lbl_esqueceuSenha_Login.Size = new Size(118, 15);
+            lbl_esqueceuSenha_Login.Size = new Size(146, 18);
             lbl_esqueceuSenha_Login.TabIndex = 7;
             lbl_esqueceuSenha_Login.Text = "Esqueceu a senha?";
             lbl_esqueceuSenha_Login.Click += lbl_esqueceuSenha_Login_Click;

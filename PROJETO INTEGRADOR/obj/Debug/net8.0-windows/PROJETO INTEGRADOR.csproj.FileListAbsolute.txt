@@ -29,3 +29,4 @@ C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGR
 C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\bin\Debug\net8.0-windows\Microsoft.Extensions.Primitives.dll
 C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\bin\Debug\net8.0-windows\Sprache.dll
 C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO .386E2F8C.Up2Date
+C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\obj\Debug\net8.0-windows\PROJETO_INTEGRADOR.RedefinirSenha.resources

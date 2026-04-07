@@ -12,94 +12,79 @@ namespace PROJETO_INTEGRADOR
     public partial class RecuperarSenha : Form
     {
         // Variável global para validar o código na próxima etapa
-       // private string tokenGerado = string.Empty;
+        private string tokenGerado = string.Empty;
 
         public RecuperarSenha()
         {
-            /*
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.WindowState = FormWindowState.Maximized;
 
-            // Tenta carregar o .env de 3 formas diferentes para garantir que funcione em qualquer PC
+            // Carregamento do arquivo .env usando o seu caminho específico
             try
             {
-                // 1. Tenta carregar da pasta onde o .exe está rodando (bin/Debug)
-                if (System.IO.File.Exists(".env"))
+                string caminhoEnv = @"C:\Users\rebeca.smorais\Downloads\PROTEGELAR-main\PROTEGELAR-main\PROJETO INTEGRADOR\.env";
+
+                if (System.IO.File.Exists(caminhoEnv))
                 {
-                    Env.Load();
+                    Env.Load(caminhoEnv);
                 }
                 else
                 {
-                    // 2. Tenta carregar subindo 2 níveis (Raiz do Projeto)
-                    string caminhoProjeto = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", ".env");
-
-                    // 3. Tenta carregar subindo 3 níveis (Raiz da Solução - caso use pastas extras)
-                    string caminhoSolucao = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", ".env");
-
-                    if (System.IO.File.Exists(caminhoProjeto)) Env.Load(caminhoProjeto);
-                    else if (System.IO.File.Exists(caminhoSolucao)) Env.Load(caminhoSolucao);
+                    // Caso o arquivo mude de lugar futuramente
+                    Env.Load();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao localizar .env: " + ex.Message);
+                MessageBox.Show("Erro ao carregar configurações (.env): " + ex.Message, "Erro Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
         }
 
+        // ETAPA 1: Enviar o e-mail com o código
         private async void btn_recuperarSenha_Click(object sender, EventArgs e)
         {
-            /*
-            // Configurações de Segurança de Rede para evitar erros de SSL/TLS
-            ServicePointManager.Expect100Continue = true;
+            // Configura protocolos de segurança para a API
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
 
             string emailDestino = txt_email_recuperarSenha.Text;
 
-            // Validação de entrada
+            // Validação simples de e-mail
             if (string.IsNullOrWhiteSpace(emailDestino) || !emailDestino.Contains("@"))
             {
                 MessageBox.Show("Por favor, insira um e-mail válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. BUSCA OS DADOS DO ARQUIVO .ENV (Protegendo sua chave e seu e-mail)
+            // Recupera as credenciais do seu .env
             string apiKey = Env.GetString("BREVO_API_KEY");
             string emailRemetente = Env.GetString("EMAIL_REMETENTE");
 
-            // Verifica se as variáveis foram carregadas corretamente
-            if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(emailRemetente))
+            if (string.IsNullOrEmpty(apiKey))
             {
-                MessageBox.Show("Erro: Arquivo .env não encontrado ou variáveis vazias!", "Erro Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Chave da API não encontrada! Verifique seu arquivo .env.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // 3. Gerar o código de 6 dígitos
+            // Gera um código aleatório de 6 dígitos
             tokenGerado = new Random().Next(100000, 999999).ToString();
 
-            // Handler para ignorar erros de certificado (SSL) em redes restritas
-            var handler = new HttpClientHandler();
-            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient())
             {
                 try
                 {
-                    client.DefaultRequestHeaders.Clear();
-                    // USA A CHAVE VINDA DO .ENV
                     client.DefaultRequestHeaders.Add("api-key", apiKey);
 
-                    // 4. Montar o JSON para a API do Brevo
                     var payload = new
                     {
                         sender = new { name = "Suporte Protegelar", email = emailRemetente },
                         to = new[] { new { email = emailDestino } },
-                        subject = "Recuperação de Acesso - Protegelar",
+                        subject = "Código de Recuperação - Protegelar",
                         htmlContent = $@"
                             <div style='font-family: sans-serif; padding: 20px; border: 1px solid #ddd; border-radius: 8px;'>
                                 <h2 style='color: #2c3e50;'>Código de Segurança</h2>
                                 <p>Olá! Use o código abaixo para redefinir sua senha no sistema <strong>Protegelar</strong>:</p>
-                                <div style='background: #f8f9fa; padding: 15px; text-align: center; font-size: 28px; font-weight: bold; color: #e74c3c; letter-spacing: 4px;'>
+                                <div style='background: #f8f9fa; padding: 15px; text-align: center; font-size: 28px; font-weight: bold; color: #e67e22; letter-spacing: 4px;'>
                                     {tokenGerado}
                                 </div>
                                 <p style='font-size: 12px; color: #95a5a6; margin-top: 20px;'>Se você não solicitou este código, ignore este e-mail.</p>
@@ -109,39 +94,95 @@ namespace PROJETO_INTEGRADOR
                     string json = JsonSerializer.Serialize(payload);
                     var conteudo = new StringContent(json, Encoding.UTF8, "application/json");
 
-                    // 5. Envio Assíncrono para não travar a interface
+                    // Envio para a API do Brevo
                     var resposta = await client.PostAsync("https://api.brevo.com/v3/smtp/email", conteudo);
 
                     if (resposta.IsSuccessStatusCode)
                     {
                         MessageBox.Show($"Código enviado com sucesso para {emailDestino}!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Opcional: Mostrar campos para digitar o código e validar
-                        // txt_validarToken.Visible = true;
-                        // btn_confirmarToken.Visible = true;
+                        // Mostra os campos de validação que você criou
+                        txt_validarToken.Visible = true;
+                        btn_validarToken.Visible = true;
+
+                        // Desabilita o botão de envio para evitar spam de e-mails
+                        btn_recuperarSenha.Enabled = false;
                     }
                     else
                     {
-                        string erroBody = await resposta.Content.ReadAsStringAsync();
-                        MessageBox.Show("Erro ao enviar: " + erroBody, "Erro API", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string erroDetalhado = await resposta.Content.ReadAsStringAsync();
+                        MessageBox.Show("Erro na API Brevo: " + erroDetalhado, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Falha na conexão: " + ex.Message, "Erro Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Falha na conexão: " + ex.Message, "Erro de Rede", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                */
             }
         }
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            this.Close(); // Volta para a tela de login
+            // Ao clicar retorna a tela de Login
+            Form1 TelaLogin = new Form1();
+            TelaLogin.ShowDialog();
+            this.Close();
         }
 
         private void RecuperarSenha_Load(object sender, EventArgs e)
         {
+            // Centraliza o painel principal na tela
+            if (panel1 != null)
+            {
+                panel1.Left = (this.ClientSize.Width - panel1.Width) / 2;
+                panel1.Top = (this.ClientSize.Height - panel1.Height) / 2;
+            }
 
+            // Garante que os campos de validação comecem ocultos
+            txt_validarToken.Visible = false;
+            btn_validarToken.Visible = false;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txt_validarToken_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_validarToken_Click(object sender, EventArgs e)
+        {
+            // Compara o que o usuário digitou no TextBox com o token gerado na memória
+            if (txt_validarToken.Text == tokenGerado && !string.IsNullOrEmpty(tokenGerado))
+            {
+                try
+                {
+                    // Primeiro criamos a tela
+                    RedefinirSenha telaRedefinir = new RedefinirSenha(txt_email_recuperarSenha.Text);
+
+                    // IMPORTANTE: Mostramos a nova ANTES de esconder a antiga
+                    telaRedefinir.Show();
+
+                    // Força o Windows a renderizar a tela nova
+                    Application.DoEvents();
+
+                    // Agora escondemos a de recuperação
+                    Form1 telaLogin = new Form1();
+                    //this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    // Se a tela RedefinirSenha sumir, esse erro vai dizer o porquê
+                    MessageBox.Show("Erro ao carregar a tela de Redefinição: " + ex.Message, "Erro de Inicialização");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Código incorreto!", "Erro");
+            }
         }
     }
 }
