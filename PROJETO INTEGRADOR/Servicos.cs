@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static PROJETO_INTEGRADOR.Form1;
 
 namespace PROJETO_INTEGRADOR
 {
     public partial class Servicos : Form
     {
+        private string stringConexao = "Server=localhost;Database=dbprotegelar;Uid=root;Pwd=;";
         public Servicos()
         {
             InitializeComponent();
@@ -21,79 +24,168 @@ namespace PROJETO_INTEGRADOR
         {
             panel1.Left = (this.ClientSize.Width - panel1.Width) / 2;
             panel1.Top = (this.ClientSize.Height - panel1.Height) / 2;
-
             this.WindowState = FormWindowState.Maximized;
 
-            // Popula categorias
-            cmb_categoria.Items.Add("Redes de Proteção");
-            cmb_categoria.Items.Add("Projetos Especiais");
-            cmb_categoria.Items.Add("Estruturas Metálicas");
-            cmb_categoria.Items.Add("Telas Mosquiteiras");
+            // CARREGA AS CATEGORIAS DO BANCO (Sem repetir nomes)
+            CarregarCategoriasDoBanco();
+        }
 
-            // Evento para atualizar serviços ao mudar categoria
-            cmb_categoria.SelectedIndexChanged += cmb_categoria_SelectedIndexChanged;
+        private void CarregarCategoriasDoBanco()
+        {
+            cmb_categoria.Items.Clear();
+            using (MySqlConnection conn = new MySqlConnection(stringConexao))
+            {
+                try
+                {
+                    conn.Open();
+                    // Busca as categorias únicas que inserimos no banco
+                    string sql = "SELECT DISTINCT categoria FROM servicos WHERE categoria IS NOT NULL ORDER BY categoria ASC";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            cmb_categoria.Items.Add(reader["categoria"].ToString());
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar categorias: " + ex.Message);
+                }
+            }
         }
 
         private void cmb_categoria_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // 1. Limpa a segunda combo (Serviços) para não acumular lixo
             cmb_servico.Items.Clear();
 
-            switch (cmb_categoria.SelectedItem.ToString())
+            // 2. Pega o texto que o usuário acabou de clicar na primeira combo
+            string categoriaSelecionada = cmb_categoria.SelectedItem.ToString();
+
+            using (MySqlConnection conn = new MySqlConnection(stringConexao))
             {
-                case "Redes de Proteção":
-                    cmb_servico.Items.Add("Instalação de redes de proteção");
-                    cmb_servico.Items.Add("Redes para janelas e sacadas");
-                    cmb_servico.Items.Add("Redes para pets");
-                    cmb_servico.Items.Add("Redes para piscinas");
-                    cmb_servico.Items.Add("Redes para escadas");
-                    break;
+                try
+                {
+                    conn.Open();
+                    // 3. Busca no banco apenas serviços que pertencem a essa categoria
+                    string sql = "SELECT nome_servico FROM servicos WHERE categoria = @cat";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@cat", categoriaSelecionada);
 
-                case "Projetos Especiais":
-                    cmb_servico.Items.Add("Projetos especiais de proteção");
-                    break;
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // 4. Adiciona cada serviço encontrado na SEGUNDA combo
+                            cmb_servico.Items.Add(reader["nome_servico"].ToString());
+                        }
+                    }
 
-                case "Estruturas Metálicas":
-                    cmb_servico.Items.Add("Estruturas metálicas para instalação");
-                    break;
-
-                case "Telas Mosquiteiras":
-                    cmb_servico.Items.Add("Telas mosquiteiras");
-                    break;
+                    // Opcional: Seleciona o primeiro serviço automaticamente para não ficar vazio
+                    if (cmb_servico.Items.Count > 0) cmb_servico.SelectedIndex = 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao filtrar serviços: " + ex.Message);
+                }
             }
         }
 
         private void btn_salvarOrcamento_Click(object sender, EventArgs e)
         {
-            string categoria = cmb_categoria.Text;
-            string servico = cmb_servico.Text;
-            string observacoes = txt_observacoes.Text;
-
-            if (!double.TryParse(txt_largura.Text, out double largura) ||
-                !double.TryParse(txt_altura.Text, out double altura))
+            // 1. Validação: Impede campos vazios
+            if (string.IsNullOrWhiteSpace(txt_largura.Text) || string.IsNullOrWhiteSpace(txt_altura.Text) || cmb_servico.SelectedItem == null)
             {
-                MessageBox.Show("Informe valores numéricos válidos para largura e altura.",
-                                "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Por favor, preencha as medidas e selecione o serviço.", "Atenção");
                 return;
             }
 
-            // Este cálculo é apenas uma simulação.
-            // Substituir por lógica real quando integrar com banco/API.
-            double precoBase = 50.0;
-            double precoFinal = precoBase + (largura * altura * 10);
+            // Trata a entrada de números (aceita ponto ou vírgula)
+            if (!double.TryParse(txt_largura.Text.Replace(".", ","), out double largura) ||
+                !double.TryParse(txt_altura.Text.Replace(".", ","), out double altura))
+            {
+                MessageBox.Show("Introduza valores numéricos válidos para as medidas.");
+                return;
+            }
 
-            lbl_precoOrcamento.Text = $"Preço R$ {precoFinal:F2}";
+            using (MySqlConnection conn = new MySqlConnection(stringConexao))
+            {
+                try
+                {
+                    conn.Open();
 
-            MessageBox.Show("Orçamento salvo com sucesso!",
-                            "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // 2. Procura o Preço e o ID do serviço (que já atualizámos no banco)
+                    string sqlBusca = "SELECT id_servico, preco_m2 FROM servicos WHERE nome_servico = @nome";
+                    MySqlCommand cmdBusca = new MySqlCommand(sqlBusca, conn);
+                    cmdBusca.Parameters.AddWithValue("@nome", cmb_servico.SelectedItem.ToString());
+
+                    int idServico = 0;
+                    double precoM2 = 0;
+
+                    using (MySqlDataReader reader = cmdBusca.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            idServico = Convert.ToInt32(reader["id_servico"]);
+                            precoM2 = Convert.ToDouble(reader["preco_m2"]);
+                        }
+                    }
+
+                    // 3. Cálculo matemático
+                    double total = (largura * altura) * precoM2;
+                    lbl_precoOrcamento.Text = $"Total: R$ {total:N2}";
+
+                    // 4. Grava na tabela de orçamentos vinculando ao e-mail da Sessão
+                    string sqlInsert = @"INSERT INTO orcamentos (id_usuario, id_servico, largura, altura, valor_total, observacoes)
+                               VALUES ((SELECT id_usuario FROM usuarios WHERE email = @email), @servico, @larg, @alt, @total, @obs)";
+
+                    using (MySqlCommand cmdInsert = new MySqlCommand(sqlInsert, conn))
+                    {
+                        cmdInsert.Parameters.AddWithValue("@email", Sessao.email);
+                        cmdInsert.Parameters.AddWithValue("@servico", idServico);
+                        cmdInsert.Parameters.AddWithValue("@larg", largura);
+                        cmdInsert.Parameters.AddWithValue("@alt", altura);
+                        cmdInsert.Parameters.AddWithValue("@total", total);
+                        cmdInsert.Parameters.AddWithValue("@obs", txt_observacoes.Text);
+                        cmdInsert.ExecuteNonQuery();
+                    }
+
+                    // 5. NAVEGAÇÃO: Abre a tela Orcamento.cs com os dados calculados
+                    string nomeServico = cmb_servico.SelectedItem.ToString();
+                    string valorFormatado = total.ToString("N2");
+                    string clienteEmail = Sessao.email;
+
+                    // Esta é a linha 162 que criará o vínculo com a tela de recibo
+                    Orcamento telaOrcamento = new Orcamento(clienteEmail, nomeServico, valorFormatado);
+
+                    this.Hide(); // Esconde a tela de serviços
+                    telaOrcamento.ShowDialog(); // Mostra o recibo
+                    this.Show(); // Volta quando o recibo for fechado
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro técnico: " + ex.Message);
+                }
+            }
         }
 
         private void btn_editarServico_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Aqui você pode implementar a edição dos serviços cadastrados.", "Editar Serviços", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // 1. Criamos a tela
+            Editar_Servicos telaEditar = new Editar_Servicos();
 
-            Editar_Servicos TelaEditar = new Editar_Servicos();
-            TelaEditar.ShowDialog();
+            // 2. Escondemos a tela atual ANTES de abrir a outra
             this.Hide();
+
+            // 3. Abrimos a nova como diálogo
+            telaEditar.ShowDialog();
+
+            // 4. Quando fechar a de edição, voltamos a mostrar esta (Serviços)
+            this.Show();
+            CarregarCategoriasDoBanco(); // Recarrega caso algo tenha mudado
         }
 
         private void lbl_precoOrcamento_Click(object sender, EventArgs e)
@@ -107,6 +199,17 @@ namespace PROJETO_INTEGRADOR
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btn_voltar_servico_Click(object sender, EventArgs e)
+        {
+            Home TelaHome = new Home();
+            TelaHome.ShowDialog();
+        }
+
+        private void cmb_servico_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

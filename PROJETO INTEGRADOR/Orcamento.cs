@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Google.Protobuf.WellKnownTypes;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +16,33 @@ namespace PROJETO_INTEGRADOR
 {
     public partial class Orcamento : Form
     {
-        public Orcamento()
+
+        public Orcamento(string clienteEmail)
         {
             InitializeComponent();
 
             // Inicia a tela maximizada
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void btn_salvarOrcamento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_salvarOrcamento_Click(object sender, EventArgs e, Conexao conexao)
+        {
+
+        }
+
+        private void btn_novoOrcamento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Orcamento_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

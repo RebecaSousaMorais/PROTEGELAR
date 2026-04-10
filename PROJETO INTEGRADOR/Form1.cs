@@ -1,10 +1,16 @@
+Ôªøusing BCrypt.Net;
+using MySqlConnector;
+using MySqlX.XDevAPI;
+
 namespace PROJETO_INTEGRADOR
 {
     public partial class Form1 : Form
     {
+        // 1. String de conex√£o direta para o XAMPP (RNF01)
+        private string stringConexao = "Server=localhost;Database=dbprotegelar;Uid=root;Pwd=;";
         public Form1()
         {
-            // Mantem a posiÁ„o centralizada
+            // Mantem a posi√ß√£o centralizada
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 
@@ -47,21 +53,55 @@ namespace PROJETO_INTEGRADOR
             string email = txt_email_login.Text;
             string senha = txt_senha_login.Text;
 
-            // Esta validaÁ„o È apenas uma simulaÁ„o.
-            // Quando integrar com banco de dados, substitua por uma consulta real.
-            if (email == "admin@teste.com" && senha == "1234")
+            using (MySqlConnection conn = new MySqlConnection(stringConexao))
             {
-                MessageBox.Show("Login realizado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    conn.Open();
+                    // Buscamos apenas pelo e-mail para pegar o Hash guardado
+                    string query = "SELECT nome_completo, senha FROM Usuarios WHERE email = @email";
 
-                // Exemplo: abrir tela principal
-                Home TelaHome = new Home();
-                TelaHome.ShowDialog();
-                this.Close();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@email", email);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read()) // Se encontrou o e-mail...
+                            {
+                                string nomeUsuario = reader["nome_completo"].ToString();
+                                string hashDoBanco = reader["senha"].ToString();
+
+                                // üîê VERIFICA√á√ÉO: O BCrypt compara a senha digitada com o Hash
+                                if (BCrypt.Net.BCrypt.Verify(senha, hashDoBanco))
+                                {
+                                    Sessao.email = email; // Guarda o e-mail na mem√≥ria global
+                                    MessageBox.Show($"Bem-vindo(a), {nomeUsuario}!");
+                                    Home TelaHome = new Home();
+                                    TelaHome.ShowDialog();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("E-mail ou senha inv√°lidos.");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Usu√°rio n√£o encontrado.");
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro t√©cnico: " + ex.Message);
+                }
             }
-            else
-            {
-                MessageBox.Show("Email ou senha inv·lidos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        }
+
+        public static class Sessao
+        {
+            public static string email;
         }
 
         private void btn_criarConta_login_Click(object sender, EventArgs e)
@@ -69,7 +109,7 @@ namespace PROJETO_INTEGRADOR
             // Ao clicar leva o usuario a tela de cadastro
             Cadastro TelaCadastro = new Cadastro();
             TelaCadastro.ShowDialog();
-            this.Close();
+            //this.Close();
         }
 
         private void lbl_esqueceuSenha_Login_Click(object sender, EventArgs e)
@@ -91,7 +131,7 @@ namespace PROJETO_INTEGRADOR
 
         private void chk_mostrarSenha_login_CheckedChanged(object sender, EventArgs e)
         {
-            // Se o checkbox estiver marcado, mostra o texto. Se n„o, oculta
+            // Se o checkbox estiver marcado, mostra o texto. Se n√£o, oculta
             bool ocultar = !chk_mostrarSenha_login.Checked;
 
             txt_senha_login.UseSystemPasswordChar = ocultar;

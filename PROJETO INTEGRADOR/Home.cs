@@ -68,7 +68,14 @@ namespace PROJETO_INTEGRADOR
         {
             Editar_Servicos TelaEditar = new Editar_Servicos();
             TelaEditar.Show();
-            this.Hide();
+            //this.Hide();
+        }
+
+        private void btn_verPerfil_Click(object sender, EventArgs e)
+        {
+            Perfil TelaPerfil = new Perfil();
+            TelaPerfil.ShowDialog();
+            //this.Hide();
         }
     }
 }

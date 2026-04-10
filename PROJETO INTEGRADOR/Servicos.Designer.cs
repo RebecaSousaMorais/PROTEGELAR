@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btn_voltar_servico = new Button();
+            lbl_observacoes = new Label();
+            lbl_altura = new Label();
+            lbl_largura = new Label();
+            lbl_servico = new Label();
+            lbl_categoria = new Label();
             txt_observacoes = new TextBox();
             btn_editarServico = new Button();
             lbl_precoOrcamento = new Label();
@@ -38,17 +44,13 @@
             cmb_servico = new ComboBox();
             cmb_categoria = new ComboBox();
             lbl_servicos = new Label();
-            lbl_categoria = new Label();
-            lbl_servico = new Label();
-            lbl_largura = new Label();
-            lbl_altura = new Label();
-            lbl_observacoes = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(btn_voltar_servico);
             panel1.Controls.Add(lbl_observacoes);
             panel1.Controls.Add(lbl_altura);
             panel1.Controls.Add(lbl_largura);
@@ -68,6 +70,69 @@
             panel1.Size = new Size(776, 426);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
+            // 
+            // btn_voltar_servico
+            // 
+            btn_voltar_servico.BackColor = Color.FromArgb(242, 101, 34);
+            btn_voltar_servico.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_voltar_servico.ForeColor = Color.White;
+            btn_voltar_servico.Location = new Point(608, 75);
+            btn_voltar_servico.Name = "btn_voltar_servico";
+            btn_voltar_servico.Size = new Size(127, 32);
+            btn_voltar_servico.TabIndex = 15;
+            btn_voltar_servico.Text = "Voltar";
+            btn_voltar_servico.UseVisualStyleBackColor = false;
+            btn_voltar_servico.Click += btn_voltar_servico_Click;
+            // 
+            // lbl_observacoes
+            // 
+            lbl_observacoes.AutoSize = true;
+            lbl_observacoes.Font = new Font("Arial", 12F);
+            lbl_observacoes.Location = new Point(170, 255);
+            lbl_observacoes.Name = "lbl_observacoes";
+            lbl_observacoes.Size = new Size(101, 18);
+            lbl_observacoes.TabIndex = 13;
+            lbl_observacoes.Text = "Observações";
+            // 
+            // lbl_altura
+            // 
+            lbl_altura.AutoSize = true;
+            lbl_altura.Font = new Font("Arial", 12F);
+            lbl_altura.Location = new Point(193, 212);
+            lbl_altura.Name = "lbl_altura";
+            lbl_altura.Size = new Size(48, 18);
+            lbl_altura.TabIndex = 12;
+            lbl_altura.Text = "Altura";
+            // 
+            // lbl_largura
+            // 
+            lbl_largura.AutoSize = true;
+            lbl_largura.Font = new Font("Arial", 12F);
+            lbl_largura.Location = new Point(193, 169);
+            lbl_largura.Name = "lbl_largura";
+            lbl_largura.Size = new Size(62, 18);
+            lbl_largura.TabIndex = 11;
+            lbl_largura.Text = "Largura";
+            // 
+            // lbl_servico
+            // 
+            lbl_servico.AutoSize = true;
+            lbl_servico.Font = new Font("Arial", 12F);
+            lbl_servico.Location = new Point(193, 127);
+            lbl_servico.Name = "lbl_servico";
+            lbl_servico.Size = new Size(61, 18);
+            lbl_servico.TabIndex = 10;
+            lbl_servico.Text = "Serviço";
+            // 
+            // lbl_categoria
+            // 
+            lbl_categoria.AutoSize = true;
+            lbl_categoria.Font = new Font("Arial", 12F);
+            lbl_categoria.Location = new Point(193, 89);
+            lbl_categoria.Name = "lbl_categoria";
+            lbl_categoria.Size = new Size(78, 18);
+            lbl_categoria.TabIndex = 9;
+            lbl_categoria.Text = "Categoria";
             // 
             // txt_observacoes
             // 
@@ -140,6 +205,7 @@
             cmb_servico.Name = "cmb_servico";
             cmb_servico.Size = new Size(233, 26);
             cmb_servico.TabIndex = 2;
+            cmb_servico.SelectedIndexChanged += cmb_servico_SelectedIndexChanged;
             // 
             // cmb_categoria
             // 
@@ -149,6 +215,7 @@
             cmb_categoria.Name = "cmb_categoria";
             cmb_categoria.Size = new Size(233, 26);
             cmb_categoria.TabIndex = 1;
+            cmb_categoria.SelectedIndexChanged += cmb_categoria_SelectedIndexChanged;
             // 
             // lbl_servicos
             // 
@@ -161,56 +228,6 @@
             lbl_servicos.Size = new Size(202, 45);
             lbl_servicos.TabIndex = 0;
             lbl_servicos.Text = "SERVIÇOS";
-            // 
-            // lbl_categoria
-            // 
-            lbl_categoria.AutoSize = true;
-            lbl_categoria.Font = new Font("Arial", 12F);
-            lbl_categoria.Location = new Point(193, 89);
-            lbl_categoria.Name = "lbl_categoria";
-            lbl_categoria.Size = new Size(78, 18);
-            lbl_categoria.TabIndex = 9;
-            lbl_categoria.Text = "Categoria";
-            // 
-            // lbl_servico
-            // 
-            lbl_servico.AutoSize = true;
-            lbl_servico.Font = new Font("Arial", 12F);
-            lbl_servico.Location = new Point(193, 127);
-            lbl_servico.Name = "lbl_servico";
-            lbl_servico.Size = new Size(61, 18);
-            lbl_servico.TabIndex = 10;
-            lbl_servico.Text = "Serviço";
-            // 
-            // lbl_largura
-            // 
-            lbl_largura.AutoSize = true;
-            lbl_largura.Font = new Font("Arial", 12F);
-            lbl_largura.Location = new Point(193, 169);
-            lbl_largura.Name = "lbl_largura";
-            lbl_largura.Size = new Size(62, 18);
-            lbl_largura.TabIndex = 11;
-            lbl_largura.Text = "Largura";
-            // 
-            // lbl_altura
-            // 
-            lbl_altura.AutoSize = true;
-            lbl_altura.Font = new Font("Arial", 12F);
-            lbl_altura.Location = new Point(193, 212);
-            lbl_altura.Name = "lbl_altura";
-            lbl_altura.Size = new Size(48, 18);
-            lbl_altura.TabIndex = 12;
-            lbl_altura.Text = "Altura";
-            // 
-            // lbl_observacoes
-            // 
-            lbl_observacoes.AutoSize = true;
-            lbl_observacoes.Font = new Font("Arial", 12F);
-            lbl_observacoes.Location = new Point(170, 255);
-            lbl_observacoes.Name = "lbl_observacoes";
-            lbl_observacoes.Size = new Size(101, 18);
-            lbl_observacoes.TabIndex = 13;
-            lbl_observacoes.Text = "Observações";
             // 
             // Servicos
             // 
@@ -243,5 +260,6 @@
         private Label lbl_largura;
         private Label lbl_servico;
         private Label lbl_categoria;
+        private Button btn_voltar_servico;
     }
 }

@@ -4,8 +4,8 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
-// Adicione estas duas referências:
 using DotNetEnv;
+using BCrypt.Net;
 
 namespace PROJETO_INTEGRADOR
 {

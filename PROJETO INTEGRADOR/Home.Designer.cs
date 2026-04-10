@@ -35,6 +35,7 @@
             panel1 = new Panel();
             btn_logout = new Button();
             pictureBox1 = new PictureBox();
+            btn_verPerfil = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -80,6 +81,7 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(btn_verPerfil);
             panel1.Controls.Add(btn_logout);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(lbl_Home);
@@ -113,6 +115,19 @@
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
+            // btn_verPerfil
+            // 
+            btn_verPerfil.BackColor = Color.FromArgb(242, 101, 34);
+            btn_verPerfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_verPerfil.ForeColor = Color.White;
+            btn_verPerfil.Location = new Point(574, 66);
+            btn_verPerfil.Name = "btn_verPerfil";
+            btn_verPerfil.Size = new Size(75, 26);
+            btn_verPerfil.TabIndex = 7;
+            btn_verPerfil.Text = "Perfil";
+            btn_verPerfil.UseVisualStyleBackColor = false;
+            btn_verPerfil.Click += btn_verPerfil_Click;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -136,5 +151,6 @@
         private Panel panel1;
         private Button btn_logout;
         private PictureBox pictureBox1;
+        private Button btn_verPerfil;
     }
 }

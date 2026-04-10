@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySqlConnector;
+using BCrypt.Net;
 
 namespace PROJETO_INTEGRADOR
 {
@@ -75,33 +77,46 @@ namespace PROJETO_INTEGRADOR
             string novaSenha = txt_novaSenha_redefinirSenha.Text;
             string confirmaSenha = txt_confirmarSenha_redefinirSenha.Text;
 
-            // 1. Validações Básicas
-            if (string.IsNullOrWhiteSpace(novaSenha) || novaSenha.Length < 6)
+            // 1. Validações Básicas (já existentes)
+            if (string.IsNullOrWhiteSpace(novaSenha) || novaSenha.Length < 8)
             {
-                MessageBox.Show("A senha deve ter pelo menos 6 caracteres.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("A senha deve ter pelo menos 8 caracteres.", "Aviso");
                 return;
             }
 
             if (novaSenha != confirmaSenha)
             {
-                MessageBox.Show("As senhas não coincidem!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("As senhas não coincidem!", "Erro");
                 return;
             }
 
-            // 2. Lógica de Banco de Dados (Futuro)
-            try
-            {
-                // Aqui você usará o 'this.emailUsuario' para saber qual linha do banco atualizar
-                // Exemplo lógico: UPDATE usuarios SET senha = @senha WHERE email = @email;
+            // 🔐 2. CRIPTOGRAFIA: Gerar o Hash da nova senha
+            string novoHash = BCrypt.Net.BCrypt.HashPassword(novaSenha);
 
-                MessageBox.Show("Senha redefinida com sucesso no sistema Protegelar!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Fecha a tela e volta para o login
-                this.Close();
-            }
-            catch (Exception ex)
+            // 3. Lógica de Banco de Dados
+            using (MySqlConnection conn = new MySqlConnection("Server=localhost;Database=dbprotegelar;Uid=root;Pwd=;"))
             {
-                MessageBox.Show("Erro ao conectar com o banco de dados: " + ex.Message);
+                try
+                {
+                    conn.Open();
+                    // Usamos o 'emailUsuario' que você já recebe no construtor da tela
+                    string query = "UPDATE Usuarios SET senha = @senha WHERE email = @email";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@senha", novoHash); // Enviando o Hash
+                        cmd.Parameters.AddWithValue("@email", this.emailUsuario);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Senha redefinida com sucesso!", "Sucesso");
+                    this.Close(); // Volta para o Login
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao atualizar banco: " + ex.Message);
+                }
             }
         }
     }
