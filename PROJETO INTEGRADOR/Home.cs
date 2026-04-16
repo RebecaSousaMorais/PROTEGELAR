@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BCrypt.Net;
+using MySqlConnector;
+using MySqlX.XDevAPI;
 
 namespace PROJETO_INTEGRADOR
 {

@@ -51,15 +51,17 @@ namespace PROJETO_INTEGRADOR
         private void btn_entrar_login_Click(object sender, EventArgs e)
         {
             string email = txt_email_login.Text;
+
             string senha = txt_senha_login.Text;
+
+
 
             using (MySqlConnection conn = new MySqlConnection(stringConexao))
             {
                 try
                 {
                     conn.Open();
-                    // Buscamos apenas pelo e-mail para pegar o Hash guardado
-                    string query = "SELECT nome_completo, senha FROM Usuarios WHERE email = @email";
+                    string query = "SELECT id_usuario, nome_completo, senha FROM Usuarios WHERE email = @email";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -67,18 +69,24 @@ namespace PROJETO_INTEGRADOR
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read()) // Se encontrou o e-mail...
+                            if (reader.Read())
                             {
                                 string nomeUsuario = reader["nome_completo"].ToString();
                                 string hashDoBanco = reader["senha"].ToString();
 
-                                // 🔐 VERIFICAÇÃO: O BCrypt compara a senha digitada com o Hash
                                 if (BCrypt.Net.BCrypt.Verify(senha, hashDoBanco))
                                 {
-                                    Sessao.email = email; // Guarda o e-mail na memória global
+                                    // GUARDANDO DADOS NA SESSÃO
+                                    Sessao.email = email;
+                                    Sessao.id_usuario = Convert.ToInt32(reader["id_usuario"]);
+
                                     MessageBox.Show($"Bem-vindo(a), {nomeUsuario}!");
+
+                                    // NAVEGAÇÃO: Esconde o login e abre a Home
+                                    this.Hide();
                                     Home TelaHome = new Home();
                                     TelaHome.ShowDialog();
+                                    //this.Close(); // Fecha o login quando a Home for fechada
                                 }
                                 else
                                 {
@@ -87,7 +95,7 @@ namespace PROJETO_INTEGRADOR
                             }
                             else
                             {
-                                MessageBox.Show("Usuário não encontrado.");
+                                MessageBox.Show("E-mail ou senha inválidos.");
                             }
                         }
                     }
@@ -102,6 +110,17 @@ namespace PROJETO_INTEGRADOR
         public static class Sessao
         {
             public static string email;
+            public static int id_usuario;
+            public static List<ItensCarrinho> Carrinho = new List<ItensCarrinho>();
+        }
+
+        // Estrutura para os itens que vêm da tela de Serviços
+        public class ItensCarrinho
+        {
+            public string Servico { get; set; }
+            public double Largura { get; set; }
+            public double Altura { get; set; }
+            public double Subtotal { get; set; }
         }
 
         private void btn_criarConta_login_Click(object sender, EventArgs e)

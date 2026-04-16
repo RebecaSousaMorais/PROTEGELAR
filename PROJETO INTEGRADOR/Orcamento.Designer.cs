@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            label2 = new Label();
             btn_novoOrcamento = new Button();
             lbl_valorTotal = new Label();
             btn_salvarOrcamento = new Button();
@@ -39,7 +38,8 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(label2);
+            panel1.Anchor = AnchorStyles.None;
+            panel1.AutoScroll = true;
             panel1.Controls.Add(btn_novoOrcamento);
             panel1.Controls.Add(lbl_valorTotal);
             panel1.Controls.Add(btn_salvarOrcamento);
@@ -49,23 +49,14 @@
             panel1.Size = new Size(776, 426);
             panel1.TabIndex = 0;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(193, 135);
-            label2.Name = "label2";
-            label2.Size = new Size(38, 15);
-            label2.TabIndex = 5;
-            label2.Text = "label2";
-            // 
             // btn_novoOrcamento
             // 
             btn_novoOrcamento.BackColor = Color.FromArgb(242, 101, 34);
             btn_novoOrcamento.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_novoOrcamento.ForeColor = Color.White;
-            btn_novoOrcamento.Location = new Point(426, 328);
+            btn_novoOrcamento.Location = new Point(427, 319);
             btn_novoOrcamento.Name = "btn_novoOrcamento";
-            btn_novoOrcamento.Size = new Size(155, 26);
+            btn_novoOrcamento.Size = new Size(155, 36);
             btn_novoOrcamento.TabIndex = 4;
             btn_novoOrcamento.Text = "Novo Orçamento";
             btn_novoOrcamento.UseVisualStyleBackColor = false;
@@ -73,11 +64,12 @@
             // 
             // lbl_valorTotal
             // 
+            lbl_valorTotal.Anchor = AnchorStyles.None;
             lbl_valorTotal.AutoSize = true;
-            lbl_valorTotal.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_valorTotal.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_valorTotal.Location = new Point(140, 259);
             lbl_valorTotal.Name = "lbl_valorTotal";
-            lbl_valorTotal.Size = new Size(122, 18);
+            lbl_valorTotal.Size = new Size(130, 19);
             lbl_valorTotal.TabIndex = 3;
             lbl_valorTotal.Text = "VALOR TOTAL: ";
             // 
@@ -86,9 +78,9 @@
             btn_salvarOrcamento.BackColor = Color.FromArgb(242, 101, 34);
             btn_salvarOrcamento.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_salvarOrcamento.ForeColor = Color.White;
-            btn_salvarOrcamento.Location = new Point(223, 328);
+            btn_salvarOrcamento.Location = new Point(223, 319);
             btn_salvarOrcamento.Name = "btn_salvarOrcamento";
-            btn_salvarOrcamento.Size = new Size(158, 27);
+            btn_salvarOrcamento.Size = new Size(158, 36);
             btn_salvarOrcamento.TabIndex = 2;
             btn_salvarOrcamento.Text = "Salvar Orçamento";
             btn_salvarOrcamento.UseVisualStyleBackColor = false;
@@ -126,6 +118,5 @@
         private Button btn_salvarOrcamento;
         private Button btn_novoOrcamento;
         private Label lbl_valorTotal;
-        private Label label2;
     }
 }

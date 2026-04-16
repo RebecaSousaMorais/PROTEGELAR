@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BCrypt.Net;
+using MySqlX.XDevAPI;
 using static PROJETO_INTEGRADOR.Form1;
 
 namespace PROJETO_INTEGRADOR
@@ -116,8 +118,6 @@ namespace PROJETO_INTEGRADOR
                 try
                 {
                     conn.Open();
-
-                    // 2. Procura o Preço e o ID do serviço (que já atualizámos no banco)
                     string sqlBusca = "SELECT id_servico, preco_m2 FROM servicos WHERE nome_servico = @nome";
                     MySqlCommand cmdBusca = new MySqlCommand(sqlBusca, conn);
                     cmdBusca.Parameters.AddWithValue("@nome", cmb_servico.SelectedItem.ToString());
@@ -134,11 +134,20 @@ namespace PROJETO_INTEGRADOR
                         }
                     }
 
-                    // 3. Cálculo matemático
-                    double total = (largura * altura) * precoM2;
-                    lbl_precoOrcamento.Text = $"Total: R$ {total:N2}";
+                    double totalCalculado = (largura * altura) * precoM2;
 
-                    // 4. Grava na tabela de orçamentos vinculando ao e-mail da Sessão
+                    // --- AQUI ESTÁ O SEGREDO: ALIMENTAR O CARRINHO DA SESSÃO ---
+                    // Criamos o objeto do item para a tela de recibo enxergar
+                    var novoItem = new Form1.ItensCarrinho
+                    {
+                        Servico = cmb_servico.SelectedItem.ToString(),
+                        Largura = largura,
+                        Altura = altura,
+                        Subtotal = totalCalculado
+                    };
+                    Form1.Sessao.Carrinho.Add(novoItem);
+
+                    // 4. Grava na tabela (Sua lógica de banco que já funciona)
                     string sqlInsert = @"INSERT INTO orcamentos (id_usuario, id_servico, largura, altura, valor_total, observacoes)
                                VALUES ((SELECT id_usuario FROM usuarios WHERE email = @email), @servico, @larg, @alt, @total, @obs)";
 
@@ -148,22 +157,14 @@ namespace PROJETO_INTEGRADOR
                         cmdInsert.Parameters.AddWithValue("@servico", idServico);
                         cmdInsert.Parameters.AddWithValue("@larg", largura);
                         cmdInsert.Parameters.AddWithValue("@alt", altura);
-                        cmdInsert.Parameters.AddWithValue("@total", total);
+                        cmdInsert.Parameters.AddWithValue("@total", totalCalculado);
                         cmdInsert.Parameters.AddWithValue("@obs", txt_observacoes.Text);
                         cmdInsert.ExecuteNonQuery();
                     }
 
-                    // 5. NAVEGAÇÃO: Abre a tela Orcamento.cs com os dados calculados
-                    string nomeServico = cmb_servico.SelectedItem.ToString();
-                    string valorFormatado = total.ToString("N2");
-                    string clienteEmail = Sessao.email;
-
-                    // Esta é a linha 162 que criará o vínculo com a tela de recibo
-                    Orcamento telaOrcamento = new Orcamento(clienteEmail, nomeServico, valorFormatado);
-
-                    this.Hide(); // Esconde a tela de serviços
-                    telaOrcamento.ShowDialog(); // Mostra o recibo
-                    this.Show(); // Volta quando o recibo for fechado
+                    // 5. NAVEGAÇÃO: Agora chamamos a tela sem precisar passar parâmetros, pois está na Sessão
+                    Orcamento TelaOrcamento = new Orcamento();
+                    TelaOrcamento.ShowDialog();
                 }
                 catch (Exception ex)
                 {
