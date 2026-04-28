@@ -83,7 +83,7 @@
             txt_email_login.Font = new Font("Arial", 12F);
             txt_email_login.Location = new Point(159, 272);
             txt_email_login.Name = "txt_email_login";
-            txt_email_login.Size = new Size(280, 26);
+            txt_email_login.Size = new Size(307, 26);
             txt_email_login.TabIndex = 3;
             txt_email_login.TextChanged += txt_email_login_TextChanged;
             // 
@@ -92,7 +92,7 @@
             txt_senha_login.Font = new Font("Arial", 12F);
             txt_senha_login.Location = new Point(159, 313);
             txt_senha_login.Name = "txt_senha_login";
-            txt_senha_login.Size = new Size(280, 26);
+            txt_senha_login.Size = new Size(307, 26);
             txt_senha_login.TabIndex = 4;
             txt_senha_login.TextChanged += txt_senha_login_TextChanged;
             // 
@@ -119,7 +119,7 @@
             // 
             chk_mostrarSenha_login.AutoSize = true;
             chk_mostrarSenha_login.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chk_mostrarSenha_login.Location = new Point(445, 315);
+            chk_mostrarSenha_login.Location = new Point(475, 312);
             chk_mostrarSenha_login.Name = "chk_mostrarSenha_login";
             chk_mostrarSenha_login.Size = new Size(129, 22);
             chk_mostrarSenha_login.TabIndex = 9;

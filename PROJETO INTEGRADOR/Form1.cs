@@ -1,13 +1,10 @@
 ﻿using BCrypt.Net;
-using MySqlConnector;
-using MySqlX.XDevAPI;
+using Microsoft.Data.Sqlite;
 
 namespace PROJETO_INTEGRADOR
 {
     public partial class Form1 : Form
     {
-        // 1. String de conexão direta para o XAMPP (RNF01)
-        private string stringConexao = "Server=localhost;Database=dbprotegelar;Uid=root;Pwd=;";
         public Form1()
         {
             // Mantem a posição centralizada
@@ -51,28 +48,26 @@ namespace PROJETO_INTEGRADOR
         private void btn_entrar_login_Click(object sender, EventArgs e)
         {
             string email = txt_email_login.Text;
-
             string senha = txt_senha_login.Text;
 
-
-
-            using (MySqlConnection conn = new MySqlConnection(stringConexao))
+            // Conexão com SQLite usando sua classe Conexao
+            using (var conn = Conexao.GetConexao())
             {
                 try
                 {
                     conn.Open();
                     string query = "SELECT id_usuario, nome_completo, senha FROM Usuarios WHERE email = @email";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (var cmd = new SqliteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@email", email);
 
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        using (var reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                string nomeUsuario = reader["nome_completo"].ToString();
-                                string hashDoBanco = reader["senha"].ToString();
+                                string nomeUsuario = reader["nome_completo"].ToString() ?? "";
+                                string hashDoBanco = reader["senha"].ToString() ?? "";
 
                                 if (BCrypt.Net.BCrypt.Verify(senha, hashDoBanco))
                                 {
@@ -86,7 +81,7 @@ namespace PROJETO_INTEGRADOR
                                     this.Hide();
                                     Home TelaHome = new Home();
                                     TelaHome.ShowDialog();
-                                    //this.Close(); // Fecha o login quando a Home for fechada
+                                    this.Show();
                                 }
                                 else
                                 {

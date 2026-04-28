@@ -203,7 +203,7 @@
             cmb_servico.FormattingEnabled = true;
             cmb_servico.Location = new Point(274, 124);
             cmb_servico.Name = "cmb_servico";
-            cmb_servico.Size = new Size(233, 26);
+            cmb_servico.Size = new Size(298, 26);
             cmb_servico.TabIndex = 2;
             cmb_servico.SelectedIndexChanged += cmb_servico_SelectedIndexChanged;
             // 
@@ -213,7 +213,7 @@
             cmb_categoria.FormattingEnabled = true;
             cmb_categoria.Location = new Point(274, 86);
             cmb_categoria.Name = "cmb_categoria";
-            cmb_categoria.Size = new Size(233, 26);
+            cmb_categoria.Size = new Size(298, 26);
             cmb_categoria.TabIndex = 1;
             cmb_categoria.SelectedIndexChanged += cmb_categoria_SelectedIndexChanged;
             // 

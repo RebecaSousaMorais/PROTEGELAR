@@ -7,18 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 using BCrypt.Net;
+using Microsoft.Data.Sqlite;
 
 namespace PROJETO_INTEGRADOR
 {
     public partial class Cadastro : Form
     {
-        // 1. String de conexão direta para o XAMPP (RNF01)
-        private string stringConexao = "Server=localhost;Database=dbprotegelar;Uid=root;Pwd=;";
         public Cadastro()
         {
             InitializeComponent();
+
+            // Mantém a posição centralizada
             this.StartPosition = FormStartPosition.CenterScreen;
 
             // Inicia a tela maximizada
@@ -108,17 +108,17 @@ namespace PROJETO_INTEGRADOR
                 return;
             }
 
-            // 🔹 RN01: Validação de critérios mínimos de senha (8-25 caracteres)
+            // RN01: Validação de critérios mínimos de senha (8-25 caracteres)
             if (!ValidarSenha(senha))
             {
                 MessageBox.Show("A senha deve ter entre 8 e 25 caracteres e conter: maiúscula, minúscula, número e símbolo.");
                 return;
             }
 
-            // 🔐 CRIPTOGRAFIA: Gerando o Hash da senha
+            // CRIPTOGRAFIA: Gerando o Hash da senha
             string senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
 
-            using (MySqlConnection conn = new MySqlConnection(stringConexao))
+            using (var conn = Conexao.GetConexao())
             {
                 try
                 {
@@ -127,7 +127,7 @@ namespace PROJETO_INTEGRADOR
                     // Query de Inserção (Note que enviamos o Hash, não a senha aberta)
                     string query = "INSERT INTO Usuarios (nome_completo, email, senha, endereco, telefone) VALUES (@nome, @email, @senha, @endereco, @telefone)";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (var cmd = new SqliteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@nome", nome);
                         cmd.Parameters.AddWithValue("@email", email);

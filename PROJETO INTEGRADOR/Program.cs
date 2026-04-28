@@ -1,17 +1,37 @@
+using System;
+using System.Windows.Forms;
+using DotNetEnv;
+
 namespace PROJETO_INTEGRADOR
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            try
+            {
+                // Carrega variáveis do arquivo .env
+                Env.Load();
+
+                // Inicializa banco SQLite (cria arquivo + tabelas + dados)
+                Conexao.InicializarBanco();
+
+                // Inicializa aplicação Windows Forms
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+
+                // Inicia pelo Login
+                Application.Run(new Form1());
+            }
+            catch (Exception ex)
+            {
+                // Evita app fechar sem mostrar erro
+                MessageBox.Show("Erro crítico ao iniciar o sistema: " + ex.Message,
+                                "Erro",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -2,8 +2,7 @@
 using Google.Protobuf.WellKnownTypes;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using MySqlConnector;
-using MySqlX.XDevAPI;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,8 +19,6 @@ namespace PROJETO_INTEGRADOR
 {
     public partial class Orcamento : Form
     {
-        // 1. String de conexão direta para o XAMPP (RNF01)
-        private string stringConexao = "Server=127.0.0.1;Database=dbprotegelar;Uid=root;Pwd=;";
         public Orcamento()
         {
             InitializeComponent();
@@ -30,56 +27,55 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_salvarOrcamento_Click(object sender, EventArgs e)
         {
-            // Valida se o carrinho não está vazio
             if (Form1.Sessao.Carrinho.Count == 0)
             {
-                MessageBox.Show("Não há itens no orçamento para salvar.", "Atenção");
+                MessageBox.Show("Não há itens no orçamento.");
                 return;
             }
 
-            // 1. Configura a Janela de Salvar Arquivo
             SaveFileDialog salvarArquivo = new SaveFileDialog();
-            salvarArquivo.Filter = "Arquivo PDF|*.pdf";
-            salvarArquivo.Title = "Salvar Orçamento ProtegeLar";
+            salvarArquivo.Filter = "PDF|*.pdf";
             salvarArquivo.FileName = $"Orcamento_{DateTime.Now:yyyyMMdd_HHmm}";
 
-            if (salvarArquivo.ShowDialog() == DialogResult.OK)
+            if (salvarArquivo.ShowDialog() != DialogResult.OK)
+                return;
+
+            double valorTotalFinal = Form1.Sessao.Carrinho.Sum(x => x.Subtotal);
+            int idGerado = 0;
+
+            // 1. BLOCO SOMENTE BANCO (rápido e fechado)
+            using (var conn = Conexao.GetConexao())
             {
-                using (MySqlConnection conn = new MySqlConnection(stringConexao))
+                conn.Open();
+
+                string sql = @"
+            INSERT INTO Orcamentos (id_usuario, valor_total, data_criacao)
+            VALUES (@user, @total, datetime('now'));
+ 
+            SELECT last_insert_rowid();
+        ";
+
+                using (var cmd = new SqliteCommand(sql, conn))
                 {
-                    try
-                    {
-                        conn.Open();
+                    cmd.Parameters.AddWithValue("@user", Form1.Sessao.id_usuario);
+                    cmd.Parameters.AddWithValue("@total", valorTotalFinal);
 
-                        // 2. Lógica de Banco: Calcula o total e insere o registro principal
-                        double valorTotalFinal = Form1.Sessao.Carrinho.Sum(x => x.Subtotal);
-                        string sqlInsert = "INSERT INTO orcamentos (id_usuario, valor_total, data_criacao) VALUES (@user, @total, NOW()); SELECT LAST_INSERT_ID();";
-
-                        MySqlCommand cmd = new MySqlCommand(sqlInsert, conn);
-                        cmd.Parameters.AddWithValue("@user", Form1.Sessao.id_usuario);
-                        cmd.Parameters.AddWithValue("@total", valorTotalFinal);
-
-                        // Pega o ID gerado pelo banco para o protocolo
-                        int idGerado = Convert.ToInt32(cmd.ExecuteScalar());
-
-                        // 3. Gera o PDF passando o ID e o caminho escolhido na janela
-                        GerarPDF(idGerado, salvarArquivo.FileName);
-
-                        // 4. Abre o PDF automaticamente para visualização
-                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(salvarArquivo.FileName) { UseShellExecute = true });
-
-                        MessageBox.Show($"Orçamento #{idGerado} registrado com sucesso!", "Sucesso");
-
-                        // 5. Limpa a Sessão e fecha a tela
-                        Form1.Sessao.Carrinho.Clear();
-                        this.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erro técnico ao salvar: " + ex.Message, "Erro");
-                    }
+                    idGerado = Convert.ToInt32(cmd.ExecuteScalar());
                 }
-            }
+            } // FECHA conexão AQUI (importante)
+
+            // 2. PDF FORA DO BANCO (não trava SQLite)
+            GerarPDF(idGerado, salvarArquivo.FileName);
+
+            System.Diagnostics.Process.Start(
+                new System.Diagnostics.ProcessStartInfo(salvarArquivo.FileName)
+                { UseShellExecute = true }
+            );
+
+            MessageBox.Show($"Orçamento #{idGerado} salvo com sucesso!");
+
+            Form1.Sessao.Carrinho.Clear();
+            this.Close();
         }
 
         private void GerarPDF(int id, string caminhoArquivo)

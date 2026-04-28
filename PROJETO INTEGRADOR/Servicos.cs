@@ -1,22 +1,18 @@
-﻿using MySqlConnector;
+﻿using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BCrypt.Net;
-using MySqlX.XDevAPI;
 using static PROJETO_INTEGRADOR.Form1;
 
 namespace PROJETO_INTEGRADOR
 {
     public partial class Servicos : Form
     {
-        private string stringConexao = "Server=localhost;Database=dbprotegelar;Uid=root;Pwd=;";
         public Servicos()
         {
             InitializeComponent();
@@ -35,16 +31,17 @@ namespace PROJETO_INTEGRADOR
         private void CarregarCategoriasDoBanco()
         {
             cmb_categoria.Items.Clear();
-            using (MySqlConnection conn = new MySqlConnection(stringConexao))
+
+            using (var conn = Conexao.GetConexao())
             {
                 try
                 {
                     conn.Open();
-                    // Busca as categorias únicas que inserimos no banco
-                    string sql = "SELECT DISTINCT categoria FROM servicos WHERE categoria IS NOT NULL ORDER BY categoria ASC";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    string sql = "SELECT DISTINCT categoria FROM Servicos WHERE categoria IS NOT NULL ORDER BY categoria ASC";
+
+                    using (var cmd = new SqliteCommand(sql, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -61,33 +58,44 @@ namespace PROJETO_INTEGRADOR
 
         private void cmb_categoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // 1. Limpa a segunda combo (Serviços) para não acumular lixo
             cmb_servico.Items.Clear();
 
-            // 2. Pega o texto que o usuário acabou de clicar na primeira combo
-            string categoriaSelecionada = cmb_categoria.SelectedItem.ToString();
+            if (cmb_categoria.SelectedItem == null)
+                return;
 
-            using (MySqlConnection conn = new MySqlConnection(stringConexao))
+            string categoriaSelecionada = cmb_categoria.SelectedItem.ToString() ?? "";
+
+            using (var conn = Conexao.GetConexao())
             {
                 try
                 {
                     conn.Open();
-                    // 3. Busca no banco apenas serviços que pertencem a essa categoria
-                    string sql = "SELECT nome_servico FROM servicos WHERE categoria = @cat";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@cat", categoriaSelecionada);
 
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    string sql = @"
+                        SELECT nome_servico
+                        FROM Servicos
+                        WHERE categoria = @cat
+                        ORDER BY nome_servico ASC
+                    ";
+
+                    using (var cmd = new SqliteCommand(sql, conn))
                     {
-                        while (reader.Read())
+                        cmd.Parameters.AddWithValue("@cat", categoriaSelecionada);
+
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            // 4. Adiciona cada serviço encontrado na SEGUNDA combo
-                            cmb_servico.Items.Add(reader["nome_servico"].ToString());
+                            while (reader.Read())
+                            {
+                                cmb_servico.Items.Add(reader["nome_servico"].ToString());
+                            }
                         }
                     }
 
-                    // Opcional: Seleciona o primeiro serviço automaticamente para não ficar vazio
-                    if (cmb_servico.Items.Count > 0) cmb_servico.SelectedIndex = 0;
+                    // Seleciona automaticamente o primeiro item
+                    if (cmb_servico.Items.Count > 0)
+                    {
+                        cmb_servico.SelectedIndex = 0;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -98,34 +106,40 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_salvarOrcamento_Click(object sender, EventArgs e)
         {
-            // 1. Validação: Impede campos vazios
-            if (string.IsNullOrWhiteSpace(txt_largura.Text) || string.IsNullOrWhiteSpace(txt_altura.Text) || cmb_servico.SelectedItem == null)
+            if (string.IsNullOrWhiteSpace(txt_largura.Text) ||
+        string.IsNullOrWhiteSpace(txt_altura.Text) ||
+        cmb_servico.SelectedItem == null)
             {
-                MessageBox.Show("Por favor, preencha as medidas e selecione o serviço.", "Atenção");
+                MessageBox.Show("Preencha as medidas e selecione um serviço.");
                 return;
             }
 
-            // Trata a entrada de números (aceita ponto ou vírgula)
             if (!double.TryParse(txt_largura.Text.Replace(".", ","), out double largura) ||
                 !double.TryParse(txt_altura.Text.Replace(".", ","), out double altura))
             {
-                MessageBox.Show("Introduza valores numéricos válidos para as medidas.");
+                MessageBox.Show("Digite valores válidos.");
                 return;
             }
 
-            using (MySqlConnection conn = new MySqlConnection(stringConexao))
+            int idServico = 0;
+            double precoM2 = 0;
+
+            // 1. BLOCO SOMENTE LEITURA (fecha rápido)
+            using (var conn = Conexao.GetConexao())
             {
-                try
+                conn.Open();
+
+                string sqlBusca = @"
+            SELECT id_servico, preco_m2
+            FROM Servicos
+            WHERE nome_servico = @nome
+        ";
+
+                using (var cmd = new SqliteCommand(sqlBusca, conn))
                 {
-                    conn.Open();
-                    string sqlBusca = "SELECT id_servico, preco_m2 FROM servicos WHERE nome_servico = @nome";
-                    MySqlCommand cmdBusca = new MySqlCommand(sqlBusca, conn);
-                    cmdBusca.Parameters.AddWithValue("@nome", cmb_servico.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@nome", cmb_servico.SelectedItem.ToString());
 
-                    int idServico = 0;
-                    double precoM2 = 0;
-
-                    using (MySqlDataReader reader = cmdBusca.ExecuteReader())
+                    using (var reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -133,44 +147,66 @@ namespace PROJETO_INTEGRADOR
                             precoM2 = Convert.ToDouble(reader["preco_m2"]);
                         }
                     }
-
-                    double totalCalculado = (largura * altura) * precoM2;
-
-                    // --- AQUI ESTÁ O SEGREDO: ALIMENTAR O CARRINHO DA SESSÃO ---
-                    // Criamos o objeto do item para a tela de recibo enxergar
-                    var novoItem = new Form1.ItensCarrinho
-                    {
-                        Servico = cmb_servico.SelectedItem.ToString(),
-                        Largura = largura,
-                        Altura = altura,
-                        Subtotal = totalCalculado
-                    };
-                    Form1.Sessao.Carrinho.Add(novoItem);
-
-                    // 4. Grava na tabela (Sua lógica de banco que já funciona)
-                    string sqlInsert = @"INSERT INTO orcamentos (id_usuario, id_servico, largura, altura, valor_total, observacoes)
-                               VALUES ((SELECT id_usuario FROM usuarios WHERE email = @email), @servico, @larg, @alt, @total, @obs)";
-
-                    using (MySqlCommand cmdInsert = new MySqlCommand(sqlInsert, conn))
-                    {
-                        cmdInsert.Parameters.AddWithValue("@email", Sessao.email);
-                        cmdInsert.Parameters.AddWithValue("@servico", idServico);
-                        cmdInsert.Parameters.AddWithValue("@larg", largura);
-                        cmdInsert.Parameters.AddWithValue("@alt", altura);
-                        cmdInsert.Parameters.AddWithValue("@total", totalCalculado);
-                        cmdInsert.Parameters.AddWithValue("@obs", txt_observacoes.Text);
-                        cmdInsert.ExecuteNonQuery();
-                    }
-
-                    // 5. NAVEGAÇÃO: Agora chamamos a tela sem precisar passar parâmetros, pois está na Sessão
-                    Orcamento TelaOrcamento = new Orcamento();
-                    TelaOrcamento.ShowDialog();
                 }
-                catch (Exception ex)
+            } // conexão FECHA AQUI (importante)
+
+            double totalCalculado = (largura * altura) * precoM2;
+
+            Sessao.Carrinho.Add(new ItensCarrinho
+            {
+                Servico = cmb_servico.SelectedItem.ToString(),
+                Largura = largura,
+                Altura = altura,
+                Subtotal = totalCalculado
+            });
+
+            long idOrcamento;
+
+            // 2. BLOCO SOMENTE ESCRITA (nova conexão)
+            using (var conn = Conexao.GetConexao())
+            {
+                conn.Open();
+
+                string sqlInsert = @"
+            INSERT INTO Orcamentos (id_usuario, valor_total)
+            VALUES (@usuario, @total);
+        ";
+
+                using (var cmd = new SqliteCommand(sqlInsert, conn))
                 {
-                    MessageBox.Show("Erro técnico: " + ex.Message);
+                    cmd.Parameters.AddWithValue("@usuario", Sessao.id_usuario);
+                    cmd.Parameters.AddWithValue("@total", totalCalculado);
+                    cmd.ExecuteNonQuery();
+                }
+
+                using (var cmdId = new SqliteCommand("SELECT last_insert_rowid();", conn))
+                {
+                    idOrcamento = (long)cmdId.ExecuteScalar();
+                }
+
+                string sqlItem = @"
+            INSERT INTO itens_orcamento
+            (id_orcamento, id_servico, largura, altura, subtotal_item)
+            VALUES
+            (@orcamento, @servico, @largura, @altura, @subtotal);
+        ";
+
+                using (var cmdItem = new SqliteCommand(sqlItem, conn))
+                {
+                    cmdItem.Parameters.AddWithValue("@orcamento", idOrcamento);
+                    cmdItem.Parameters.AddWithValue("@servico", idServico);
+                    cmdItem.Parameters.AddWithValue("@largura", largura);
+                    cmdItem.Parameters.AddWithValue("@altura", altura);
+                    cmdItem.Parameters.AddWithValue("@subtotal", totalCalculado);
+
+                    cmdItem.ExecuteNonQuery();
                 }
             }
+
+            MessageBox.Show("Orçamento salvo com sucesso.");
+
+            Orcamento tela = new Orcamento();
+            tela.ShowDialog();
         }
 
         private void btn_editarServico_Click(object sender, EventArgs e)
