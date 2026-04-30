@@ -14,6 +14,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static PROJETO_INTEGRADOR.Form1;
 
 namespace PROJETO_INTEGRADOR
 {
@@ -130,7 +131,7 @@ namespace PROJETO_INTEGRADOR
 
         private void DesenharItensNoRecibo()
         {
-            // Limpa itens antigos para não duplicar na tela
+            // Limpa itens antigos
             for (int i = panel1.Controls.Count - 1; i >= 0; i--)
             {
                 if (panel1.Controls[i].Tag?.ToString() == "dinamico")
@@ -140,9 +141,9 @@ namespace PROJETO_INTEGRADOR
             int eixoY = 130;
             double totalGeral = 0;
 
-            // Percorre o carrinho global da Sessao
-            foreach (var item in Form1.Sessao.Carrinho)
+            foreach (var item in Form1.Sessao.Carrinho.ToList())
             {
+                // Label do item
                 Label lbl = new Label
                 {
                     Text = $"• {item.Servico} ({item.Largura:F2}m x {item.Altura:F2}m) ... {item.Subtotal:C2}",
@@ -151,12 +152,42 @@ namespace PROJETO_INTEGRADOR
                     AutoSize = true,
                     Tag = "dinamico"
                 };
+
+                // Botão remover
+                Button btnRemover = new Button
+                {
+                    Text = "X",
+                    Location = new Point(600, eixoY - 5),
+                    Size = new Size(30, 25),
+                    BackColor = Color.Red,
+                    ForeColor = Color.White,
+                    Tag = item
+                };
+
+                btnRemover.Click += (s, e) =>
+                {
+                    var itemRemover = (ItensCarrinho)((Button)s).Tag;
+
+                    Form1.Sessao.Carrinho.Remove(itemRemover);
+
+                    DesenharItensNoRecibo(); // redesenha tudo
+                };
+
                 panel1.Controls.Add(lbl);
+                panel1.Controls.Add(btnRemover);
+
                 eixoY += 35;
                 totalGeral += item.Subtotal;
             }
 
             lbl_valorTotal.Text = totalGeral.ToString("C2");
+        }
+
+        private void btn_voltar_Click(object sender, EventArgs e)
+        {
+            Servicos TelaServicos = new Servicos();
+            TelaServicos.ShowDialog();
+            this.Hide();
         }
     }
 }

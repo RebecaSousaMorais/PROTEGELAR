@@ -33,6 +33,7 @@
             lbl_valorTotal = new Label();
             btn_salvarOrcamento = new Button();
             lbl_OrcamentoFinal = new Label();
+            btn_voltar = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -40,6 +41,7 @@
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.AutoScroll = true;
+            panel1.Controls.Add(btn_voltar);
             panel1.Controls.Add(btn_novoOrcamento);
             panel1.Controls.Add(lbl_valorTotal);
             panel1.Controls.Add(btn_salvarOrcamento);
@@ -97,6 +99,19 @@
             lbl_OrcamentoFinal.TabIndex = 1;
             lbl_OrcamentoFinal.Text = "ORÇAMENTO";
             // 
+            // btn_voltar
+            // 
+            btn_voltar.BackColor = Color.FromArgb(242, 101, 34);
+            btn_voltar.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_voltar.ForeColor = Color.White;
+            btn_voltar.Location = new Point(622, 75);
+            btn_voltar.Name = "btn_voltar";
+            btn_voltar.Size = new Size(75, 36);
+            btn_voltar.TabIndex = 5;
+            btn_voltar.Text = "Voltar";
+            btn_voltar.UseVisualStyleBackColor = false;
+            btn_voltar.Click += btn_voltar_Click;
+            // 
             // Orcamento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -118,5 +133,6 @@
         private Button btn_salvarOrcamento;
         private Button btn_novoOrcamento;
         private Label lbl_valorTotal;
+        private Button btn_voltar;
     }
 }

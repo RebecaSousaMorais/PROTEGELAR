@@ -33,9 +33,9 @@
             btn_novoOrcamento = new Button();
             btn_gerenciarServico = new Button();
             panel1 = new Panel();
+            btn_verPerfil = new Button();
             btn_logout = new Button();
             pictureBox1 = new PictureBox();
-            btn_verPerfil = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -93,6 +93,19 @@
             panel1.TabIndex = 4;
             panel1.Paint += panel1_Paint;
             // 
+            // btn_verPerfil
+            // 
+            btn_verPerfil.BackColor = Color.FromArgb(242, 101, 34);
+            btn_verPerfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_verPerfil.ForeColor = Color.White;
+            btn_verPerfil.Location = new Point(574, 66);
+            btn_verPerfil.Name = "btn_verPerfil";
+            btn_verPerfil.Size = new Size(75, 38);
+            btn_verPerfil.TabIndex = 7;
+            btn_verPerfil.Text = "Perfil";
+            btn_verPerfil.UseVisualStyleBackColor = false;
+            btn_verPerfil.Click += btn_verPerfil_Click;
+            // 
             // btn_logout
             // 
             btn_logout.BackColor = Color.FromArgb(242, 101, 34);
@@ -114,19 +127,6 @@
             pictureBox1.Size = new Size(202, 163);
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
-            // 
-            // btn_verPerfil
-            // 
-            btn_verPerfil.BackColor = Color.FromArgb(242, 101, 34);
-            btn_verPerfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_verPerfil.ForeColor = Color.White;
-            btn_verPerfil.Location = new Point(574, 66);
-            btn_verPerfil.Name = "btn_verPerfil";
-            btn_verPerfil.Size = new Size(75, 26);
-            btn_verPerfil.TabIndex = 7;
-            btn_verPerfil.Text = "Perfil";
-            btn_verPerfil.UseVisualStyleBackColor = false;
-            btn_verPerfil.Click += btn_verPerfil_Click;
             // 
             // Home
             // 

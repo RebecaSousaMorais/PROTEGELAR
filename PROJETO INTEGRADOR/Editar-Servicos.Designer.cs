@@ -34,8 +34,9 @@
             col_nomeServico = new DataGridViewTextBoxColumn();
             col_preco = new DataGridViewTextBoxColumn();
             col_categoria = new DataGridViewTextBoxColumn();
-            col_editar = new DataGridViewTextBoxColumn();
-            col_excluir = new DataGridViewTextBoxColumn();
+            col_editar = new DataGridViewButtonColumn();
+            col_excluir = new DataGridViewButtonColumn();
+            col_id = new DataGridViewTextBoxColumn();
             btn_voltar_servicos = new Button();
             lbl_editarServicos = new Label();
             panel1.SuspendLayout();
@@ -49,9 +50,9 @@
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(btn_voltar_servicos);
             panel1.Controls.Add(lbl_editarServicos);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(77, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(776, 426);
+            panel1.Size = new Size(1002, 512);
             panel1.TabIndex = 0;
             // 
             // btn_novoOrcamento
@@ -59,7 +60,7 @@
             btn_novoOrcamento.BackColor = Color.FromArgb(242, 101, 34);
             btn_novoOrcamento.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_novoOrcamento.ForeColor = Color.White;
-            btn_novoOrcamento.Location = new Point(520, 348);
+            btn_novoOrcamento.Location = new Point(520, 392);
             btn_novoOrcamento.Name = "btn_novoOrcamento";
             btn_novoOrcamento.Size = new Size(153, 28);
             btn_novoOrcamento.TabIndex = 3;
@@ -70,25 +71,28 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { col_nomeServico, col_preco, col_categoria, col_editar, col_excluir });
-            dataGridView1.Location = new Point(131, 88);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { col_nomeServico, col_preco, col_categoria, col_editar, col_excluir, col_id });
+            dataGridView1.Location = new Point(132, 88);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(542, 150);
+            dataGridView1.Size = new Size(702, 290);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // col_nomeServico
             // 
+            col_nomeServico.DataPropertyName = "nome_servico";
             col_nomeServico.HeaderText = "Nome do Serviço";
             col_nomeServico.Name = "col_nomeServico";
             // 
             // col_preco
             // 
+            col_preco.DataPropertyName = "preco_m2";
             col_preco.HeaderText = "Preço m²";
             col_preco.Name = "col_preco";
             // 
             // col_categoria
             // 
+            col_categoria.DataPropertyName = "categoria";
             col_categoria.HeaderText = "Categoria";
             col_categoria.Name = "col_categoria";
             // 
@@ -96,18 +100,31 @@
             // 
             col_editar.HeaderText = "Editar";
             col_editar.Name = "col_editar";
+            col_editar.Resizable = DataGridViewTriState.True;
+            col_editar.SortMode = DataGridViewColumnSortMode.Automatic;
+            col_editar.Text = "Editar";
             // 
             // col_excluir
             // 
             col_excluir.HeaderText = "Excluir";
             col_excluir.Name = "col_excluir";
+            col_excluir.Resizable = DataGridViewTriState.True;
+            col_excluir.SortMode = DataGridViewColumnSortMode.Automatic;
+            col_excluir.Text = "Excluir";
+            // 
+            // col_id
+            // 
+            col_id.DataPropertyName = "id_servico";
+            col_id.HeaderText = "ID";
+            col_id.Name = "col_id";
+            col_id.Visible = false;
             // 
             // btn_voltar_servicos
             // 
             btn_voltar_servicos.BackColor = Color.FromArgb(242, 101, 34);
             btn_voltar_servicos.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_voltar_servicos.ForeColor = Color.White;
-            btn_voltar_servicos.Location = new Point(23, 88);
+            btn_voltar_servicos.Location = new Point(282, 392);
             btn_voltar_servicos.Name = "btn_voltar_servicos";
             btn_voltar_servicos.Size = new Size(75, 28);
             btn_voltar_servicos.TabIndex = 1;
@@ -132,7 +149,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1157, 623);
             Controls.Add(panel1);
             Name = "Editar_Servicos";
             Text = "Editar_Servicos";
@@ -148,12 +165,13 @@
         private Panel panel1;
         private Label lbl_editarServicos;
         private DataGridView dataGridView1;
+        private Button btn_voltar_servicos;
+        private Button btn_novoOrcamento;
         private DataGridViewTextBoxColumn col_nomeServico;
         private DataGridViewTextBoxColumn col_preco;
         private DataGridViewTextBoxColumn col_categoria;
-        private DataGridViewTextBoxColumn col_editar;
-        private DataGridViewTextBoxColumn col_excluir;
-        private Button btn_voltar_servicos;
-        private Button btn_novoOrcamento;
+        private DataGridViewButtonColumn col_editar;
+        private DataGridViewButtonColumn col_excluir;
+        private DataGridViewTextBoxColumn col_id;
     }
 }

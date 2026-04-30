@@ -104,6 +104,43 @@ namespace PROJETO_INTEGRADOR
             }
         }
 
+        private void AtualizarValor()
+        {
+            if (cmb_servico.SelectedItem == null)
+            {
+                lbl_precoOrcamento.Text = "R$ 0,00";
+                return;
+            }
+
+            if (!double.TryParse(txt_largura.Text.Replace(".", ","), out double largura) ||
+            !double.TryParse(txt_altura.Text.Replace(".", ","), out double altura))
+            {
+                lbl_precoOrcamento.Text = "R$ 0,00";
+                return;
+            }
+
+            using (var conn = Conexao.GetConexao())
+            {
+                conn.Open();
+
+                string sql = "SELECT preco_m2 FROM Servicos WHERE nome_servico = @nome";
+
+                using (var cmd = new SqliteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nome", cmb_servico.SelectedItem.ToString());
+
+                    var result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        double precoM2 = Convert.ToDouble(result);
+                        double total = largura * altura * precoM2;
+                        lbl_precoOrcamento.Text = total.ToString("C2");
+                    }
+                }
+            }
+        }
+
         private void btn_salvarOrcamento_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txt_largura.Text) ||
@@ -248,7 +285,17 @@ namespace PROJETO_INTEGRADOR
 
         private void cmb_servico_SelectedIndexChanged(object sender, EventArgs e)
         {
+            AtualizarValor();
+        }
 
+        private void txt_largura_TextChanged(object sender, EventArgs e)
+        {
+            AtualizarValor();
+        }
+
+        private void txt_altura_TextChanged(object sender, EventArgs e)
+        {
+            AtualizarValor();
         }
     }
 }

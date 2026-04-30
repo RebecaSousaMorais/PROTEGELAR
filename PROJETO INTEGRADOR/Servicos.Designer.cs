@@ -140,7 +140,7 @@
             txt_observacoes.Location = new Point(274, 252);
             txt_observacoes.Multiline = true;
             txt_observacoes.Name = "txt_observacoes";
-            txt_observacoes.Size = new Size(233, 62);
+            txt_observacoes.Size = new Size(298, 62);
             txt_observacoes.TabIndex = 8;
             txt_observacoes.TextChanged += txt_observacoes_TextChanged;
             // 
@@ -161,7 +161,7 @@
             // 
             lbl_precoOrcamento.AutoSize = true;
             lbl_precoOrcamento.Font = new Font("Arial", 12F);
-            lbl_precoOrcamento.Location = new Point(634, 348);
+            lbl_precoOrcamento.Location = new Point(625, 348);
             lbl_precoOrcamento.Name = "lbl_precoOrcamento";
             lbl_precoOrcamento.Size = new Size(122, 18);
             lbl_precoOrcamento.TabIndex = 6;
@@ -186,16 +186,18 @@
             txt_altura.Font = new Font("Arial", 12F);
             txt_altura.Location = new Point(274, 209);
             txt_altura.Name = "txt_altura";
-            txt_altura.Size = new Size(233, 26);
+            txt_altura.Size = new Size(298, 26);
             txt_altura.TabIndex = 4;
+            txt_altura.TextChanged += txt_altura_TextChanged;
             // 
             // txt_largura
             // 
             txt_largura.Font = new Font("Arial", 12F);
             txt_largura.Location = new Point(274, 166);
             txt_largura.Name = "txt_largura";
-            txt_largura.Size = new Size(233, 26);
+            txt_largura.Size = new Size(298, 26);
             txt_largura.TabIndex = 3;
+            txt_largura.TextChanged += txt_largura_TextChanged;
             // 
             // cmb_servico
             // 
