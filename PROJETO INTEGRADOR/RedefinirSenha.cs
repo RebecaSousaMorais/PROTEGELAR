@@ -7,26 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySqlConnector;
+using Microsoft.Data.Sqlite;
 using BCrypt.Net;
 
 namespace PROJETO_INTEGRADOR
 {
     public partial class RedefinirSenha : Form
     {
-        // Variável para guardar o e-mail que veio da tela de Recuperar
         private string emailUsuario;
 
-
-        // O construtor agora aceita a string "emailRecebido"
-        public RedefinirSenha(string emailRecebido)
+        // O construtor agora aceita a string "emailValidado"
+        public RedefinirSenha(string email)
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
             this.WindowState = FormWindowState.Maximized;
 
-            // Guarda o e-mail internamente
-            this.emailUsuario = emailRecebido;
+            emailUsuario = email;
         }
 
         private void RedefinirSenha_Load(object sender, EventArgs e)
@@ -77,46 +73,53 @@ namespace PROJETO_INTEGRADOR
             string novaSenha = txt_novaSenha_redefinirSenha.Text;
             string confirmaSenha = txt_confirmarSenha_redefinirSenha.Text;
 
-            // 1. Validações Básicas (já existentes)
             if (string.IsNullOrWhiteSpace(novaSenha) || novaSenha.Length < 8)
             {
-                MessageBox.Show("A senha deve ter pelo menos 8 caracteres.", "Aviso");
+                MessageBox.Show("A senha deve ter pelo menos 8 caracteres.");
                 return;
             }
 
             if (novaSenha != confirmaSenha)
             {
-                MessageBox.Show("As senhas não coincidem!", "Erro");
+                MessageBox.Show("As senhas não coincidem!");
                 return;
             }
 
-            // 🔐 2. CRIPTOGRAFIA: Gerar o Hash da nova senha
-            string novoHash = BCrypt.Net.BCrypt.HashPassword(novaSenha);
+            btn_salvarNovaSenha.Enabled = false;
 
-            // 3. Lógica de Banco de Dados
-            using (MySqlConnection conn = new MySqlConnection("Server=localhost;Database=dbprotegelar;Uid=root;Pwd=;"))
+            try
             {
-                try
+                string hash = BCrypt.Net.BCrypt.HashPassword(novaSenha);
+
+                using (var conn = Conexao.GetConexao())
                 {
                     conn.Open();
-                    // Usamos o 'emailUsuario' que você já recebe no construtor da tela
-                    string query = "UPDATE Usuarios SET senha = @senha WHERE email = @email";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    string sql = @"
+                        UPDATE Usuarios
+                        SET senha = @senha
+                        WHERE email = @email
+                    ";
+
+                    using (var cmd = new SqliteCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@senha", novoHash); // Enviando o Hash
-                        cmd.Parameters.AddWithValue("@email", this.emailUsuario);
+                        cmd.Parameters.AddWithValue("@senha", hash);
+                        cmd.Parameters.AddWithValue("@email", emailUsuario);
 
                         cmd.ExecuteNonQuery();
                     }
+                }
 
-                    MessageBox.Show("Senha redefinida com sucesso!", "Sucesso");
-                    this.Close(); // Volta para o Login
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao atualizar banco: " + ex.Message);
-                }
+                MessageBox.Show("Senha atualizada com sucesso!");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao atualizar senha: " + ex.Message);
+            }
+            finally
+            {
+                btn_salvarNovaSenha.Enabled = true;
             }
         }
     }

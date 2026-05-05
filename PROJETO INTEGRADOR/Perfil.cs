@@ -1,5 +1,5 @@
 ﻿using BCrypt.Net;
-using MySqlConnector;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +15,6 @@ namespace PROJETO_INTEGRADOR
 {
     public partial class Perfil : Form
     {
-        private string stringConexao = "Server=localhost;Database=dbprotegelar;Uid=root;Pwd=;";
-
         public Perfil()
         {
             InitializeComponent();
@@ -47,9 +45,15 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_editSenha_Click(object sender, EventArgs e)
         {
-            // Abre a tela de redefinição passando o e-mail da sessão
-            RedefinirSenha telaTroca = new RedefinirSenha(Sessao.email);
-            telaTroca.ShowDialog();
+            this.Hide();
+
+            RedefinirSenha tela = new RedefinirSenha(
+                Sessao.email
+            );
+
+            tela.ShowDialog();
+
+            this.Show();
         }
 
         private void btn_editEndereco_Click(object sender, EventArgs e)
@@ -64,30 +68,43 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_salvarAlteracoes_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection conn = new MySqlConnection(stringConexao))
+            btn_salvarAlteracoes.Enabled = false;
+
+            try
             {
-                try
+                using (var conn = Conexao.GetConexao())
                 {
                     conn.Open();
-                    // Atualiza tudo menos a senha (que tem tela própria)
-                    string query = "UPDATE Usuarios SET nome_completo=@nome, endereco=@end, telefone=@tel WHERE email=@email";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    string sql = @"
+                        UPDATE Usuarios
+                        SET nome_completo = @nome,
+                            endereco = @end,
+                            telefone = @tel
+                        WHERE id_usuario = @id
+                    ";
+
+                    using (var cmd = new SqliteCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@nome", txt_nome_perfil.Text);
                         cmd.Parameters.AddWithValue("@end", txt_endereco_perfil.Text);
                         cmd.Parameters.AddWithValue("@tel", txt_telefone_perfil.Text);
-                        cmd.Parameters.AddWithValue("@email", Sessao.email);
+                        cmd.Parameters.AddWithValue("@id", Sessao.id_usuario);
 
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Dados atualizados com sucesso!");
                     }
-                    BloquearCampos();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao salvar: " + ex.Message);
-                }
+
+                MessageBox.Show("Dados atualizados com sucesso!");
+                BloquearCampos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao salvar: " + ex.Message);
+            }
+            finally
+            {
+                btn_salvarAlteracoes.Enabled = true;
             }
         }
 
@@ -98,22 +115,26 @@ namespace PROJETO_INTEGRADOR
 
         private void CarregarDadosDoUsuario()
         {
-            // 🔹 Recupera o e-mail que salvamos lá no Login
-            string emailLogado = Sessao.email;
+            if (Sessao.id_usuario <= 0)
+                return;
 
-            if (string.IsNullOrEmpty(emailLogado)) return;
-
-            using (MySqlConnection conn = new MySqlConnection(stringConexao))
+            using (var conn = Conexao.GetConexao())
             {
                 try
                 {
                     conn.Open();
-                    string query = "SELECT nome_completo, email, telefone, endereco FROM Usuarios WHERE email = @email";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    string sql = @"
+                        SELECT nome_completo, email, telefone, endereco
+                        FROM Usuarios
+                        WHERE id_usuario = @id
+                    ";
+
+                    using (var cmd = new SqliteCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@email", emailLogado);
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        cmd.Parameters.AddWithValue("@id", Sessao.id_usuario);
+
+                        using (var reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
@@ -122,12 +143,12 @@ namespace PROJETO_INTEGRADOR
                                 txt_telefone_perfil.Text = reader["telefone"].ToString();
                                 txt_endereco_perfil.Text = reader["endereco"].ToString();
 
-                                // Máscara de segurança para a senha
                                 txt_senha_perfil.Text = "********";
                                 txt_senha_perfil.UseSystemPasswordChar = true;
                             }
                         }
                     }
+
                     BloquearCampos();
                 }
                 catch (Exception ex)
@@ -150,7 +171,7 @@ namespace PROJETO_INTEGRADOR
         {
             Home TelaHome = new Home();
             TelaHome.ShowDialog();
-            //this.Hide();
+            this.Hide();
         }
     }
 }

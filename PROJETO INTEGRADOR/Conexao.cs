@@ -5,7 +5,7 @@ namespace PROJETO_INTEGRADOR
 {
     public static class Conexao
     {
-        // String de conexão (corrigida)
+        // String de conexão
         private static readonly string strConn =
             "Data Source=protegelar.db;" +
             "Cache=Shared;" +
@@ -22,21 +22,21 @@ namespace PROJETO_INTEGRADOR
             {
                 conn.Open();
 
-                // ⏱️ Define tempo de espera quando banco estiver ocupado
+                // Define tempo de espera quando banco estiver ocupado
                 using (var timeout = conn.CreateCommand())
                 {
                     timeout.CommandText = "PRAGMA busy_timeout = 5000;";
                     timeout.ExecuteNonQuery();
                 }
 
-                // ⚡ Melhora concorrência (leitura + escrita)
+                // Melhora concorrência (leitura + escrita)
                 using (var pragma = conn.CreateCommand())
                 {
                     pragma.CommandText = "PRAGMA journal_mode=WAL;";
                     pragma.ExecuteNonQuery();
                 }
 
-                // 📦 Criação das tabelas
+                // Criação das tabelas
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
@@ -59,10 +59,12 @@ namespace PROJETO_INTEGRADOR
                     CREATE TABLE IF NOT EXISTS Orcamentos (
                         id_orcamento INTEGER PRIMARY KEY AUTOINCREMENT,
                         id_usuario INTEGER,
+                        nome_cliente TEXT NOT NULL,
+                        cpf_cliente TEXT NOT NULL,
                         valor_total REAL NOT NULL,
                         data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
                         FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
-                    );
+                     );
 
                     CREATE TABLE IF NOT EXISTS itens_orcamento (
                         id_item INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -74,12 +76,34 @@ namespace PROJETO_INTEGRADOR
                         FOREIGN KEY (id_orcamento) REFERENCES Orcamentos(id_orcamento),
                         FOREIGN KEY (id_servico) REFERENCES Servicos(id_servico)
                     );
+
+                    CREATE TABLE IF NOT EXISTS RecuperacaoSenha (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        email TEXT NOT NULL,
+                        token TEXT NOT NULL,
+                        tentativas INTEGER DEFAULT 0,
+                        expira_em DATETIME NOT NULL
+                    );
                     ";
 
                     cmd.ExecuteNonQuery();
                 }
 
-                // 🔍 Verifica se já existem serviços cadastrados
+                AdicionarColunaSeNaoExistir(
+                    conn,
+                    "Orcamentos",
+                    "nome_cliente",
+                    "TEXT"
+                );
+
+                AdicionarColunaSeNaoExistir(
+                    conn,
+                    "Orcamentos",
+                    "cpf_cliente",
+                    "TEXT"
+                );
+
+                // Verifica se já existem serviços cadastrados
                 using (var check = conn.CreateCommand())
                 {
                     check.CommandText = "SELECT COUNT(*) FROM Servicos;";
@@ -102,6 +126,43 @@ namespace PROJETO_INTEGRADOR
                             insert.ExecuteNonQuery();
                         }
                     }
+                }
+            }
+        }
+
+        private static void AdicionarColunaSeNaoExistir(
+    SqliteConnection conn,
+    string tabela,
+    string coluna,
+    string tipo)
+        {
+            bool existe = false;
+
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = $"PRAGMA table_info({tabela});";
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (reader["name"].ToString() == coluna)
+                        {
+                            existe = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (!existe)
+            {
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText =
+                        $"ALTER TABLE {tabela} ADD COLUMN {coluna} {tipo};";
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using BCrypt.Net;
 using Microsoft.Data.Sqlite;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PROJETO_INTEGRADOR
 {
@@ -104,13 +105,29 @@ namespace PROJETO_INTEGRADOR
 
         public static class Sessao
         {
-            public static string email;
             public static int id_usuario;
-            public static List<ItensCarrinho> Carrinho = new List<ItensCarrinho>();
+            public static string nome_usuario = "";
+            public static string email = "";
+            public static string nomeCliente = "";
+            public static string cpfCliente = "";
+            public static long idOrcamentoAtual;
+            public static List<ItensCarrinho> Carrinho =
+                new List<ItensCarrinho>();
+
+            public static void Limpar()
+            {
+                id_usuario = 0;
+                nome_usuario = "";
+                email = "";
+                nomeCliente = "";
+                cpfCliente = "";
+                idOrcamentoAtual = 0;
+                Carrinho.Clear();
+            }
         }
 
-        // Estrutura para os itens que vêm da tela de Serviços
-        public class ItensCarrinho
+    // Estrutura para os itens que vêm da tela de Serviços
+    public class ItensCarrinho
         {
             public string Servico { get; set; }
             public double Largura { get; set; }

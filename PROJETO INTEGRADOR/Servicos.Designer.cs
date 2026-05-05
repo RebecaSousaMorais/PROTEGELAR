@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            txt_cpfCliente = new TextBox();
+            txt_nomeCliente = new TextBox();
+            lbl_cpfCliente = new Label();
+            lbl_nomeCliente = new Label();
             btn_voltar_servico = new Button();
             lbl_observacoes = new Label();
             lbl_altura = new Label();
@@ -50,6 +54,10 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(txt_cpfCliente);
+            panel1.Controls.Add(txt_nomeCliente);
+            panel1.Controls.Add(lbl_cpfCliente);
+            panel1.Controls.Add(lbl_nomeCliente);
             panel1.Controls.Add(btn_voltar_servico);
             panel1.Controls.Add(lbl_observacoes);
             panel1.Controls.Add(lbl_altura);
@@ -67,16 +75,54 @@
             panel1.Controls.Add(lbl_servicos);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(776, 426);
+            panel1.Size = new Size(1004, 515);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
+            // 
+            // txt_cpfCliente
+            // 
+            txt_cpfCliente.Font = new Font("Arial", 12F);
+            txt_cpfCliente.Location = new Point(357, 115);
+            txt_cpfCliente.Name = "txt_cpfCliente";
+            txt_cpfCliente.Size = new Size(269, 26);
+            txt_cpfCliente.TabIndex = 19;
+            txt_cpfCliente.TextChanged += textBox2_TextChanged;
+            // 
+            // txt_nomeCliente
+            // 
+            txt_nomeCliente.Font = new Font("Arial", 12F);
+            txt_nomeCliente.Location = new Point(356, 77);
+            txt_nomeCliente.Name = "txt_nomeCliente";
+            txt_nomeCliente.Size = new Size(270, 26);
+            txt_nomeCliente.TabIndex = 18;
+            txt_nomeCliente.TextChanged += textBox1_TextChanged;
+            // 
+            // lbl_cpfCliente
+            // 
+            lbl_cpfCliente.AutoSize = true;
+            lbl_cpfCliente.Font = new Font("Arial", 12F);
+            lbl_cpfCliente.Location = new Point(247, 116);
+            lbl_cpfCliente.Name = "lbl_cpfCliente";
+            lbl_cpfCliente.Size = new Size(94, 18);
+            lbl_cpfCliente.TabIndex = 17;
+            lbl_cpfCliente.Text = "CPF Cliente";
+            // 
+            // lbl_nomeCliente
+            // 
+            lbl_nomeCliente.AutoSize = true;
+            lbl_nomeCliente.Font = new Font("Arial", 12F);
+            lbl_nomeCliente.Location = new Point(247, 82);
+            lbl_nomeCliente.Name = "lbl_nomeCliente";
+            lbl_nomeCliente.Size = new Size(103, 18);
+            lbl_nomeCliente.TabIndex = 16;
+            lbl_nomeCliente.Text = "Nome Cliente";
             // 
             // btn_voltar_servico
             // 
             btn_voltar_servico.BackColor = Color.FromArgb(242, 101, 34);
             btn_voltar_servico.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_voltar_servico.ForeColor = Color.White;
-            btn_voltar_servico.Location = new Point(608, 75);
+            btn_voltar_servico.Location = new Point(812, 75);
             btn_voltar_servico.Name = "btn_voltar_servico";
             btn_voltar_servico.Size = new Size(127, 32);
             btn_voltar_servico.TabIndex = 15;
@@ -88,7 +134,7 @@
             // 
             lbl_observacoes.AutoSize = true;
             lbl_observacoes.Font = new Font("Arial", 12F);
-            lbl_observacoes.Location = new Point(170, 255);
+            lbl_observacoes.Location = new Point(224, 319);
             lbl_observacoes.Name = "lbl_observacoes";
             lbl_observacoes.Size = new Size(101, 18);
             lbl_observacoes.TabIndex = 13;
@@ -98,7 +144,7 @@
             // 
             lbl_altura.AutoSize = true;
             lbl_altura.Font = new Font("Arial", 12F);
-            lbl_altura.Location = new Point(193, 212);
+            lbl_altura.Location = new Point(247, 276);
             lbl_altura.Name = "lbl_altura";
             lbl_altura.Size = new Size(48, 18);
             lbl_altura.TabIndex = 12;
@@ -108,7 +154,7 @@
             // 
             lbl_largura.AutoSize = true;
             lbl_largura.Font = new Font("Arial", 12F);
-            lbl_largura.Location = new Point(193, 169);
+            lbl_largura.Location = new Point(247, 233);
             lbl_largura.Name = "lbl_largura";
             lbl_largura.Size = new Size(62, 18);
             lbl_largura.TabIndex = 11;
@@ -118,7 +164,7 @@
             // 
             lbl_servico.AutoSize = true;
             lbl_servico.Font = new Font("Arial", 12F);
-            lbl_servico.Location = new Point(193, 127);
+            lbl_servico.Location = new Point(247, 191);
             lbl_servico.Name = "lbl_servico";
             lbl_servico.Size = new Size(61, 18);
             lbl_servico.TabIndex = 10;
@@ -128,7 +174,7 @@
             // 
             lbl_categoria.AutoSize = true;
             lbl_categoria.Font = new Font("Arial", 12F);
-            lbl_categoria.Location = new Point(193, 89);
+            lbl_categoria.Location = new Point(247, 153);
             lbl_categoria.Name = "lbl_categoria";
             lbl_categoria.Size = new Size(78, 18);
             lbl_categoria.TabIndex = 9;
@@ -137,7 +183,7 @@
             // txt_observacoes
             // 
             txt_observacoes.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_observacoes.Location = new Point(274, 252);
+            txt_observacoes.Location = new Point(328, 316);
             txt_observacoes.Multiline = true;
             txt_observacoes.Name = "txt_observacoes";
             txt_observacoes.Size = new Size(298, 62);
@@ -149,7 +195,7 @@
             btn_editarServico.BackColor = Color.FromArgb(242, 101, 34);
             btn_editarServico.Font = new Font("Arial", 12F);
             btn_editarServico.ForeColor = Color.White;
-            btn_editarServico.Location = new Point(608, 27);
+            btn_editarServico.Location = new Point(812, 27);
             btn_editarServico.Name = "btn_editarServico";
             btn_editarServico.Size = new Size(127, 32);
             btn_editarServico.TabIndex = 7;
@@ -161,7 +207,7 @@
             // 
             lbl_precoOrcamento.AutoSize = true;
             lbl_precoOrcamento.Font = new Font("Arial", 12F);
-            lbl_precoOrcamento.Location = new Point(625, 348);
+            lbl_precoOrcamento.Location = new Point(812, 441);
             lbl_precoOrcamento.Name = "lbl_precoOrcamento";
             lbl_precoOrcamento.Size = new Size(122, 18);
             lbl_precoOrcamento.TabIndex = 6;
@@ -173,7 +219,7 @@
             btn_salvarOrcamento.BackColor = Color.FromArgb(242, 101, 34);
             btn_salvarOrcamento.Font = new Font("Arial", 12F);
             btn_salvarOrcamento.ForeColor = Color.White;
-            btn_salvarOrcamento.Location = new Point(299, 334);
+            btn_salvarOrcamento.Location = new Point(392, 434);
             btn_salvarOrcamento.Name = "btn_salvarOrcamento";
             btn_salvarOrcamento.Size = new Size(168, 32);
             btn_salvarOrcamento.TabIndex = 5;
@@ -184,7 +230,7 @@
             // txt_altura
             // 
             txt_altura.Font = new Font("Arial", 12F);
-            txt_altura.Location = new Point(274, 209);
+            txt_altura.Location = new Point(328, 273);
             txt_altura.Name = "txt_altura";
             txt_altura.Size = new Size(298, 26);
             txt_altura.TabIndex = 4;
@@ -193,7 +239,7 @@
             // txt_largura
             // 
             txt_largura.Font = new Font("Arial", 12F);
-            txt_largura.Location = new Point(274, 166);
+            txt_largura.Location = new Point(328, 230);
             txt_largura.Name = "txt_largura";
             txt_largura.Size = new Size(298, 26);
             txt_largura.TabIndex = 3;
@@ -203,7 +249,7 @@
             // 
             cmb_servico.Font = new Font("Arial", 12F);
             cmb_servico.FormattingEnabled = true;
-            cmb_servico.Location = new Point(274, 124);
+            cmb_servico.Location = new Point(328, 188);
             cmb_servico.Name = "cmb_servico";
             cmb_servico.Size = new Size(298, 26);
             cmb_servico.TabIndex = 2;
@@ -213,7 +259,7 @@
             // 
             cmb_categoria.Font = new Font("Arial", 12F);
             cmb_categoria.FormattingEnabled = true;
-            cmb_categoria.Location = new Point(274, 86);
+            cmb_categoria.Location = new Point(328, 150);
             cmb_categoria.Name = "cmb_categoria";
             cmb_categoria.Size = new Size(298, 26);
             cmb_categoria.TabIndex = 1;
@@ -235,7 +281,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1028, 552);
             Controls.Add(panel1);
             Name = "Servicos";
             Text = "Servicos";
@@ -263,5 +309,9 @@
         private Label lbl_servico;
         private Label lbl_categoria;
         private Button btn_voltar_servico;
+        private Label lbl_cpfCliente;
+        private Label lbl_nomeCliente;
+        private TextBox txt_cpfCliente;
+        private TextBox txt_nomeCliente;
     }
 }

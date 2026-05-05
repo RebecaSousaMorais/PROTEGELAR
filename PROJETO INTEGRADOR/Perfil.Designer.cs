@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btn_voltar_perfil = new Button();
             btn_editTelefone = new Button();
             btn_editEndereco = new Button();
             btn_editSenha = new Button();
@@ -46,7 +47,6 @@
             lbl_email = new Label();
             lbl_nomeCompleto = new Label();
             lbl_perfil = new Label();
-            btn_voltar_perfil = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,12 +77,25 @@
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
+            // btn_voltar_perfil
+            // 
+            btn_voltar_perfil.BackColor = Color.FromArgb(242, 101, 34);
+            btn_voltar_perfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_voltar_perfil.ForeColor = Color.White;
+            btn_voltar_perfil.Location = new Point(422, 328);
+            btn_voltar_perfil.Name = "btn_voltar_perfil";
+            btn_voltar_perfil.Size = new Size(139, 32);
+            btn_voltar_perfil.TabIndex = 18;
+            btn_voltar_perfil.Text = "Voltar";
+            btn_voltar_perfil.UseVisualStyleBackColor = false;
+            btn_voltar_perfil.Click += btn_voltar_cadastro_Click;
+            // 
             // btn_editTelefone
             // 
             btn_editTelefone.BackColor = Color.FromArgb(242, 101, 34);
             btn_editTelefone.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_editTelefone.ForeColor = Color.White;
-            btn_editTelefone.Location = new Point(570, 236);
+            btn_editTelefone.Location = new Point(605, 239);
             btn_editTelefone.Name = "btn_editTelefone";
             btn_editTelefone.Size = new Size(75, 31);
             btn_editTelefone.TabIndex = 17;
@@ -95,7 +108,7 @@
             btn_editEndereco.BackColor = Color.FromArgb(242, 101, 34);
             btn_editEndereco.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_editEndereco.ForeColor = Color.White;
-            btn_editEndereco.Location = new Point(570, 196);
+            btn_editEndereco.Location = new Point(605, 199);
             btn_editEndereco.Name = "btn_editEndereco";
             btn_editEndereco.Size = new Size(75, 31);
             btn_editEndereco.TabIndex = 16;
@@ -108,7 +121,7 @@
             btn_editSenha.BackColor = Color.FromArgb(242, 101, 34);
             btn_editSenha.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_editSenha.ForeColor = Color.White;
-            btn_editSenha.Location = new Point(570, 159);
+            btn_editSenha.Location = new Point(605, 162);
             btn_editSenha.Name = "btn_editSenha";
             btn_editSenha.Size = new Size(75, 31);
             btn_editSenha.TabIndex = 15;
@@ -121,7 +134,7 @@
             btn_editNome.BackColor = Color.FromArgb(242, 101, 34);
             btn_editNome.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_editNome.ForeColor = Color.White;
-            btn_editNome.Location = new Point(570, 75);
+            btn_editNome.Location = new Point(605, 78);
             btn_editNome.Name = "btn_editNome";
             btn_editNome.Size = new Size(75, 30);
             btn_editNome.TabIndex = 14;
@@ -134,7 +147,7 @@
             btn_editEmail.BackColor = Color.FromArgb(242, 101, 34);
             btn_editEmail.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_editEmail.ForeColor = Color.White;
-            btn_editEmail.Location = new Point(570, 117);
+            btn_editEmail.Location = new Point(605, 120);
             btn_editEmail.Name = "btn_editEmail";
             btn_editEmail.Size = new Size(75, 30);
             btn_editEmail.TabIndex = 13;
@@ -160,7 +173,7 @@
             txt_telefone_perfil.Font = new Font("Arial", 12F);
             txt_telefone_perfil.Location = new Point(253, 242);
             txt_telefone_perfil.Name = "txt_telefone_perfil";
-            txt_telefone_perfil.Size = new Size(288, 26);
+            txt_telefone_perfil.Size = new Size(320, 26);
             txt_telefone_perfil.TabIndex = 11;
             // 
             // txt_email_perfil
@@ -168,7 +181,7 @@
             txt_email_perfil.Font = new Font("Arial", 12F);
             txt_email_perfil.Location = new Point(253, 123);
             txt_email_perfil.Name = "txt_email_perfil";
-            txt_email_perfil.Size = new Size(288, 26);
+            txt_email_perfil.Size = new Size(320, 26);
             txt_email_perfil.TabIndex = 10;
             // 
             // txt_senha_perfil
@@ -176,7 +189,7 @@
             txt_senha_perfil.Font = new Font("Arial", 12F);
             txt_senha_perfil.Location = new Point(253, 165);
             txt_senha_perfil.Name = "txt_senha_perfil";
-            txt_senha_perfil.Size = new Size(288, 26);
+            txt_senha_perfil.Size = new Size(320, 26);
             txt_senha_perfil.TabIndex = 9;
             // 
             // txt_endereco_perfil
@@ -184,7 +197,7 @@
             txt_endereco_perfil.Font = new Font("Arial", 12F);
             txt_endereco_perfil.Location = new Point(253, 202);
             txt_endereco_perfil.Name = "txt_endereco_perfil";
-            txt_endereco_perfil.Size = new Size(288, 26);
+            txt_endereco_perfil.Size = new Size(320, 26);
             txt_endereco_perfil.TabIndex = 8;
             // 
             // txt_nome_perfil
@@ -192,7 +205,7 @@
             txt_nome_perfil.Font = new Font("Arial", 12F);
             txt_nome_perfil.Location = new Point(253, 81);
             txt_nome_perfil.Name = "txt_nome_perfil";
-            txt_nome_perfil.Size = new Size(288, 26);
+            txt_nome_perfil.Size = new Size(320, 26);
             txt_nome_perfil.TabIndex = 7;
             // 
             // lbl_telefone
@@ -256,19 +269,6 @@
             lbl_perfil.TabIndex = 1;
             lbl_perfil.Text = "MEUS DADOS";
             lbl_perfil.Click += lbl_perfil_Click;
-            // 
-            // btn_voltar_perfil
-            // 
-            btn_voltar_perfil.BackColor = Color.FromArgb(242, 101, 34);
-            btn_voltar_perfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_voltar_perfil.ForeColor = Color.White;
-            btn_voltar_perfil.Location = new Point(422, 328);
-            btn_voltar_perfil.Name = "btn_voltar_perfil";
-            btn_voltar_perfil.Size = new Size(139, 32);
-            btn_voltar_perfil.TabIndex = 18;
-            btn_voltar_perfil.Text = "Voltar";
-            btn_voltar_perfil.UseVisualStyleBackColor = false;
-            btn_voltar_perfil.Click += btn_voltar_cadastro_Click;
             // 
             // Perfil
             // 

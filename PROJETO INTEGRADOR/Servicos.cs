@@ -143,106 +143,216 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_salvarOrcamento_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt_largura.Text) ||
-        string.IsNullOrWhiteSpace(txt_altura.Text) ||
-        cmb_servico.SelectedItem == null)
+            string nomeCliente =
+                txt_nomeCliente.Text.Trim();
+
+            string cpfCliente =
+                txt_cpfCliente.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nomeCliente))
             {
-                MessageBox.Show("Preencha as medidas e selecione um serviço.");
+                MessageBox.Show(
+                    "Digite o nome do cliente.");
                 return;
             }
 
-            if (!double.TryParse(txt_largura.Text.Replace(".", ","), out double largura) ||
-                !double.TryParse(txt_altura.Text.Replace(".", ","), out double altura))
+            if (string.IsNullOrWhiteSpace(cpfCliente))
             {
-                MessageBox.Show("Digite valores válidos.");
+                MessageBox.Show(
+                    "Digite o CPF do cliente.");
+                return;
+            }
+
+            if (cmb_servico.SelectedItem == null)
+            {
+                MessageBox.Show(
+                    "Selecione um serviço.");
+                return;
+            }
+
+            if (!double.TryParse(
+                txt_largura.Text.Replace(".", ","),
+                out double largura))
+
+            {
+                MessageBox.Show(
+                    "Largura inválida.");
+                return;
+            }
+
+            if (!double.TryParse(
+                txt_altura.Text.Replace(".", ","),
+                out double altura))
+
+            {
+                MessageBox.Show(
+                    "Altura inválida.");
                 return;
             }
 
             int idServico = 0;
             double precoM2 = 0;
 
-            // 1. BLOCO SOMENTE LEITURA (fecha rápido)
             using (var conn = Conexao.GetConexao())
             {
                 conn.Open();
 
-                string sqlBusca = @"
-            SELECT id_servico, preco_m2
-            FROM Servicos
-            WHERE nome_servico = @nome
-        ";
+                string sql = @"
+                SELECT id_servico, preco_m2
+                FROM Servicos
+                WHERE nome_servico = @nome
+                ";
 
-                using (var cmd = new SqliteCommand(sqlBusca, conn))
+                using (var cmd =
+                    new SqliteCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@nome", cmb_servico.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue(
+                        "@nome",
+                        cmb_servico.SelectedItem.ToString());
 
-                    using (var reader = cmd.ExecuteReader())
+                    using (var reader =
+                        cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            idServico = Convert.ToInt32(reader["id_servico"]);
-                            precoM2 = Convert.ToDouble(reader["preco_m2"]);
+                            idServico =
+                                Convert.ToInt32(
+                                    reader["id_servico"]);
+
+                            precoM2 =
+                                Convert.ToDouble(
+                                    reader["preco_m2"]);
                         }
                     }
                 }
-            } // conexão FECHA AQUI (importante)
+            }
 
-            double totalCalculado = (largura * altura) * precoM2;
-
-            Sessao.Carrinho.Add(new ItensCarrinho
-            {
-                Servico = cmb_servico.SelectedItem.ToString(),
-                Largura = largura,
-                Altura = altura,
-                Subtotal = totalCalculado
-            });
+            double total =
+                largura * altura * precoM2;
 
             long idOrcamento;
 
-            // 2. BLOCO SOMENTE ESCRITA (nova conexão)
             using (var conn = Conexao.GetConexao())
             {
                 conn.Open();
 
                 string sqlInsert = @"
-            INSERT INTO Orcamentos (id_usuario, valor_total)
-            VALUES (@usuario, @total);
-        ";
+ 
+                INSERT INTO Orcamentos
+                (
+                    id_usuario,
+                    nome_cliente,
+                    cpf_cliente,
+                    valor_total
+                )
+                VALUES
+                (
+                    @usuario,
+                    @nome,
+                    @cpf,
+                    @total
+                );
+ 
+                ";
 
-                using (var cmd = new SqliteCommand(sqlInsert, conn))
+                using (var cmd =
+                    new SqliteCommand(sqlInsert, conn))
                 {
-                    cmd.Parameters.AddWithValue("@usuario", Sessao.id_usuario);
-                    cmd.Parameters.AddWithValue("@total", totalCalculado);
+                    cmd.Parameters.AddWithValue(
+                        "@usuario",
+                        Sessao.id_usuario);
+
+                    cmd.Parameters.AddWithValue(
+                        "@nome",
+                        nomeCliente);
+
+                    cmd.Parameters.AddWithValue(
+                        "@cpf",
+                        cpfCliente);
+
+                    cmd.Parameters.AddWithValue(
+                        "@total",
+                        total);
+
                     cmd.ExecuteNonQuery();
                 }
 
-                using (var cmdId = new SqliteCommand("SELECT last_insert_rowid();", conn))
+                using (var cmdId =
+                    new SqliteCommand(
+                        "SELECT last_insert_rowid();",
+                        conn))
                 {
-                    idOrcamento = (long)cmdId.ExecuteScalar();
+                    idOrcamento =
+                        (long)cmdId.ExecuteScalar();
                 }
 
                 string sqlItem = @"
-            INSERT INTO itens_orcamento
-            (id_orcamento, id_servico, largura, altura, subtotal_item)
-            VALUES
-            (@orcamento, @servico, @largura, @altura, @subtotal);
-        ";
+ 
+                INSERT INTO itens_orcamento
+                (
+                    id_orcamento,
+                    id_servico,
+                    largura,
+                    altura,
+                    subtotal_item
+                )
+                VALUES
+                (
+                    @orcamento,
+                    @servico,
+                    @largura,
+                    @altura,
+                    @subtotal
+                );
+ 
+                ";
 
-                using (var cmdItem = new SqliteCommand(sqlItem, conn))
+                using (var cmdItem =
+                    new SqliteCommand(sqlItem, conn))
                 {
-                    cmdItem.Parameters.AddWithValue("@orcamento", idOrcamento);
-                    cmdItem.Parameters.AddWithValue("@servico", idServico);
-                    cmdItem.Parameters.AddWithValue("@largura", largura);
-                    cmdItem.Parameters.AddWithValue("@altura", altura);
-                    cmdItem.Parameters.AddWithValue("@subtotal", totalCalculado);
+                    cmdItem.Parameters.AddWithValue(
+                        "@orcamento",
+                        idOrcamento);
+
+                    cmdItem.Parameters.AddWithValue(
+                        "@servico",
+                        idServico);
+
+                    cmdItem.Parameters.AddWithValue(
+                        "@largura",
+                        largura);
+
+                    cmdItem.Parameters.AddWithValue(
+                        "@altura",
+                        altura);
+
+                    cmdItem.Parameters.AddWithValue(
+                        "@subtotal",
+                        total);
 
                     cmdItem.ExecuteNonQuery();
                 }
             }
 
-            MessageBox.Show("Orçamento salvo com sucesso.");
+            Sessao.nomeCliente = nomeCliente;
+            Sessao.cpfCliente = cpfCliente;
 
-            Orcamento tela = new Orcamento();
+            Sessao.Carrinho.Add(new ItensCarrinho
+            {
+                Servico =
+                    cmb_servico.SelectedItem.ToString(),
+
+                Largura = largura,
+                Altura = altura,
+                Subtotal = total
+            });
+
+            MessageBox.Show(
+                "Orçamento salvo com sucesso.");
+
+            Orcamento tela =
+                new Orcamento();
+
             tela.ShowDialog();
         }
 
@@ -296,6 +406,16 @@ namespace PROJETO_INTEGRADOR
         private void txt_altura_TextChanged(object sender, EventArgs e)
         {
             AtualizarValor();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
