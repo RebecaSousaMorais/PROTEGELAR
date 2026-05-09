@@ -34,13 +34,11 @@
             btn_criarConta_cadastro = new Button();
             txt_confirmarSenha_cadastro = new TextBox();
             txt_senha_cadastro = new TextBox();
-            txt_endResidencial_cadastro = new TextBox();
             txt_telefone_cadastro = new TextBox();
             txt_email_cadastro = new TextBox();
             txt_nomeCompleto_cadastro = new TextBox();
             lbl_confirmarSenha_cadastro = new Label();
             lbl_senha_cadastro = new Label();
-            lbl_endResidencial = new Label();
             lbl_telefone_cadastro = new Label();
             lbl_email_cadastro = new Label();
             lbl_nomeCompleto_cadastro = new Label();
@@ -56,13 +54,11 @@
             panel1.Controls.Add(btn_criarConta_cadastro);
             panel1.Controls.Add(txt_confirmarSenha_cadastro);
             panel1.Controls.Add(txt_senha_cadastro);
-            panel1.Controls.Add(txt_endResidencial_cadastro);
             panel1.Controls.Add(txt_telefone_cadastro);
             panel1.Controls.Add(txt_email_cadastro);
             panel1.Controls.Add(txt_nomeCompleto_cadastro);
             panel1.Controls.Add(lbl_confirmarSenha_cadastro);
             panel1.Controls.Add(lbl_senha_cadastro);
-            panel1.Controls.Add(lbl_endResidencial);
             panel1.Controls.Add(lbl_telefone_cadastro);
             panel1.Controls.Add(lbl_email_cadastro);
             panel1.Controls.Add(lbl_nomeCompleto_cadastro);
@@ -114,7 +110,7 @@
             // txt_confirmarSenha_cadastro
             // 
             txt_confirmarSenha_cadastro.Font = new Font("Arial", 12F);
-            txt_confirmarSenha_cadastro.Location = new Point(198, 276);
+            txt_confirmarSenha_cadastro.Location = new Point(198, 246);
             txt_confirmarSenha_cadastro.Name = "txt_confirmarSenha_cadastro";
             txt_confirmarSenha_cadastro.Size = new Size(262, 26);
             txt_confirmarSenha_cadastro.TabIndex = 12;
@@ -123,20 +119,11 @@
             // txt_senha_cadastro
             // 
             txt_senha_cadastro.Font = new Font("Arial", 12F);
-            txt_senha_cadastro.Location = new Point(198, 235);
+            txt_senha_cadastro.Location = new Point(198, 205);
             txt_senha_cadastro.Name = "txt_senha_cadastro";
             txt_senha_cadastro.Size = new Size(262, 26);
             txt_senha_cadastro.TabIndex = 11;
             txt_senha_cadastro.TextChanged += txt_senha_cadastro_TextChanged;
-            // 
-            // txt_endResidencial_cadastro
-            // 
-            txt_endResidencial_cadastro.Font = new Font("Arial", 12F);
-            txt_endResidencial_cadastro.Location = new Point(198, 193);
-            txt_endResidencial_cadastro.Name = "txt_endResidencial_cadastro";
-            txt_endResidencial_cadastro.Size = new Size(262, 26);
-            txt_endResidencial_cadastro.TabIndex = 10;
-            txt_endResidencial_cadastro.TextChanged += txt_endResidencial_cadastro_TextChanged;
             // 
             // txt_telefone_cadastro
             // 
@@ -169,7 +156,7 @@
             // 
             lbl_confirmarSenha_cadastro.AutoSize = true;
             lbl_confirmarSenha_cadastro.Font = new Font("Arial", 12F);
-            lbl_confirmarSenha_cadastro.Location = new Point(67, 279);
+            lbl_confirmarSenha_cadastro.Location = new Point(67, 249);
             lbl_confirmarSenha_cadastro.Name = "lbl_confirmarSenha_cadastro";
             lbl_confirmarSenha_cadastro.Size = new Size(126, 18);
             lbl_confirmarSenha_cadastro.TabIndex = 6;
@@ -179,22 +166,11 @@
             // 
             lbl_senha_cadastro.AutoSize = true;
             lbl_senha_cadastro.Font = new Font("Arial", 12F);
-            lbl_senha_cadastro.Location = new Point(67, 238);
+            lbl_senha_cadastro.Location = new Point(67, 208);
             lbl_senha_cadastro.Name = "lbl_senha_cadastro";
             lbl_senha_cadastro.Size = new Size(53, 18);
             lbl_senha_cadastro.TabIndex = 5;
             lbl_senha_cadastro.Text = "Senha";
-            // 
-            // lbl_endResidencial
-            // 
-            lbl_endResidencial.AutoSize = true;
-            lbl_endResidencial.Font = new Font("Arial", 12F);
-            lbl_endResidencial.Location = new Point(31, 196);
-            lbl_endResidencial.Name = "lbl_endResidencial";
-            lbl_endResidencial.Size = new Size(162, 18);
-            lbl_endResidencial.TabIndex = 4;
-            lbl_endResidencial.Text = "Endereço Residencial";
-            lbl_endResidencial.Click += lbl_endResidencial_Click;
             // 
             // lbl_telefone_cadastro
             // 
@@ -256,13 +232,11 @@
 
         private Panel panel1;
         private Label lbl_cadastro;
-        private TextBox txt_endResidencial_cadastro;
         private TextBox txt_telefone_cadastro;
         private TextBox txt_email_cadastro;
         private TextBox txt_nomeCompleto_cadastro;
         private Label lbl_confirmarSenha_cadastro;
         private Label lbl_senha_cadastro;
-        private Label lbl_endResidencial;
         private Label lbl_telefone_cadastro;
         private Label lbl_email_cadastro;
         private Label lbl_nomeCompleto_cadastro;

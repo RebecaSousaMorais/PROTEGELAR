@@ -73,15 +73,31 @@ namespace PROJETO_INTEGRADOR
             string novaSenha = txt_novaSenha_redefinirSenha.Text;
             string confirmaSenha = txt_confirmarSenha_redefinirSenha.Text;
 
-            if (string.IsNullOrWhiteSpace(novaSenha) || novaSenha.Length < 8)
+            // Campos vazios
+            if (string.IsNullOrWhiteSpace(novaSenha) ||
+                string.IsNullOrWhiteSpace(confirmaSenha))
             {
-                MessageBox.Show("A senha deve ter pelo menos 8 caracteres.");
+                MessageBox.Show(
+                    "Preencha todos os campos.");
+
                 return;
             }
 
+            // Confirmação
             if (novaSenha != confirmaSenha)
             {
-                MessageBox.Show("As senhas não coincidem!");
+                MessageBox.Show(
+                    "As senhas não coincidem!");
+
+                return;
+            }
+
+            // Validação forte
+            if (!ValidarSenha(novaSenha))
+            {
+                MessageBox.Show(
+                    "A senha deve possuir entre 8 e 25 caracteres, contendo letra maiúscula, minúscula, número e símbolo.");
+
                 return;
             }
 
@@ -121,6 +137,28 @@ namespace PROJETO_INTEGRADOR
             {
                 btn_salvarNovaSenha.Enabled = true;
             }
+        }
+
+        // Validação forte da senha
+        private bool ValidarSenha(string senha)
+        {
+            if (string.IsNullOrWhiteSpace(senha))
+                return false;
+
+            if (senha.Length < 8 || senha.Length > 25)
+                return false;
+
+            return senha.Any(char.IsUpper) &&
+                   senha.Any(char.IsLower) &&
+                   senha.Any(char.IsDigit) &&
+                   senha.Any(ch =>
+                   "!@#$%^&*()_+-=[]{}|;:'\",.<>?"
+                   .Contains(ch));
+        }
+
+        private void btn_voltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

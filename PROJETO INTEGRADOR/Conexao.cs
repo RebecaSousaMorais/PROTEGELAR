@@ -45,7 +45,6 @@ namespace PROJETO_INTEGRADOR
                         nome_completo TEXT NOT NULL,
                         email TEXT UNIQUE NOT NULL,
                         senha TEXT NOT NULL,
-                        endereco TEXT,
                         telefone TEXT
                     );
 
@@ -131,10 +130,10 @@ namespace PROJETO_INTEGRADOR
         }
 
         private static void AdicionarColunaSeNaoExistir(
-    SqliteConnection conn,
-    string tabela,
-    string coluna,
-    string tipo)
+        SqliteConnection conn,
+        string tabela,
+        string coluna,
+        string tipo)
         {
             bool existe = false;
 

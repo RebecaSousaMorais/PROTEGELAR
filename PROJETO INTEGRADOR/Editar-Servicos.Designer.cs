@@ -72,9 +72,9 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { col_nomeServico, col_preco, col_categoria, col_editar, col_excluir, col_id });
-            dataGridView1.Location = new Point(132, 88);
+            dataGridView1.Location = new Point(213, 80);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(702, 290);
+            dataGridView1.Size = new Size(541, 290);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 

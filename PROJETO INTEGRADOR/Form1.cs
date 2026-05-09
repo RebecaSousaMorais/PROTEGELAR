@@ -48,7 +48,7 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_entrar_login_Click(object sender, EventArgs e)
         {
-            string email = txt_email_login.Text;
+            string email = txt_email_login.Text.Trim();
             string senha = txt_senha_login.Text;
 
             // Conexão com SQLite usando sua classe Conexao
@@ -80,9 +80,15 @@ namespace PROJETO_INTEGRADOR
 
                                     // NAVEGAÇÃO: Esconde o login e abre a Home
                                     this.Hide();
+
                                     Home TelaHome = new Home();
-                                    TelaHome.ShowDialog();
-                                    this.Show();
+
+                                    TelaHome.FormClosed += (s, args) =>
+                                    {
+                                        this.Close();
+                                    };
+
+                                    TelaHome.Show();
                                 }
                                 else
                                 {
@@ -112,7 +118,7 @@ namespace PROJETO_INTEGRADOR
             public static string cpfCliente = "";
             public static long idOrcamentoAtual;
             public static List<ItensCarrinho> Carrinho =
-                new List<ItensCarrinho>();
+            new List<ItensCarrinho>();
 
             public static void Limpar()
             {
@@ -128,7 +134,8 @@ namespace PROJETO_INTEGRADOR
 
     // Estrutura para os itens que vêm da tela de Serviços
     public class ItensCarrinho
-        {
+    {
+            public int IdServico { get; set; }
             public string Servico { get; set; }
             public double Largura { get; set; }
             public double Altura { get; set; }
@@ -138,17 +145,31 @@ namespace PROJETO_INTEGRADOR
         private void btn_criarConta_login_Click(object sender, EventArgs e)
         {
             // Ao clicar leva o usuario a tela de cadastro
-            Cadastro TelaCadastro = new Cadastro();
-            TelaCadastro.ShowDialog();
-            //this.Close();
+            this.Hide();
+
+            Cadastro telaCadastro = new Cadastro();
+
+            telaCadastro.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+
+            telaCadastro.Show();
         }
 
         private void lbl_esqueceuSenha_Login_Click(object sender, EventArgs e)
         {
             // Ao clicar leva o usuario a tela de recuperar senha
-            RecuperarSenha TelarecuperarSenha = new RecuperarSenha();
-            TelarecuperarSenha.ShowDialog();
-            this.Close();
+            this.Hide();
+
+            RecuperarSenha telarecuperarSenha = new RecuperarSenha();
+
+            telarecuperarSenha.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+
+            telarecuperarSenha.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)

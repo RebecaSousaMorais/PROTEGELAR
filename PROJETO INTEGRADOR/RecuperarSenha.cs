@@ -14,7 +14,6 @@ namespace PROJETO_INTEGRADOR
     public partial class RecuperarSenha : Form
     {
         // Variável global para validar o código na próxima etapa
-        private string tokenGerado = string.Empty;
         private string emailValidado = string.Empty;
 
         public RecuperarSenha()
@@ -128,9 +127,7 @@ namespace PROJETO_INTEGRADOR
         private void btn_voltar_Click(object sender, EventArgs e)
         {
             // Ao clicar retorna a tela de Login
-            Form1 TelaLogin = new Form1();
-            TelaLogin.ShowDialog();
-            this.Hide();
+            this.Close();
         }
 
         private void RecuperarSenha_Load(object sender, EventArgs e)
@@ -158,7 +155,6 @@ namespace PROJETO_INTEGRADOR
         }
 
         private void btn_validarToken_Click(object sender, EventArgs e)
-           
         {
             string tokenDigitado = txt_validarToken.Text.Trim();
 
@@ -209,11 +205,17 @@ namespace PROJETO_INTEGRADOR
                                 del.ExecuteNonQuery();
                             }
 
-                            var tela = new RedefinirSenha(emailValidado);
-
                             this.Hide();
-                            tela.ShowDialog();
-                            this.Close();
+
+                            RedefinirSenha tela =
+                                new RedefinirSenha(emailValidado);
+
+                            tela.FormClosed += (s, args) =>
+                            {
+                                this.Close();
+                            };
+
+                            tela.Show();
                         }
                         else
                         {
@@ -227,7 +229,6 @@ namespace PROJETO_INTEGRADOR
                             MessageBox.Show("Código incorreto.");
                         }
                     }
-
                 }
             }
         }

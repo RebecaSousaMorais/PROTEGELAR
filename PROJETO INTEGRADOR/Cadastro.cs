@@ -1,14 +1,16 @@
-﻿using System;
+﻿using BCrypt.Net;
+using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BCrypt.Net;
-using Microsoft.Data.Sqlite;
 
 namespace PROJETO_INTEGRADOR
 {
@@ -78,82 +80,153 @@ namespace PROJETO_INTEGRADOR
         private void btn_voltar_cadastro_Click(object sender, EventArgs e)
         {
             // Ao clicar retorna a tela de Login
-            Form1 TelaLogin = new Form1();
-            TelaLogin.ShowDialog();
+            this.Close();
         }
 
         private void btn_criarConta_cadastro_Click(object sender, EventArgs e)
         {
-            // Coleta de dados (RF01)
-            string nome = txt_nomeCompleto_cadastro.Text;
-            string email = txt_email_cadastro.Text;
-            string telefone = txt_telefone_cadastro.Text;
-            string endereco = txt_endResidencial_cadastro.Text;
-            string senha = txt_senha_cadastro.Text;
-            string confirmarSenha = txt_confirmarSenha_cadastro.Text;
+            btn_criarConta_cadastro.Enabled = false;
 
-            // 🔹 RN04: Validação de campos vazios
-            if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(telefone) || string.IsNullOrWhiteSpace(endereco) ||
-                string.IsNullOrWhiteSpace(senha) || string.IsNullOrWhiteSpace(confirmarSenha))
+            try
             {
-                MessageBox.Show("Preencha todos os campos obrigatórios!");
-                return;
-            }
+                string nome =
+                    txt_nomeCompleto_cadastro.Text.Trim();
 
-            // 🔹 RN06: Verificação de confirmação de senha
-            if (senha != confirmarSenha)
-            {
-                MessageBox.Show("As senhas não coincidem!");
-                return;
-            }
+                string email =
+                    txt_email_cadastro.Text.Trim();
 
-            // RN01: Validação de critérios mínimos de senha (8-25 caracteres)
-            if (!ValidarSenha(senha))
-            {
-                MessageBox.Show("A senha deve ter entre 8 e 25 caracteres e conter: maiúscula, minúscula, número e símbolo.");
-                return;
-            }
+                string telefone =
+                    txt_telefone_cadastro.Text.Trim();
 
-            // CRIPTOGRAFIA: Gerando o Hash da senha
-            string senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
+                string senha =
+                    txt_senha_cadastro.Text;
 
-            using (var conn = Conexao.GetConexao())
-            {
+                string confirmarSenha =
+                    txt_confirmarSenha_cadastro.Text;
+
+                // Campos vazios
+                if (string.IsNullOrWhiteSpace(nome) ||
+                    string.IsNullOrWhiteSpace(email) ||
+                    string.IsNullOrWhiteSpace(telefone) ||
+                    string.IsNullOrWhiteSpace(senha) ||
+                    string.IsNullOrWhiteSpace(confirmarSenha))
+                {
+                    MessageBox.Show(
+                        "Preencha todos os campos obrigatórios!");
+
+                    return;
+                }
+
+                // Validar telefone
+                if (!Regex.IsMatch(telefone, @"^\d{11}$"))
+                {
+                    MessageBox.Show(
+                        "Telefone inválido. Digite 11 números com DDD."
+                    );
+
+                    return;
+                }
+
+                // Validar e-mail
                 try
+                {
+                    var validarEmail =
+                        new System.Net.Mail.MailAddress(email);
+                }
+                catch
+                {
+                    MessageBox.Show("E-mail inválido.");
+                    return;
+                }
+
+                // Confirmar senha
+                if (senha != confirmarSenha)
+                {
+                    MessageBox.Show(
+                        "As senhas não coincidem!");
+
+                    return;
+                }
+
+                // Validar senha forte
+                if (!ValidarSenha(senha))
+                {
+                    MessageBox.Show(
+                        "A senha deve possuir entre 8 e 25 caracteres, contendo letra maiúscula, minúscula, número e símbolo.");
+
+                    return;
+                }
+
+                string senhaHash =
+                    BCrypt.Net.BCrypt.HashPassword(senha);
+
+                using (var conn = Conexao.GetConexao())
                 {
                     conn.Open();
 
-                    // Query de Inserção (Note que enviamos o Hash, não a senha aberta)
-                    string query = "INSERT INTO Usuarios (nome_completo, email, senha, endereco, telefone) VALUES (@nome, @email, @senha, @endereco, @telefone)";
+                    string query = @"
+                    INSERT INTO Usuarios
+                    (nome_completo, email, senha, telefone)
+                    VALUES
+                    (@nome, @email, @senha, @telefone)
+                    ";
 
-                    using (var cmd = new SqliteCommand(query, conn))
+                    using (var cmd =
+                        new SqliteCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@nome", nome);
                         cmd.Parameters.AddWithValue("@email", email);
-                        cmd.Parameters.AddWithValue("@senha", senhaHash); // Salvando o Hash seguro
-                        cmd.Parameters.AddWithValue("@endereco", endereco);
+                        cmd.Parameters.AddWithValue("@senha", senhaHash);
                         cmd.Parameters.AddWithValue("@telefone", telefone);
 
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Usuário cadastrado com segurança!");
                     }
                 }
-                catch (Exception ex)
+
+                MessageBox.Show(
+                    "Usuário cadastrado com sucesso!");
+
+                this.Close();
+            }
+            catch (SqliteException ex)
+            {
+                if (ex.SqliteErrorCode == 19)
                 {
-                    MessageBox.Show("Erro ao cadastrar: " + ex.Message);
+                    MessageBox.Show(
+                        "E-mail já cadastrado.");
                 }
+                else
+                {
+                    MessageBox.Show(
+                        "Erro no banco: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erro ao cadastrar: " + ex.Message);
+            }
+            finally
+            {
+                btn_criarConta_cadastro.Enabled = true;
             }
         }
 
         // Função para validar força da senha
         private bool ValidarSenha(string senha)
         {
-            return senha.Length >= 8 &&
-                   senha.Any(char.IsUpper) &&
+            if (string.IsNullOrWhiteSpace(senha))
+                return false;
+
+            if (senha.Length < 8 || senha.Length > 25)
+                return false;
+
+            return senha.Any(char.IsUpper) &&
                    senha.Any(char.IsLower) &&
                    senha.Any(char.IsDigit) &&
-                   senha.Any(ch => "!@#$%^&*()_+-=[]{}|;:'\",.<>?".Contains(ch));
+                   senha.Any(ch =>
+                       "!@#$%^&*()_+-=[]{}|;:'\",.<>?"
+                       .Contains(ch));
         }
 
         private void lbl_endResidencial_Click(object sender, EventArgs e)

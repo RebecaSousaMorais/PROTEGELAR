@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btn_voltar = new Button();
             lbl_usuarioEmail = new Label();
             btn_salvarNovaSenha = new Button();
             chk_mostrarSenha_redefinirSenha = new CheckBox();
@@ -43,6 +44,7 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(btn_voltar);
             panel1.Controls.Add(lbl_usuarioEmail);
             panel1.Controls.Add(btn_salvarNovaSenha);
             panel1.Controls.Add(chk_mostrarSenha_redefinirSenha);
@@ -56,6 +58,19 @@
             panel1.Size = new Size(776, 426);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // btn_voltar
+            // 
+            btn_voltar.BackColor = Color.FromArgb(242, 101, 34);
+            btn_voltar.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_voltar.ForeColor = Color.White;
+            btn_voltar.Location = new Point(630, 40);
+            btn_voltar.Name = "btn_voltar";
+            btn_voltar.Size = new Size(75, 36);
+            btn_voltar.TabIndex = 9;
+            btn_voltar.Text = "Voltar";
+            btn_voltar.UseVisualStyleBackColor = false;
+            btn_voltar.Click += btn_voltar_Click;
             // 
             // lbl_usuarioEmail
             // 
@@ -167,5 +182,6 @@
         private CheckBox chk_mostrarSenha_redefinirSenha;
         private Button btn_salvarNovaSenha;
         private Label lbl_usuarioEmail;
+        private Button btn_voltar;
     }
 }

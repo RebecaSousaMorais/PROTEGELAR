@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BCrypt.Net;
-using MySqlConnector;
-using MySqlX.XDevAPI;
 
 namespace PROJETO_INTEGRADOR
 {
@@ -46,39 +44,44 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            // Close all child windows
-            foreach (Form childForm in this.OwnedForms)
-            {
-                childForm.Close();
-            }
-
-            // Optionally, show the login form again
-            Form1 TelaLogin = new Form1();
-            TelaLogin.ShowDialog();
-
-            // Close the current parent form (if needed)
             this.Close();
         }
 
         private void btn_novoOrcamento_Click(object sender, EventArgs e)
         {
-            Servicos TelaServicos = new Servicos();
-            TelaServicos.ShowDialog();
             this.Hide();
+
+            Servicos TelaServicos = new Servicos();
+
+            TelaServicos.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+            TelaServicos.Show();
         }
 
         private void btn_gerenciarServico_Click(object sender, EventArgs e)
         {
+            this.Hide(); 
             Editar_Servicos TelaEditar = new Editar_Servicos();
+
+            TelaEditar.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
             TelaEditar.Show();
-            //this.Hide();
         }
 
         private void btn_verPerfil_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Perfil TelaPerfil = new Perfil();
-            TelaPerfil.ShowDialog();
-            //this.Hide();
+
+            TelaPerfil.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+            TelaPerfil.Show();
         }
     }
 }
