@@ -22,12 +22,14 @@ namespace PROJETO_INTEGRADOR
         {
             panel1.Left = (this.ClientSize.Width - panel1.Width) / 2;
             panel1.Top = (this.ClientSize.Height - panel1.Height) / 2;
+
             this.WindowState = FormWindowState.Maximized;
+
+            txt_cpfCliente.Mask = "000.000.000-00";
 
             txt_nomeCliente.Text = Sessao.nomeCliente;
             txt_cpfCliente.Text = Sessao.cpfCliente;
 
-            // CARREGA AS CATEGORIAS DO BANCO
             CarregarCategoriasDoBanco();
         }
 
@@ -200,9 +202,9 @@ namespace PROJETO_INTEGRADOR
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(cpfCliente))
+            if (!txt_cpfCliente.MaskCompleted)
             {
-                MessageBox.Show("Digite o CPF do cliente.");
+                MessageBox.Show("Digite um CPF válido.");
                 return;
             }
 

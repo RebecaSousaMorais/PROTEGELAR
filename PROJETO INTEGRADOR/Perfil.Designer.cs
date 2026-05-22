@@ -29,30 +29,34 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            lbl_email = new Label();
+            txt_telefone_perfil = new MaskedTextBox();
             btn_voltar_perfil = new Button();
             btn_editTelefone = new Button();
             btn_editSenha = new Button();
             btn_editNome = new Button();
             btn_salvarAlteracoes = new Button();
-            txt_telefone_perfil = new TextBox();
             txt_senha_perfil = new TextBox();
             txt_nome_perfil = new TextBox();
             lbl_telefone = new Label();
             lbl_senha = new Label();
             lbl_nomeCompleto = new Label();
             lbl_perfil = new Label();
+            txt_email_perfil = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(txt_email_perfil);
+            panel1.Controls.Add(lbl_email);
+            panel1.Controls.Add(txt_telefone_perfil);
             panel1.Controls.Add(btn_voltar_perfil);
             panel1.Controls.Add(btn_editTelefone);
             panel1.Controls.Add(btn_editSenha);
             panel1.Controls.Add(btn_editNome);
             panel1.Controls.Add(btn_salvarAlteracoes);
-            panel1.Controls.Add(txt_telefone_perfil);
             panel1.Controls.Add(txt_senha_perfil);
             panel1.Controls.Add(txt_nome_perfil);
             panel1.Controls.Add(lbl_telefone);
@@ -64,6 +68,26 @@
             panel1.Size = new Size(776, 426);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // lbl_email
+            // 
+            lbl_email.AutoSize = true;
+            lbl_email.Font = new Font("Arial", 12F);
+            lbl_email.Location = new Point(85, 128);
+            lbl_email.Name = "lbl_email";
+            lbl_email.Size = new Size(53, 18);
+            lbl_email.TabIndex = 21;
+            lbl_email.Text = "E-mail";
+            // 
+            // txt_telefone_perfil
+            // 
+            txt_telefone_perfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_telefone_perfil.Location = new Point(253, 228);
+            txt_telefone_perfil.Mask = "(00) 00000-0000";
+            txt_telefone_perfil.Name = "txt_telefone_perfil";
+            txt_telefone_perfil.Size = new Size(320, 26);
+            txt_telefone_perfil.TabIndex = 19;
+            txt_telefone_perfil.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
             // btn_voltar_perfil
             // 
@@ -83,7 +107,7 @@
             btn_editTelefone.BackColor = Color.FromArgb(242, 101, 34);
             btn_editTelefone.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_editTelefone.ForeColor = Color.White;
-            btn_editTelefone.Location = new Point(605, 172);
+            btn_editTelefone.Location = new Point(605, 223);
             btn_editTelefone.Name = "btn_editTelefone";
             btn_editTelefone.Size = new Size(75, 31);
             btn_editTelefone.TabIndex = 17;
@@ -96,7 +120,7 @@
             btn_editSenha.BackColor = Color.FromArgb(242, 101, 34);
             btn_editSenha.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_editSenha.ForeColor = Color.White;
-            btn_editSenha.Location = new Point(605, 125);
+            btn_editSenha.Location = new Point(605, 176);
             btn_editSenha.Name = "btn_editSenha";
             btn_editSenha.Size = new Size(75, 31);
             btn_editSenha.TabIndex = 15;
@@ -130,18 +154,10 @@
             btn_salvarAlteracoes.UseVisualStyleBackColor = false;
             btn_salvarAlteracoes.Click += btn_salvarAlteracoes_Click;
             // 
-            // txt_telefone_perfil
-            // 
-            txt_telefone_perfil.Font = new Font("Arial", 12F);
-            txt_telefone_perfil.Location = new Point(253, 175);
-            txt_telefone_perfil.Name = "txt_telefone_perfil";
-            txt_telefone_perfil.Size = new Size(320, 26);
-            txt_telefone_perfil.TabIndex = 11;
-            // 
             // txt_senha_perfil
             // 
             txt_senha_perfil.Font = new Font("Arial", 12F);
-            txt_senha_perfil.Location = new Point(253, 128);
+            txt_senha_perfil.Location = new Point(253, 179);
             txt_senha_perfil.Name = "txt_senha_perfil";
             txt_senha_perfil.Size = new Size(320, 26);
             txt_senha_perfil.TabIndex = 9;
@@ -158,7 +174,7 @@
             // 
             lbl_telefone.AutoSize = true;
             lbl_telefone.Font = new Font("Arial", 12F);
-            lbl_telefone.Location = new Point(85, 175);
+            lbl_telefone.Location = new Point(85, 226);
             lbl_telefone.Name = "lbl_telefone";
             lbl_telefone.Size = new Size(66, 18);
             lbl_telefone.TabIndex = 6;
@@ -168,7 +184,7 @@
             // 
             lbl_senha.AutoSize = true;
             lbl_senha.Font = new Font("Arial", 12F);
-            lbl_senha.Location = new Point(85, 128);
+            lbl_senha.Location = new Point(85, 179);
             lbl_senha.Name = "lbl_senha";
             lbl_senha.Size = new Size(53, 18);
             lbl_senha.TabIndex = 4;
@@ -196,6 +212,15 @@
             lbl_perfil.Text = "MEUS DADOS";
             lbl_perfil.Click += lbl_perfil_Click;
             // 
+            // txt_email_perfil
+            // 
+            txt_email_perfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_email_perfil.Location = new Point(253, 128);
+            txt_email_perfil.Name = "txt_email_perfil";
+            txt_email_perfil.Size = new Size(320, 26);
+            txt_email_perfil.TabIndex = 22;
+            txt_email_perfil.TextChanged += txt_email_perfil_TextChanged;
+            // 
             // Perfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -219,11 +244,13 @@
         private Label lbl_nomeCompleto;
         private TextBox txt_senha_perfil;
         private TextBox txt_nome_perfil;
-        private TextBox txt_telefone_perfil;
         private Button btn_salvarAlteracoes;
         private Button btn_editSenha;
         private Button btn_editNome;
         private Button btn_editTelefone;
         private Button btn_voltar_perfil;
+        private MaskedTextBox txt_telefone_perfil;
+        private Label lbl_email;
+        private TextBox txt_email_perfil;
     }
 }

@@ -40,7 +40,7 @@ namespace PROJETO_INTEGRADOR
 
         //private void btn_editEmail_Click(object sender, EventArgs e)
         //{
-            //
+        //
         //}
 
         private void btn_editSenha_Click(object sender, EventArgs e)
@@ -158,6 +158,9 @@ namespace PROJETO_INTEGRADOR
 
         private void Perfil_Load(object sender, EventArgs e)
         {
+            txt_telefone_perfil.Mask = "(00) 00000-0000";
+            txt_telefone_perfil.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+
             CarregarDadosDoUsuario();
         }
 
@@ -173,7 +176,7 @@ namespace PROJETO_INTEGRADOR
                     conn.Open();
 
                     string sql = @"
-                        SELECT nome_completo, telefone
+                        SELECT nome_completo, email, telefone
                         FROM Usuarios
                         WHERE id_usuario = @id
                     ";
@@ -187,6 +190,7 @@ namespace PROJETO_INTEGRADOR
                             if (reader.Read())
                             {
                                 txt_nome_perfil.Text = reader["nome_completo"].ToString();
+                                txt_email_perfil.Text = reader["email"].ToString();
                                 txt_telefone_perfil.Text = reader["telefone"].ToString();
 
                                 txt_senha_perfil.Text = "********";
@@ -207,6 +211,7 @@ namespace PROJETO_INTEGRADOR
         private void BloquearCampos()
         {
             txt_nome_perfil.ReadOnly = true;
+            txt_email_perfil.ReadOnly=true;
             txt_telefone_perfil.ReadOnly = true;
             txt_senha_perfil.ReadOnly = true;
         }
@@ -214,6 +219,16 @@ namespace PROJETO_INTEGRADOR
         private void btn_voltar_cadastro_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_email_perfil_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -60,9 +60,9 @@
             btn_novoOrcamento.BackColor = Color.FromArgb(242, 101, 34);
             btn_novoOrcamento.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_novoOrcamento.ForeColor = Color.White;
-            btn_novoOrcamento.Location = new Point(520, 392);
+            btn_novoOrcamento.Location = new Point(589, 392);
             btn_novoOrcamento.Name = "btn_novoOrcamento";
-            btn_novoOrcamento.Size = new Size(153, 28);
+            btn_novoOrcamento.Size = new Size(153, 37);
             btn_novoOrcamento.TabIndex = 3;
             btn_novoOrcamento.Text = "Novo Orçamento";
             btn_novoOrcamento.UseVisualStyleBackColor = false;
@@ -124,9 +124,9 @@
             btn_voltar_servicos.BackColor = Color.FromArgb(242, 101, 34);
             btn_voltar_servicos.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_voltar_servicos.ForeColor = Color.White;
-            btn_voltar_servicos.Location = new Point(282, 392);
+            btn_voltar_servicos.Location = new Point(272, 392);
             btn_voltar_servicos.Name = "btn_voltar_servicos";
-            btn_voltar_servicos.Size = new Size(75, 28);
+            btn_voltar_servicos.Size = new Size(75, 37);
             btn_voltar_servicos.TabIndex = 1;
             btn_voltar_servicos.Text = "Voltar";
             btn_voltar_servicos.UseVisualStyleBackColor = false;

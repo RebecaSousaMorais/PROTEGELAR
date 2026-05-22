@@ -70,11 +70,11 @@
             btn_gerenciarServico.BackColor = Color.FromArgb(242, 101, 34);
             btn_gerenciarServico.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_gerenciarServico.ForeColor = Color.White;
-            btn_gerenciarServico.Location = new Point(351, 298);
+            btn_gerenciarServico.Location = new Point(432, 298);
             btn_gerenciarServico.Name = "btn_gerenciarServico";
-            btn_gerenciarServico.Size = new Size(172, 36);
+            btn_gerenciarServico.Size = new Size(135, 36);
             btn_gerenciarServico.TabIndex = 3;
-            btn_gerenciarServico.Text = "Gerenciar Serviços";
+            btn_gerenciarServico.Text = "Editar Serviços";
             btn_gerenciarServico.UseVisualStyleBackColor = false;
             btn_gerenciarServico.Click += btn_gerenciarServico_Click;
             // 
@@ -98,7 +98,7 @@
             btn_verPerfil.BackColor = Color.FromArgb(242, 101, 34);
             btn_verPerfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_verPerfil.ForeColor = Color.White;
-            btn_verPerfil.Location = new Point(574, 66);
+            btn_verPerfil.Location = new Point(569, 81);
             btn_verPerfil.Name = "btn_verPerfil";
             btn_verPerfil.Size = new Size(75, 38);
             btn_verPerfil.TabIndex = 7;
@@ -111,9 +111,9 @@
             btn_logout.BackColor = Color.FromArgb(242, 101, 34);
             btn_logout.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_logout.ForeColor = Color.White;
-            btn_logout.Location = new Point(569, 16);
+            btn_logout.Location = new Point(564, 17);
             btn_logout.Name = "btn_logout";
-            btn_logout.Size = new Size(80, 28);
+            btn_logout.Size = new Size(80, 38);
             btn_logout.TabIndex = 6;
             btn_logout.Text = "Sair";
             btn_logout.UseVisualStyleBackColor = false;

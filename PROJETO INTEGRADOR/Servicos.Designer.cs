@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            txt_cpfCliente = new TextBox();
             txt_nomeCliente = new TextBox();
             lbl_cpfCliente = new Label();
             lbl_nomeCliente = new Label();
@@ -48,6 +47,7 @@
             cmb_servico = new ComboBox();
             cmb_categoria = new ComboBox();
             lbl_servicos = new Label();
+            txt_cpfCliente = new MaskedTextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -78,15 +78,6 @@
             panel1.Size = new Size(1004, 515);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
-            // 
-            // txt_cpfCliente
-            // 
-            txt_cpfCliente.Font = new Font("Arial", 12F);
-            txt_cpfCliente.Location = new Point(357, 115);
-            txt_cpfCliente.Name = "txt_cpfCliente";
-            txt_cpfCliente.Size = new Size(269, 26);
-            txt_cpfCliente.TabIndex = 19;
-            txt_cpfCliente.TextChanged += textBox2_TextChanged;
             // 
             // txt_nomeCliente
             // 
@@ -144,21 +135,21 @@
             // 
             lbl_altura.AutoSize = true;
             lbl_altura.Font = new Font("Arial", 12F);
-            lbl_altura.Location = new Point(247, 276);
+            lbl_altura.Location = new Point(224, 276);
             lbl_altura.Name = "lbl_altura";
-            lbl_altura.Size = new Size(48, 18);
+            lbl_altura.Size = new Size(75, 18);
             lbl_altura.TabIndex = 12;
-            lbl_altura.Text = "Altura";
+            lbl_altura.Text = "Altura (m)";
             // 
             // lbl_largura
             // 
             lbl_largura.AutoSize = true;
             lbl_largura.Font = new Font("Arial", 12F);
-            lbl_largura.Location = new Point(247, 233);
+            lbl_largura.Location = new Point(224, 233);
             lbl_largura.Name = "lbl_largura";
-            lbl_largura.Size = new Size(62, 18);
+            lbl_largura.Size = new Size(89, 18);
             lbl_largura.TabIndex = 11;
-            lbl_largura.Text = "Largura";
+            lbl_largura.Text = "Largura (m)";
             // 
             // lbl_servico
             // 
@@ -277,6 +268,16 @@
             lbl_servicos.TabIndex = 0;
             lbl_servicos.Text = "SERVIÇOS";
             // 
+            // txt_cpfCliente
+            // 
+            txt_cpfCliente.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_cpfCliente.Location = new Point(356, 113);
+            txt_cpfCliente.Mask = "000.000.-00";
+            txt_cpfCliente.Name = "txt_cpfCliente";
+            txt_cpfCliente.Size = new Size(270, 26);
+            txt_cpfCliente.TabIndex = 20;
+            txt_cpfCliente.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            // 
             // Servicos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -311,7 +312,7 @@
         private Button btn_voltar_servico;
         private Label lbl_cpfCliente;
         private Label lbl_nomeCliente;
-        private TextBox txt_cpfCliente;
         private TextBox txt_nomeCliente;
+        private MaskedTextBox txt_cpfCliente;
     }
 }

@@ -34,7 +34,6 @@
             btn_criarConta_cadastro = new Button();
             txt_confirmarSenha_cadastro = new TextBox();
             txt_senha_cadastro = new TextBox();
-            txt_telefone_cadastro = new TextBox();
             txt_email_cadastro = new TextBox();
             txt_nomeCompleto_cadastro = new TextBox();
             lbl_confirmarSenha_cadastro = new Label();
@@ -43,18 +42,19 @@
             lbl_email_cadastro = new Label();
             lbl_nomeCompleto_cadastro = new Label();
             lbl_cadastro = new Label();
+            txt_telefone_cadastro = new MaskedTextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(txt_telefone_cadastro);
             panel1.Controls.Add(chk_mostrarSenha_cadastro);
             panel1.Controls.Add(btn_voltar_cadastro);
             panel1.Controls.Add(btn_criarConta_cadastro);
             panel1.Controls.Add(txt_confirmarSenha_cadastro);
             panel1.Controls.Add(txt_senha_cadastro);
-            panel1.Controls.Add(txt_telefone_cadastro);
             panel1.Controls.Add(txt_email_cadastro);
             panel1.Controls.Add(txt_nomeCompleto_cadastro);
             panel1.Controls.Add(lbl_confirmarSenha_cadastro);
@@ -124,15 +124,6 @@
             txt_senha_cadastro.Size = new Size(262, 26);
             txt_senha_cadastro.TabIndex = 11;
             txt_senha_cadastro.TextChanged += txt_senha_cadastro_TextChanged;
-            // 
-            // txt_telefone_cadastro
-            // 
-            txt_telefone_cadastro.Font = new Font("Arial", 12F);
-            txt_telefone_cadastro.Location = new Point(198, 157);
-            txt_telefone_cadastro.Name = "txt_telefone_cadastro";
-            txt_telefone_cadastro.Size = new Size(262, 26);
-            txt_telefone_cadastro.TabIndex = 9;
-            txt_telefone_cadastro.TextChanged += txt_telefone_cadastro_TextChanged;
             // 
             // txt_email_cadastro
             // 
@@ -214,6 +205,16 @@
             lbl_cadastro.Text = "CADASTRO";
             lbl_cadastro.Click += label1_Click;
             // 
+            // txt_telefone_cadastro
+            // 
+            txt_telefone_cadastro.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_telefone_cadastro.Location = new Point(198, 160);
+            txt_telefone_cadastro.Mask = "(00) 00000-0000";
+            txt_telefone_cadastro.Name = "txt_telefone_cadastro";
+            txt_telefone_cadastro.Size = new Size(262, 26);
+            txt_telefone_cadastro.TabIndex = 16;
+            txt_telefone_cadastro.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            // 
             // Cadastro
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -232,7 +233,6 @@
 
         private Panel panel1;
         private Label lbl_cadastro;
-        private TextBox txt_telefone_cadastro;
         private TextBox txt_email_cadastro;
         private TextBox txt_nomeCompleto_cadastro;
         private Label lbl_confirmarSenha_cadastro;
@@ -245,5 +245,6 @@
         private TextBox txt_confirmarSenha_cadastro;
         private TextBox txt_senha_cadastro;
         private CheckBox chk_mostrarSenha_cadastro;
+        private MaskedTextBox txt_telefone_cadastro;
     }
 }

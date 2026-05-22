@@ -118,7 +118,7 @@ namespace PROJETO_INTEGRADOR
                 }
 
                 // Validar telefone
-                if (!Regex.IsMatch(telefone, @"^\d{11}$"))
+                if (!Regex.IsMatch(telefone, @"^[1-9]{2}9\d{8}$"))
                 {
                     MessageBox.Show(
                         "Telefone inválido. Digite 11 números com DDD."
