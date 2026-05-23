@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Perfil));
             panel1 = new Panel();
+            txt_email_perfil = new TextBox();
             lbl_email = new Label();
             txt_telefone_perfil = new MaskedTextBox();
             btn_voltar_perfil = new Button();
@@ -42,8 +44,15 @@
             lbl_senha = new Label();
             lbl_nomeCompleto = new Label();
             lbl_perfil = new Label();
-            txt_email_perfil = new TextBox();
+            panel2 = new Panel();
+            pictureBox1 = new PictureBox();
+            btn_logout = new Button();
+            btn_verPerfil = new Button();
+            btn_novoOrcamento = new Button();
+            btn_gerenciarServico = new Button();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -63,11 +72,20 @@
             panel1.Controls.Add(lbl_senha);
             panel1.Controls.Add(lbl_nomeCompleto);
             panel1.Controls.Add(lbl_perfil);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(252, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(776, 426);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // txt_email_perfil
+            // 
+            txt_email_perfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_email_perfil.Location = new Point(253, 128);
+            txt_email_perfil.Name = "txt_email_perfil";
+            txt_email_perfil.Size = new Size(320, 26);
+            txt_email_perfil.TabIndex = 22;
+            txt_email_perfil.TextChanged += txt_email_perfil_TextChanged;
             // 
             // lbl_email
             // 
@@ -212,26 +230,105 @@
             lbl_perfil.Text = "MEUS DADOS";
             lbl_perfil.Click += lbl_perfil_Click;
             // 
-            // txt_email_perfil
+            // panel2
             // 
-            txt_email_perfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_email_perfil.Location = new Point(253, 128);
-            txt_email_perfil.Name = "txt_email_perfil";
-            txt_email_perfil.Size = new Size(320, 26);
-            txt_email_perfil.TabIndex = 22;
-            txt_email_perfil.TextChanged += txt_email_perfil_TextChanged;
+            panel2.BackColor = Color.FromArgb(26, 58, 90);
+            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(btn_logout);
+            panel2.Controls.Add(btn_verPerfil);
+            panel2.Controls.Add(btn_novoOrcamento);
+            panel2.Controls.Add(btn_gerenciarServico);
+            panel2.Dock = DockStyle.Left;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(246, 450);
+            panel2.TabIndex = 6;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.FromArgb(26, 58, 90);
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(10, 13);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(227, 121);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+            // 
+            // btn_logout
+            // 
+            btn_logout.BackColor = Color.FromArgb(242, 101, 34);
+            btn_logout.FlatAppearance.BorderSize = 0;
+            btn_logout.FlatStyle = FlatStyle.Flat;
+            btn_logout.Font = new Font("Arial", 14.25F, FontStyle.Bold);
+            btn_logout.ForeColor = Color.White;
+            btn_logout.Location = new Point(0, 268);
+            btn_logout.Name = "btn_logout";
+            btn_logout.Size = new Size(246, 38);
+            btn_logout.TabIndex = 6;
+            btn_logout.Text = "Sair";
+            btn_logout.TextAlign = ContentAlignment.MiddleLeft;
+            btn_logout.UseVisualStyleBackColor = false;
+            // 
+            // btn_verPerfil
+            // 
+            btn_verPerfil.BackColor = Color.FromArgb(242, 101, 34);
+            btn_verPerfil.FlatAppearance.BorderSize = 0;
+            btn_verPerfil.FlatStyle = FlatStyle.Flat;
+            btn_verPerfil.Font = new Font("Arial", 14.25F, FontStyle.Bold);
+            btn_verPerfil.ForeColor = Color.White;
+            btn_verPerfil.Location = new Point(0, 224);
+            btn_verPerfil.Name = "btn_verPerfil";
+            btn_verPerfil.Size = new Size(246, 38);
+            btn_verPerfil.TabIndex = 7;
+            btn_verPerfil.Text = "Perfil";
+            btn_verPerfil.TextAlign = ContentAlignment.MiddleLeft;
+            btn_verPerfil.UseVisualStyleBackColor = false;
+            // 
+            // btn_novoOrcamento
+            // 
+            btn_novoOrcamento.BackColor = Color.FromArgb(242, 101, 34);
+            btn_novoOrcamento.FlatAppearance.BorderSize = 0;
+            btn_novoOrcamento.FlatStyle = FlatStyle.Flat;
+            btn_novoOrcamento.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_novoOrcamento.ForeColor = Color.White;
+            btn_novoOrcamento.Location = new Point(0, 140);
+            btn_novoOrcamento.Name = "btn_novoOrcamento";
+            btn_novoOrcamento.Size = new Size(246, 36);
+            btn_novoOrcamento.TabIndex = 2;
+            btn_novoOrcamento.Text = "Novo Orçamento";
+            btn_novoOrcamento.TextAlign = ContentAlignment.MiddleLeft;
+            btn_novoOrcamento.UseVisualStyleBackColor = false;
+            // 
+            // btn_gerenciarServico
+            // 
+            btn_gerenciarServico.BackColor = Color.FromArgb(242, 101, 34);
+            btn_gerenciarServico.FlatAppearance.BorderSize = 0;
+            btn_gerenciarServico.FlatStyle = FlatStyle.Flat;
+            btn_gerenciarServico.Font = new Font("Arial", 14.25F, FontStyle.Bold);
+            btn_gerenciarServico.ForeColor = Color.White;
+            btn_gerenciarServico.Location = new Point(0, 182);
+            btn_gerenciarServico.Name = "btn_gerenciarServico";
+            btn_gerenciarServico.Size = new Size(246, 36);
+            btn_gerenciarServico.TabIndex = 3;
+            btn_gerenciarServico.Text = "Editar Serviços";
+            btn_gerenciarServico.TextAlign = ContentAlignment.MiddleLeft;
+            btn_gerenciarServico.UseVisualStyleBackColor = false;
             // 
             // Perfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1256, 450);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Perfil";
             Text = "Perfil";
             Load += Perfil_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -252,5 +349,11 @@
         private MaskedTextBox txt_telefone_perfil;
         private Label lbl_email;
         private TextBox txt_email_perfil;
+        private Panel panel2;
+        private PictureBox pictureBox1;
+        private Button btn_logout;
+        private Button btn_verPerfil;
+        private Button btn_novoOrcamento;
+        private Button btn_gerenciarServico;
     }
 }

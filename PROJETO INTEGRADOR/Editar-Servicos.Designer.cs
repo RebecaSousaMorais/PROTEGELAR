@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editar_Servicos));
             panel1 = new Panel();
             btn_novoOrcamento = new Button();
             dataGridView1 = new DataGridView();
@@ -37,10 +38,17 @@
             col_editar = new DataGridViewButtonColumn();
             col_excluir = new DataGridViewButtonColumn();
             col_id = new DataGridViewTextBoxColumn();
-            btn_voltar_servicos = new Button();
             lbl_editarServicos = new Label();
+            panel2 = new Panel();
+            pictureBox1 = new PictureBox();
+            btn_logout = new Button();
+            btn_verPerfil = new Button();
+            button1 = new Button();
+            btn_gerenciarServico = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -48,11 +56,10 @@
             panel1.Anchor = AnchorStyles.None;
             panel1.Controls.Add(btn_novoOrcamento);
             panel1.Controls.Add(dataGridView1);
-            panel1.Controls.Add(btn_voltar_servicos);
             panel1.Controls.Add(lbl_editarServicos);
-            panel1.Location = new Point(77, 12);
+            panel1.Location = new Point(243, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1002, 512);
+            panel1.Size = new Size(902, 598);
             panel1.TabIndex = 0;
             // 
             // btn_novoOrcamento
@@ -72,9 +79,9 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { col_nomeServico, col_preco, col_categoria, col_editar, col_excluir, col_id });
-            dataGridView1.Location = new Point(213, 80);
+            dataGridView1.Location = new Point(199, 84);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(541, 290);
+            dataGridView1.Size = new Size(543, 290);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -119,19 +126,6 @@
             col_id.Name = "col_id";
             col_id.Visible = false;
             // 
-            // btn_voltar_servicos
-            // 
-            btn_voltar_servicos.BackColor = Color.FromArgb(242, 101, 34);
-            btn_voltar_servicos.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_voltar_servicos.ForeColor = Color.White;
-            btn_voltar_servicos.Location = new Point(272, 392);
-            btn_voltar_servicos.Name = "btn_voltar_servicos";
-            btn_voltar_servicos.Size = new Size(75, 37);
-            btn_voltar_servicos.TabIndex = 1;
-            btn_voltar_servicos.Text = "Voltar";
-            btn_voltar_servicos.UseVisualStyleBackColor = false;
-            btn_voltar_servicos.Click += btn_voltar_servicos_Click;
-            // 
             // lbl_editarServicos
             // 
             lbl_editarServicos.AutoSize = true;
@@ -145,11 +139,97 @@
             lbl_editarServicos.Text = "EDITAR SERVIÇOS";
             lbl_editarServicos.Click += label1_Click;
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(26, 58, 90);
+            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(btn_logout);
+            panel2.Controls.Add(btn_verPerfil);
+            panel2.Controls.Add(button1);
+            panel2.Controls.Add(btn_gerenciarServico);
+            panel2.Dock = DockStyle.Left;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(246, 623);
+            panel2.TabIndex = 6;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.FromArgb(26, 58, 90);
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(10, 13);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(227, 121);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+            // 
+            // btn_logout
+            // 
+            btn_logout.BackColor = Color.FromArgb(242, 101, 34);
+            btn_logout.FlatAppearance.BorderSize = 0;
+            btn_logout.FlatStyle = FlatStyle.Flat;
+            btn_logout.Font = new Font("Arial", 14.25F, FontStyle.Bold);
+            btn_logout.ForeColor = Color.White;
+            btn_logout.Location = new Point(0, 268);
+            btn_logout.Name = "btn_logout";
+            btn_logout.Size = new Size(246, 38);
+            btn_logout.TabIndex = 6;
+            btn_logout.Text = "Sair";
+            btn_logout.TextAlign = ContentAlignment.MiddleLeft;
+            btn_logout.UseVisualStyleBackColor = false;
+            // 
+            // btn_verPerfil
+            // 
+            btn_verPerfil.BackColor = Color.FromArgb(242, 101, 34);
+            btn_verPerfil.FlatAppearance.BorderSize = 0;
+            btn_verPerfil.FlatStyle = FlatStyle.Flat;
+            btn_verPerfil.Font = new Font("Arial", 14.25F, FontStyle.Bold);
+            btn_verPerfil.ForeColor = Color.White;
+            btn_verPerfil.Location = new Point(0, 224);
+            btn_verPerfil.Name = "btn_verPerfil";
+            btn_verPerfil.Size = new Size(246, 38);
+            btn_verPerfil.TabIndex = 7;
+            btn_verPerfil.Text = "Perfil";
+            btn_verPerfil.TextAlign = ContentAlignment.MiddleLeft;
+            btn_verPerfil.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(242, 101, 34);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(0, 140);
+            button1.Name = "button1";
+            button1.Size = new Size(246, 36);
+            button1.TabIndex = 2;
+            button1.Text = "Novo Orçamento";
+            button1.TextAlign = ContentAlignment.MiddleLeft;
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // btn_gerenciarServico
+            // 
+            btn_gerenciarServico.BackColor = Color.FromArgb(242, 101, 34);
+            btn_gerenciarServico.FlatAppearance.BorderSize = 0;
+            btn_gerenciarServico.FlatStyle = FlatStyle.Flat;
+            btn_gerenciarServico.Font = new Font("Arial", 14.25F, FontStyle.Bold);
+            btn_gerenciarServico.ForeColor = Color.White;
+            btn_gerenciarServico.Location = new Point(0, 182);
+            btn_gerenciarServico.Name = "btn_gerenciarServico";
+            btn_gerenciarServico.Size = new Size(246, 36);
+            btn_gerenciarServico.TabIndex = 3;
+            btn_gerenciarServico.Text = "Editar Serviços";
+            btn_gerenciarServico.TextAlign = ContentAlignment.MiddleLeft;
+            btn_gerenciarServico.UseVisualStyleBackColor = false;
+            // 
             // Editar_Servicos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1157, 623);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Editar_Servicos";
             Text = "Editar_Servicos";
@@ -157,6 +237,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -165,7 +247,6 @@
         private Panel panel1;
         private Label lbl_editarServicos;
         private DataGridView dataGridView1;
-        private Button btn_voltar_servicos;
         private Button btn_novoOrcamento;
         private DataGridViewTextBoxColumn col_nomeServico;
         private DataGridViewTextBoxColumn col_preco;
@@ -173,5 +254,11 @@
         private DataGridViewButtonColumn col_editar;
         private DataGridViewButtonColumn col_excluir;
         private DataGridViewTextBoxColumn col_id;
+        private Panel panel2;
+        private PictureBox pictureBox1;
+        private Button btn_logout;
+        private Button btn_verPerfil;
+        private Button button1;
+        private Button btn_gerenciarServico;
     }
 }

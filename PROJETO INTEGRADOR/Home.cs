@@ -17,7 +17,6 @@ namespace PROJETO_INTEGRADOR
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-
             this.WindowState = FormWindowState.Maximized;
         }
 
@@ -44,7 +43,10 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("Deseja encerrar a sessão e sair do Protegelar?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
         private void btn_novoOrcamento_Click(object sender, EventArgs e)
@@ -62,7 +64,7 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_gerenciarServico_Click(object sender, EventArgs e)
         {
-            this.Hide(); 
+            this.Hide();
             Editar_Servicos TelaEditar = new Editar_Servicos();
 
             TelaEditar.FormClosed += (s, args) =>
@@ -82,6 +84,21 @@ namespace PROJETO_INTEGRADOR
                 this.Show();
             };
             TelaPerfil.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnl_sidebar_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

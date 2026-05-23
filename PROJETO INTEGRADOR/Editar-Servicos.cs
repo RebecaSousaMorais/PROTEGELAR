@@ -231,9 +231,9 @@ namespace PROJETO_INTEGRADOR
                         // EXCLUI O SERVIÇO
 
                         string sql = @"
-            DELETE FROM Servicos
-            WHERE id_servico = @id
-            ";
+                        DELETE FROM Servicos
+                        WHERE id_servico = @id
+                        ";
 
                         using (var cmd =
                             new SqliteCommand(sql, conn))
@@ -277,10 +277,5 @@ namespace PROJETO_INTEGRADOR
         {
             this.Close();
         }
-
-        //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-            //
-        //}
     }
 }

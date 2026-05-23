@@ -33,10 +33,12 @@
             btn_novoOrcamento = new Button();
             btn_gerenciarServico = new Button();
             panel1 = new Panel();
-            btn_verPerfil = new Button();
             btn_logout = new Button();
+            btn_verPerfil = new Button();
+            panel2 = new Panel();
             pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -45,7 +47,7 @@
             lbl_Home.AutoSize = true;
             lbl_Home.Font = new Font("Arial Black", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_Home.ForeColor = Color.FromArgb(27, 79, 114);
-            lbl_Home.Location = new Point(192, 47);
+            lbl_Home.Location = new Point(316, 29);
             lbl_Home.Name = "lbl_Home";
             lbl_Home.Size = new Size(236, 45);
             lbl_Home.TabIndex = 1;
@@ -55,90 +57,116 @@
             // btn_novoOrcamento
             // 
             btn_novoOrcamento.BackColor = Color.FromArgb(242, 101, 34);
-            btn_novoOrcamento.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_novoOrcamento.FlatAppearance.BorderSize = 0;
+            btn_novoOrcamento.FlatStyle = FlatStyle.Flat;
+            btn_novoOrcamento.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_novoOrcamento.ForeColor = Color.White;
-            btn_novoOrcamento.Location = new Point(97, 298);
+            btn_novoOrcamento.Location = new Point(0, 140);
             btn_novoOrcamento.Name = "btn_novoOrcamento";
-            btn_novoOrcamento.Size = new Size(151, 36);
+            btn_novoOrcamento.Size = new Size(246, 36);
             btn_novoOrcamento.TabIndex = 2;
             btn_novoOrcamento.Text = "Novo Orçamento";
+            btn_novoOrcamento.TextAlign = ContentAlignment.MiddleLeft;
             btn_novoOrcamento.UseVisualStyleBackColor = false;
             btn_novoOrcamento.Click += btn_novoOrcamento_Click;
             // 
             // btn_gerenciarServico
             // 
             btn_gerenciarServico.BackColor = Color.FromArgb(242, 101, 34);
-            btn_gerenciarServico.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_gerenciarServico.FlatAppearance.BorderSize = 0;
+            btn_gerenciarServico.FlatStyle = FlatStyle.Flat;
+            btn_gerenciarServico.Font = new Font("Arial", 14.25F, FontStyle.Bold);
             btn_gerenciarServico.ForeColor = Color.White;
-            btn_gerenciarServico.Location = new Point(432, 298);
+            btn_gerenciarServico.Location = new Point(0, 182);
             btn_gerenciarServico.Name = "btn_gerenciarServico";
-            btn_gerenciarServico.Size = new Size(135, 36);
+            btn_gerenciarServico.Size = new Size(246, 36);
             btn_gerenciarServico.TabIndex = 3;
             btn_gerenciarServico.Text = "Editar Serviços";
+            btn_gerenciarServico.TextAlign = ContentAlignment.MiddleLeft;
             btn_gerenciarServico.UseVisualStyleBackColor = false;
             btn_gerenciarServico.Click += btn_gerenciarServico_Click;
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
-            panel1.Controls.Add(btn_verPerfil);
-            panel1.Controls.Add(btn_logout);
-            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(lbl_Home);
-            panel1.Controls.Add(btn_gerenciarServico);
-            panel1.Controls.Add(btn_novoOrcamento);
-            panel1.Location = new Point(66, 12);
+            panel1.Location = new Point(245, -1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(676, 393);
+            panel1.Size = new Size(870, 550);
             panel1.TabIndex = 4;
             panel1.Paint += panel1_Paint;
-            // 
-            // btn_verPerfil
-            // 
-            btn_verPerfil.BackColor = Color.FromArgb(242, 101, 34);
-            btn_verPerfil.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_verPerfil.ForeColor = Color.White;
-            btn_verPerfil.Location = new Point(569, 81);
-            btn_verPerfil.Name = "btn_verPerfil";
-            btn_verPerfil.Size = new Size(75, 38);
-            btn_verPerfil.TabIndex = 7;
-            btn_verPerfil.Text = "Perfil";
-            btn_verPerfil.UseVisualStyleBackColor = false;
-            btn_verPerfil.Click += btn_verPerfil_Click;
             // 
             // btn_logout
             // 
             btn_logout.BackColor = Color.FromArgb(242, 101, 34);
-            btn_logout.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_logout.FlatAppearance.BorderSize = 0;
+            btn_logout.FlatStyle = FlatStyle.Flat;
+            btn_logout.Font = new Font("Arial", 14.25F, FontStyle.Bold);
             btn_logout.ForeColor = Color.White;
-            btn_logout.Location = new Point(564, 17);
+            btn_logout.Location = new Point(0, 268);
             btn_logout.Name = "btn_logout";
-            btn_logout.Size = new Size(80, 38);
+            btn_logout.Size = new Size(246, 38);
             btn_logout.TabIndex = 6;
             btn_logout.Text = "Sair";
+            btn_logout.TextAlign = ContentAlignment.MiddleLeft;
             btn_logout.UseVisualStyleBackColor = false;
             btn_logout.Click += btn_logout_Click;
             // 
+            // btn_verPerfil
+            // 
+            btn_verPerfil.BackColor = Color.FromArgb(242, 101, 34);
+            btn_verPerfil.FlatAppearance.BorderSize = 0;
+            btn_verPerfil.FlatStyle = FlatStyle.Flat;
+            btn_verPerfil.Font = new Font("Arial", 14.25F, FontStyle.Bold);
+            btn_verPerfil.ForeColor = Color.White;
+            btn_verPerfil.Location = new Point(0, 224);
+            btn_verPerfil.Name = "btn_verPerfil";
+            btn_verPerfil.Size = new Size(246, 38);
+            btn_verPerfil.TabIndex = 7;
+            btn_verPerfil.Text = "Perfil";
+            btn_verPerfil.TextAlign = ContentAlignment.MiddleLeft;
+            btn_verPerfil.UseVisualStyleBackColor = false;
+            btn_verPerfil.Click += btn_verPerfil_Click;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(26, 58, 90);
+            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(btn_logout);
+            panel2.Controls.Add(btn_verPerfil);
+            panel2.Controls.Add(btn_novoOrcamento);
+            panel2.Controls.Add(btn_gerenciarServico);
+            panel2.Dock = DockStyle.Left;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(246, 549);
+            panel2.TabIndex = 5;
+            panel2.Paint += panel2_Paint;
+            // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.FromArgb(26, 58, 90);
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(207, 95);
+            pictureBox1.Location = new Point(10, 13);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(202, 163);
-            pictureBox1.TabIndex = 5;
+            pictureBox1.Size = new Size(227, 121);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
             // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1113, 549);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Home";
             Text = "Home";
             Load += Home_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -150,7 +178,8 @@
         private Button btn_gerenciarServico;
         private Panel panel1;
         private Button btn_logout;
-        private PictureBox pictureBox1;
         private Button btn_verPerfil;
+        private Panel panel2;
+        private PictureBox pictureBox1;
     }
 }
