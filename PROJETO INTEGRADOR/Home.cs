@@ -1,4 +1,5 @@
 ﻿using BCrypt.Net;
+using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,8 +24,114 @@ namespace PROJETO_INTEGRADOR
 
         private void Home_Load(object sender, EventArgs e)
         {
-            panel1.Left = (this.ClientSize.Width - panel1.Width) / 2;
-            panel1.Top = (this.ClientSize.Height - panel1.Height) / 2;
+            panel1.Left =
+                (this.ClientSize.Width - panel1.Width) / 2;
+
+            panel1.Top =
+                (this.ClientSize.Height - panel1.Height) / 2;
+
+            // =========================
+            // VISUAL GRID HISTÓRICO
+            // =========================
+
+            dataGridView1.BorderStyle =
+                BorderStyle.None;
+
+            dataGridView1.BackgroundColor =
+                Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles =
+                false;
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor =
+                Color.FromArgb(26, 58, 90);
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor =
+                Color.White;
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font =
+                new Font("Segoe UI", 10, FontStyle.Bold);
+
+            dataGridView1.DefaultCellStyle.Font =
+                new Font("Segoe UI", 10);
+
+            dataGridView1.DefaultCellStyle.SelectionBackColor =
+                Color.FromArgb(230, 230, 230);
+
+            dataGridView1.DefaultCellStyle.SelectionForeColor =
+                Color.Black;
+
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor =
+                Color.FromArgb(245, 245, 245);
+
+            dataGridView1.RowTemplate.Height = 35;
+
+            dataGridView1.GridColor =
+                Color.LightGray;
+
+            dataGridView1.ReadOnly = true;
+
+            dataGridView1.AllowUserToAddRows = false;
+
+            dataGridView1.AllowUserToDeleteRows = false;
+
+            dataGridView1.AllowUserToResizeRows = false;
+
+            dataGridView1.RowHeadersVisible = false;
+
+            dataGridView1.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.Fill;
+
+            dataGridView1.SelectionMode =
+                DataGridViewSelectionMode.FullRowSelect;
+
+            dataGridView1.MultiSelect = false;
+
+            dataGridView1.AutoGenerateColumns = false;
+
+            CarregarHistorico();
+        }
+
+        private void CarregarHistorico()
+        {
+            using (var conn = Conexao.GetConexao())
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = @"
+                    SELECT
+                        nome_cliente,
+                        data_criacao,
+                        valor_total
+                    FROM Orcamentos
+                    ORDER BY data_criacao DESC
+                    LIMIT 5
+                ";
+
+                    using (var cmd =
+                        new SqliteCommand(sql, conn))
+
+                    using (var reader =
+                        cmd.ExecuteReader())
+                    {
+                        DataTable dt =
+                            new DataTable();
+
+                        dt.Load(reader);
+
+                        dataGridView1.DataSource = dt;
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "Erro ao carregar histórico: " +
+                        ex.Message
+                    );
+                }
+            }
         }
 
         private void lbl_Home_Click(object sender, EventArgs e)
@@ -105,6 +212,25 @@ namespace PROJETO_INTEGRADOR
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btn_home_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Home TelaHome = new Home();
+
+            TelaHome.FormClosed += (s, args) =>
+            {
+                this.Close();
+            };
+
+            TelaHome.Show();
         }
     }
 }

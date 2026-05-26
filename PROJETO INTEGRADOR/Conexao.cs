@@ -114,12 +114,37 @@ namespace PROJETO_INTEGRADOR
                         {
                             insert.CommandText = @"
                             INSERT INTO Servicos (nome_servico, preco_m2, categoria) VALUES
+ 
+                            -- REDES DE PROTEÇÃO
                             ('Rede de Proteção para Janelas', 35.00, 'Redes de Proteção'),
                             ('Rede de Proteção para Sacadas', 48.00, 'Redes de Proteção'),
                             ('Rede de Proteção para Escadas', 42.00, 'Redes de Proteção'),
+                            ('Rede de Proteção para Piscinas', 55.00, 'Redes de Proteção'),
+                            ('Rede de Proteção para Quadras', 60.00, 'Redes de Proteção'),
+ 
+                            -- TELAS MOSQUITEIRAS
                             ('Tela Mosquiteira Fixa', 85.00, 'Telas Mosquiteiras'),
+                            ('Tela Mosquiteira Removível', 95.00, 'Telas Mosquiteiras'),
+                            ('Tela Mosquiteira de Alumínio', 120.00, 'Telas Mosquiteiras'),
+ 
+                            -- PINTURA RESIDENCIAL
                             ('Pintura Interna', 165.00, 'Pintura Residencial'),
-                            ('Drywall Parede', 100.00, 'Gesso e Drywall');
+                            ('Pintura Externa', 210.00, 'Pintura Residencial'),
+                            ('Pintura de Fachada', 250.00, 'Pintura Residencial'),
+                            ('Pintura de Teto', 140.00, 'Pintura Residencial'),
+                            ('Pintura de Portão', 180.00, 'Pintura Residencial'),
+ 
+                            -- GESSO E DRYWALL
+                            ('Drywall Parede', 100.00, 'Gesso e Drywall'),
+                            ('Drywall Teto', 120.00, 'Gesso e Drywall'),
+                            ('Forro de Gesso', 135.00, 'Gesso e Drywall'),
+                            ('Sanca de Gesso', 150.00, 'Gesso e Drywall'),
+ 
+                            -- ACABAMENTO
+                            ('Massa Corrida', 75.00, 'Acabamento'),
+                            ('Textura', 95.00, 'Acabamento'),
+                            ('Grafiato', 110.00, 'Acabamento'),
+                            ('Impermeabilização', 130.00, 'Acabamento');
                             ";
 
                             insert.ExecuteNonQuery();

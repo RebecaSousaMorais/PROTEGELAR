@@ -41,6 +41,7 @@
             btn_verPerfil = new Button();
             button1 = new Button();
             btn_gerenciarServico = new Button();
+            btn_home = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -124,6 +125,7 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(26, 58, 90);
+            panel2.Controls.Add(btn_home);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(btn_logout);
             panel2.Controls.Add(btn_verPerfil);
@@ -153,7 +155,7 @@
             btn_logout.FlatStyle = FlatStyle.Flat;
             btn_logout.Font = new Font("Arial", 14.25F, FontStyle.Bold);
             btn_logout.ForeColor = Color.White;
-            btn_logout.Location = new Point(0, 268);
+            btn_logout.Location = new Point(0, 363);
             btn_logout.Name = "btn_logout";
             btn_logout.Size = new Size(246, 38);
             btn_logout.TabIndex = 6;
@@ -169,7 +171,7 @@
             btn_verPerfil.FlatStyle = FlatStyle.Flat;
             btn_verPerfil.Font = new Font("Arial", 14.25F, FontStyle.Bold);
             btn_verPerfil.ForeColor = Color.White;
-            btn_verPerfil.Location = new Point(0, 224);
+            btn_verPerfil.Location = new Point(0, 319);
             btn_verPerfil.Name = "btn_verPerfil";
             btn_verPerfil.Size = new Size(246, 38);
             btn_verPerfil.TabIndex = 7;
@@ -184,7 +186,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 140);
+            button1.Location = new Point(0, 235);
             button1.Name = "button1";
             button1.Size = new Size(246, 36);
             button1.TabIndex = 2;
@@ -199,13 +201,29 @@
             btn_gerenciarServico.FlatStyle = FlatStyle.Flat;
             btn_gerenciarServico.Font = new Font("Arial", 14.25F, FontStyle.Bold);
             btn_gerenciarServico.ForeColor = Color.White;
-            btn_gerenciarServico.Location = new Point(0, 182);
+            btn_gerenciarServico.Location = new Point(0, 277);
             btn_gerenciarServico.Name = "btn_gerenciarServico";
             btn_gerenciarServico.Size = new Size(246, 36);
             btn_gerenciarServico.TabIndex = 3;
             btn_gerenciarServico.Text = "Editar Serviços";
             btn_gerenciarServico.TextAlign = ContentAlignment.MiddleLeft;
             btn_gerenciarServico.UseVisualStyleBackColor = false;
+            // 
+            // btn_home
+            // 
+            btn_home.BackColor = Color.FromArgb(242, 101, 34);
+            btn_home.FlatAppearance.BorderSize = 0;
+            btn_home.FlatStyle = FlatStyle.Flat;
+            btn_home.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_home.ForeColor = Color.White;
+            btn_home.Location = new Point(0, 193);
+            btn_home.Name = "btn_home";
+            btn_home.Size = new Size(246, 36);
+            btn_home.TabIndex = 10;
+            btn_home.Text = "Home";
+            btn_home.TextAlign = ContentAlignment.MiddleLeft;
+            btn_home.UseVisualStyleBackColor = false;
+            btn_home.Click += btn_home_Click;
             // 
             // Orcamento
             // 
@@ -238,5 +256,6 @@
         private Button btn_verPerfil;
         private Button button1;
         private Button btn_gerenciarServico;
+        private Button btn_home;
     }
 }

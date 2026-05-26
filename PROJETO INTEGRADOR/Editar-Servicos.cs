@@ -35,6 +35,54 @@ namespace PROJETO_INTEGRADOR
 
             dataGridView1.AutoGenerateColumns = false;
 
+            // VISUAL DO GRID
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor =
+                Color.FromArgb(26, 58, 90);
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor =
+                Color.White;
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font =
+                new Font("Segoe UI", 10, FontStyle.Bold);
+
+            dataGridView1.ColumnHeadersHeight = 45;
+
+            dataGridView1.DefaultCellStyle.Font =
+                new Font("Segoe UI", 10);
+
+            dataGridView1.DefaultCellStyle.SelectionBackColor =
+                Color.FromArgb(230, 230, 230);
+
+            dataGridView1.DefaultCellStyle.SelectionForeColor =
+                Color.Black;
+
+            dataGridView1.RowTemplate.Height = 40;
+
+            dataGridView1.CellBorderStyle =
+                DataGridViewCellBorderStyle.SingleHorizontal;
+
+            dataGridView1.GridColor =
+                Color.LightGray;
+
+            // BOTÃO EDITAR
+            DataGridViewButtonColumn colEditar =
+                (DataGridViewButtonColumn)dataGridView1.Columns["col_editar"];
+
+            colEditar.Text = "✏ Editar";
+            colEditar.UseColumnTextForButtonValue = true;
+
+            // BOTÃO EXCLUIR
+            DataGridViewButtonColumn colExcluir =
+                (DataGridViewButtonColumn)dataGridView1.Columns["col_excluir"];
+
+            colExcluir.Text = "🗑 Excluir";
+            colExcluir.UseColumnTextForButtonValue = true;
+
             CarregarGrid();
         }
 
@@ -78,195 +126,203 @@ namespace PROJETO_INTEGRADOR
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Evita clique no cabeçalho
+            // EVITA CABEÇALHO
             if (e.RowIndex < 0)
                 return;
 
             string nomeColuna =
-                dataGridView1.Columns[e.ColumnIndex].Name;
+            dataGridView1.Columns[e.ColumnIndex].Name;
 
-            // Só executa na coluna de ações
-            if (nomeColuna != "col_acoes")
-                return;
-
-            // PEGA O ID
             string id = dataGridView1
-                .Rows[e.RowIndex]
-                .Cells["col_id"]
-                .Value
-                .ToString();
+            .Rows[e.RowIndex]
+            .Cells["col_id"]
+            .Value
+            .ToString();
 
-            // PEGA O PREÇO ATUAL
-            string precoAtual = dataGridView1
-                .Rows[e.RowIndex]
-                .Cells["col_preco"]
-                .Value
-                .ToString();
-
-            // MENU DE ESCOLHA
-            DialogResult escolha = MessageBox.Show(
-                "SIM = Editar\nNÃO = Excluir",
-                "Escolha uma ação",
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question
-            );
-
-            // =========================
             // EDITAR
-            // =========================
-            if (escolha == DialogResult.Yes)
+            if (nomeColuna == "col_editar")
             {
-                string novoPreco = Interaction.InputBox(
-                    "Digite o novo preço por m²:",
-                    "Editar Serviço",
-                    precoAtual
-                );
-
-                if (string.IsNullOrWhiteSpace(novoPreco))
-                    return;
-
-                // Corrige vírgula
-                novoPreco = novoPreco.Replace(",", ".");
-
-                // Validação
-                if (!double.TryParse(
-                    novoPreco,
-                    NumberStyles.Any,
-                    CultureInfo.InvariantCulture,
-                    out double precoConvertido))
-                {
-                    MessageBox.Show(
-                        "Digite um valor numérico válido.",
-                        "Aviso",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-
-                    return;
-                }
-
-                using (var conn = Conexao.GetConexao())
-                {
-                    try
-                    {
-                        conn.Open();
-
-                        string sql = @"
-                    UPDATE Servicos
-                    SET preco_m2 = @preco
-                    WHERE id_servico = @id
-                ";
-
-                        using (var cmd = new SqliteCommand(sql, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@preco", precoConvertido);
-                            cmd.Parameters.AddWithValue("@id", id);
-
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        MessageBox.Show(
-                            "Preço atualizado com sucesso!",
-                            "Sucesso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information
-                        );
-
-                        CarregarGrid();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(
-                            "Erro ao atualizar: " + ex.Message,
-                            "Erro",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error
-                        );
-                    }
-                }
+                EditarServico(id, e.RowIndex);
             }
 
-            // =========================
             // EXCLUIR
-            // =========================
-            else if (escolha == DialogResult.No)
+            else if (nomeColuna == "col_excluir")
             {
-                DialogResult resp = MessageBox.Show(
-                    "Deseja realmente excluir este serviço?",
-                    "Confirmação",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
+                ExcluirServico(id);
+            }
+        }
+
+        private void EditarServico(
+        string id,
+        int rowIndex)
+        {
+            string precoAtual =
+            dataGridView1
+            .Rows[rowIndex]
+            .Cells["col_preco"]
+            .Value
+            .ToString();
+
+            string novoPreco = Interaction.InputBox(
+            "Digite o novo preço por m²:",
+            "Editar Serviço",
+            precoAtual
+            );
+
+            if (string.IsNullOrWhiteSpace(novoPreco))
+                return;
+
+            novoPreco = novoPreco.Replace(",", ".");
+
+            if (!double.TryParse(
+            novoPreco,
+            NumberStyles.Any,
+            CultureInfo.InvariantCulture,
+            out double precoConvertido))
+            {
+                MessageBox.Show(
+                "Digite um valor numérico válido.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
                 );
+                return;
+            }
 
-                if (resp != DialogResult.Yes)
-                    return;
-
-                using (var conn = Conexao.GetConexao())
+            using (var conn = Conexao.GetConexao())
+            {
+                try
                 {
-                    try
+                    conn.Open();
+
+                    string sql =
+                        "UPDATE Servicos " +
+                        "SET preco_m2 = @preco " +
+                        "WHERE id_servico = @id";
+
+                    using (var cmd =
+                    new SqliteCommand(sql, conn))
                     {
-                        conn.Open();
-
-                        // VERIFICA SE JÁ FOI USADO
-                        string verificarUso = @"
-                    SELECT COUNT(*)
-                    FROM itens_orcamento
-                    WHERE id_servico = @id
-                ";
-
-                        using (var verificarCmd =
-                            new SqliteCommand(verificarUso, conn))
-                        {
-                            verificarCmd.Parameters.AddWithValue("@id", id);
-
-                            long totalUso =
-                                (long)verificarCmd.ExecuteScalar();
-
-                            if (totalUso > 0)
-                            {
-                                MessageBox.Show(
-                                    "Este serviço não pode ser excluído porque já foi utilizado em orçamentos.",
-                                    "Aviso",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Warning
-                                );
-
-                                return;
-                            }
-                        }
-
-                        // EXCLUI
-                        string sql = @"
-                    DELETE FROM Servicos
-                    WHERE id_servico = @id
-                ";
-
-                        using (var cmd =
-                            new SqliteCommand(sql, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@id", id);
-
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        MessageBox.Show(
-                            "Serviço excluído com sucesso!",
-                            "Sucesso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information
+                        cmd.Parameters.AddWithValue(
+                        "@preco",
+                        precoConvertido
                         );
 
-                        CarregarGrid();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(
-                            "Erro ao excluir: " + ex.Message,
-                            "Erro",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error
+                        cmd.Parameters.AddWithValue(
+                        "@id",
+                        id
                         );
+
+                        cmd.ExecuteNonQuery();
                     }
+
+                    MessageBox.Show(
+                    "Preço atualizado com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+
+                    CarregarGrid();
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                    "Erro ao atualizar: " +
+                    ex.Message,
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+                }
+            }
+        }
+        private void ExcluirServico(string id)
+        {
+            DialogResult resp = MessageBox.Show(
+            "Deseja realmente excluir este serviço?",
+            "Confirmação",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+            );
+
+            if (resp != DialogResult.Yes)
+                return;
+
+            using (var conn = Conexao.GetConexao())
+            {
+                try
+                {
+                    conn.Open();
+
+                    // VERIFICA USO
+                    string verificarUso =
+                        "SELECT COUNT(*) " +
+                        "FROM itens_orcamento " +
+                        "WHERE id_servico = @id";
+
+
+                    using (var verificarCmd =
+                    new SqliteCommand(
+                    verificarUso,
+                    conn))
+                    {
+                        verificarCmd.Parameters.AddWithValue(
+                        "@id",
+                        id
+                        );
+
+                        long totalUso =
+                        (long)verificarCmd.ExecuteScalar();
+
+                        if (totalUso > 0)
+                        {
+                            MessageBox.Show(
+                            "Este serviço não pode ser excluído porque já foi utilizado em orçamentos.",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                            );
+
+                            return;
+                        }
+                    }
+
+                    // EXCLUI
+                    string sql =
+                        "DELETE FROM Servicos " +
+                        "WHERE id_servico = @id";
+
+                    using (var cmd =
+                    new SqliteCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue(
+                        "@id",
+                        id
+                        );
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show(
+                    "Serviço excluído com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                    );
+
+                    CarregarGrid();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                    "Erro ao excluir: " +
+                    ex.Message,
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
                 }
             }
         }
@@ -321,14 +377,15 @@ namespace PROJETO_INTEGRADOR
         private void btn_logout_Click(object sender, EventArgs e)
         {
             Sessao.Limpar();
-
             this.Hide();
-
             Form1 login = new Form1();
-
             login.Show();
-
             this.Close();
+        }
+
+        private void btn_home_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

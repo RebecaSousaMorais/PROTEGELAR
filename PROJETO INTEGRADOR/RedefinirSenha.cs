@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BCrypt.Net;
+using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.Sqlite;
-using BCrypt.Net;
+using static PROJETO_INTEGRADOR.Form1;
 
 namespace PROJETO_INTEGRADOR
 {
@@ -159,6 +160,70 @@ namespace PROJETO_INTEGRADOR
         private void btn_voltar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_novoOrcamento_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Servicos TelaServicos = new Servicos();
+
+            TelaServicos.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+            TelaServicos.Show();
+        }
+
+        private void btn_gerenciarServico_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Editar_Servicos TelaEditar = new Editar_Servicos();
+
+            TelaEditar.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+            TelaEditar.Show();
+        }
+
+        private void btn_verPerfil_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Perfil TelaPerfil = new Perfil();
+
+            TelaPerfil.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+            TelaPerfil.Show();
+        }
+
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            Sessao.Limpar();
+
+            this.Hide();
+
+            Form1 login = new Form1();
+
+            login.Show();
+
+            this.Close();
+        }
+
+        private void btn_home_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Home TelaHome = new Home();
+
+            TelaHome.FormClosed += (s, args) =>
+            {
+                this.Close();
+            };
+
+            TelaHome.Show();
         }
     }
 }

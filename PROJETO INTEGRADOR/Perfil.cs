@@ -269,5 +269,19 @@ namespace PROJETO_INTEGRADOR
 
             this.Close();
         }
+
+        private void btn_home_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Home TelaHome = new Home();
+
+            TelaHome.FormClosed += (s, args) =>
+            {
+                this.Close();
+            };
+
+            TelaHome.Show();
+        }
     }
 }
