@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BCrypt.Net;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BCrypt.Net;
+using static PROJETO_INTEGRADOR.Form1;
 
 namespace PROJETO_INTEGRADOR
 {
@@ -43,10 +44,15 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Deseja encerrar a sessão e sair do Protegelar?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            Sessao.Limpar();
+
+            this.Hide();
+
+            Form1 login = new Form1();
+
+            login.Show();
+
+            this.Close();
         }
 
         private void btn_novoOrcamento_Click(object sender, EventArgs e)

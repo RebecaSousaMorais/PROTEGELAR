@@ -55,9 +55,9 @@
             panel1.Controls.Add(lbl_valorTotal);
             panel1.Controls.Add(btn_salvarOrcamento);
             panel1.Controls.Add(lbl_OrcamentoFinal);
-            panel1.Location = new Point(350, 12);
+            panel1.Location = new Point(252, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(776, 364);
+            panel1.Size = new Size(874, 565);
             panel1.TabIndex = 0;
             // 
             // btn_voltar
@@ -82,7 +82,7 @@
             btn_novoOrcamento.Name = "btn_novoOrcamento";
             btn_novoOrcamento.Size = new Size(155, 36);
             btn_novoOrcamento.TabIndex = 4;
-            btn_novoOrcamento.Text = "Novo Orçamento";
+            btn_novoOrcamento.Text = "Adicionar Item";
             btn_novoOrcamento.UseVisualStyleBackColor = false;
             btn_novoOrcamento.Click += btn_novoOrcamento_Click;
             // 
@@ -91,7 +91,7 @@
             lbl_valorTotal.Anchor = AnchorStyles.None;
             lbl_valorTotal.AutoSize = true;
             lbl_valorTotal.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_valorTotal.Location = new Point(140, 228);
+            lbl_valorTotal.Location = new Point(189, 235);
             lbl_valorTotal.Name = "lbl_valorTotal";
             lbl_valorTotal.Size = new Size(130, 19);
             lbl_valorTotal.TabIndex = 3;
@@ -115,11 +115,11 @@
             lbl_OrcamentoFinal.AutoSize = true;
             lbl_OrcamentoFinal.Font = new Font("Arial Black", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_OrcamentoFinal.ForeColor = Color.FromArgb(14, 79, 114);
-            lbl_OrcamentoFinal.Location = new Point(279, 15);
+            lbl_OrcamentoFinal.Location = new Point(189, 17);
             lbl_OrcamentoFinal.Name = "lbl_OrcamentoFinal";
-            lbl_OrcamentoFinal.Size = new Size(251, 45);
+            lbl_OrcamentoFinal.Size = new Size(368, 45);
             lbl_OrcamentoFinal.TabIndex = 1;
-            lbl_OrcamentoFinal.Text = "ORÇAMENTO";
+            lbl_OrcamentoFinal.Text = "ORÇAMENTO FINAL";
             // 
             // panel2
             // 
@@ -160,6 +160,7 @@
             btn_logout.Text = "Sair";
             btn_logout.TextAlign = ContentAlignment.MiddleLeft;
             btn_logout.UseVisualStyleBackColor = false;
+            btn_logout.Click += btn_logout_Click;
             // 
             // btn_verPerfil
             // 

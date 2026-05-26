@@ -34,9 +34,7 @@
             lbl_email = new Label();
             txt_telefone_perfil = new MaskedTextBox();
             btn_voltar_perfil = new Button();
-            btn_editTelefone = new Button();
             btn_editSenha = new Button();
-            btn_editNome = new Button();
             btn_salvarAlteracoes = new Button();
             txt_senha_perfil = new TextBox();
             txt_nome_perfil = new TextBox();
@@ -62,9 +60,7 @@
             panel1.Controls.Add(lbl_email);
             panel1.Controls.Add(txt_telefone_perfil);
             panel1.Controls.Add(btn_voltar_perfil);
-            panel1.Controls.Add(btn_editTelefone);
             panel1.Controls.Add(btn_editSenha);
-            panel1.Controls.Add(btn_editNome);
             panel1.Controls.Add(btn_salvarAlteracoes);
             panel1.Controls.Add(txt_senha_perfil);
             panel1.Controls.Add(txt_nome_perfil);
@@ -74,7 +70,7 @@
             panel1.Controls.Add(lbl_perfil);
             panel1.Location = new Point(252, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(776, 426);
+            panel1.Size = new Size(992, 426);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -120,19 +116,6 @@
             btn_voltar_perfil.UseVisualStyleBackColor = false;
             btn_voltar_perfil.Click += btn_voltar_cadastro_Click;
             // 
-            // btn_editTelefone
-            // 
-            btn_editTelefone.BackColor = Color.FromArgb(242, 101, 34);
-            btn_editTelefone.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_editTelefone.ForeColor = Color.White;
-            btn_editTelefone.Location = new Point(605, 223);
-            btn_editTelefone.Name = "btn_editTelefone";
-            btn_editTelefone.Size = new Size(75, 31);
-            btn_editTelefone.TabIndex = 17;
-            btn_editTelefone.Text = "✏️";
-            btn_editTelefone.UseVisualStyleBackColor = false;
-            btn_editTelefone.Click += btn_editTelefone_Click;
-            // 
             // btn_editSenha
             // 
             btn_editSenha.BackColor = Color.FromArgb(242, 101, 34);
@@ -145,19 +128,6 @@
             btn_editSenha.Text = "✏️";
             btn_editSenha.UseVisualStyleBackColor = false;
             btn_editSenha.Click += btn_editSenha_Click;
-            // 
-            // btn_editNome
-            // 
-            btn_editNome.BackColor = Color.FromArgb(242, 101, 34);
-            btn_editNome.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_editNome.ForeColor = Color.White;
-            btn_editNome.Location = new Point(605, 78);
-            btn_editNome.Name = "btn_editNome";
-            btn_editNome.Size = new Size(75, 30);
-            btn_editNome.TabIndex = 14;
-            btn_editNome.Text = "✏️";
-            btn_editNome.UseVisualStyleBackColor = false;
-            btn_editNome.Click += btn_editNome_Click;
             // 
             // btn_salvarAlteracoes
             // 
@@ -254,6 +224,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // btn_logout
             // 
@@ -269,6 +240,7 @@
             btn_logout.Text = "Sair";
             btn_logout.TextAlign = ContentAlignment.MiddleLeft;
             btn_logout.UseVisualStyleBackColor = false;
+            btn_logout.Click += btn_logout_Click;
             // 
             // btn_verPerfil
             // 
@@ -284,6 +256,7 @@
             btn_verPerfil.Text = "Perfil";
             btn_verPerfil.TextAlign = ContentAlignment.MiddleLeft;
             btn_verPerfil.UseVisualStyleBackColor = false;
+            btn_verPerfil.Click += btn_verPerfil_Click;
             // 
             // btn_novoOrcamento
             // 
@@ -299,6 +272,7 @@
             btn_novoOrcamento.Text = "Novo Orçamento";
             btn_novoOrcamento.TextAlign = ContentAlignment.MiddleLeft;
             btn_novoOrcamento.UseVisualStyleBackColor = false;
+            btn_novoOrcamento.Click += btn_novoOrcamento_Click;
             // 
             // btn_gerenciarServico
             // 
@@ -314,6 +288,7 @@
             btn_gerenciarServico.Text = "Editar Serviços";
             btn_gerenciarServico.TextAlign = ContentAlignment.MiddleLeft;
             btn_gerenciarServico.UseVisualStyleBackColor = false;
+            btn_gerenciarServico.Click += btn_gerenciarServico_Click;
             // 
             // Perfil
             // 
@@ -343,8 +318,6 @@
         private TextBox txt_nome_perfil;
         private Button btn_salvarAlteracoes;
         private Button btn_editSenha;
-        private Button btn_editNome;
-        private Button btn_editTelefone;
         private Button btn_voltar_perfil;
         private MaskedTextBox txt_telefone_perfil;
         private Label lbl_email;

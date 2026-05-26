@@ -635,5 +635,18 @@ namespace PROJETO_INTEGRADOR
         {
             this.Close();
         }
+
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            Sessao.Limpar();
+
+            this.Hide();
+
+            Form1 login = new Form1();
+
+            login.Show();
+
+            this.Close();
+        }
     }
 }

@@ -34,14 +34,12 @@
             txt_nomeCliente = new TextBox();
             lbl_cpfCliente = new Label();
             lbl_nomeCliente = new Label();
-            btn_voltar_servico = new Button();
             lbl_observacoes = new Label();
             lbl_altura = new Label();
             lbl_largura = new Label();
             lbl_servico = new Label();
             lbl_categoria = new Label();
             txt_observacoes = new TextBox();
-            btn_editarServico = new Button();
             lbl_precoOrcamento = new Label();
             btn_salvarOrcamento = new Button();
             txt_altura = new TextBox();
@@ -67,14 +65,12 @@
             panel1.Controls.Add(txt_nomeCliente);
             panel1.Controls.Add(lbl_cpfCliente);
             panel1.Controls.Add(lbl_nomeCliente);
-            panel1.Controls.Add(btn_voltar_servico);
             panel1.Controls.Add(lbl_observacoes);
             panel1.Controls.Add(lbl_altura);
             panel1.Controls.Add(lbl_largura);
             panel1.Controls.Add(lbl_servico);
             panel1.Controls.Add(lbl_categoria);
             panel1.Controls.Add(txt_observacoes);
-            panel1.Controls.Add(btn_editarServico);
             panel1.Controls.Add(lbl_precoOrcamento);
             panel1.Controls.Add(btn_salvarOrcamento);
             panel1.Controls.Add(txt_altura);
@@ -126,19 +122,6 @@
             lbl_nomeCliente.Size = new Size(103, 18);
             lbl_nomeCliente.TabIndex = 16;
             lbl_nomeCliente.Text = "Nome Cliente";
-            // 
-            // btn_voltar_servico
-            // 
-            btn_voltar_servico.BackColor = Color.FromArgb(242, 101, 34);
-            btn_voltar_servico.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_voltar_servico.ForeColor = Color.White;
-            btn_voltar_servico.Location = new Point(501, 75);
-            btn_voltar_servico.Name = "btn_voltar_servico";
-            btn_voltar_servico.Size = new Size(127, 32);
-            btn_voltar_servico.TabIndex = 15;
-            btn_voltar_servico.Text = "Voltar";
-            btn_voltar_servico.UseVisualStyleBackColor = false;
-            btn_voltar_servico.Click += btn_voltar_servico_Click;
             // 
             // lbl_observacoes
             // 
@@ -199,19 +182,6 @@
             txt_observacoes.Size = new Size(298, 69);
             txt_observacoes.TabIndex = 8;
             txt_observacoes.TextChanged += txt_observacoes_TextChanged;
-            // 
-            // btn_editarServico
-            // 
-            btn_editarServico.BackColor = Color.FromArgb(242, 101, 34);
-            btn_editarServico.Font = new Font("Arial", 12F);
-            btn_editarServico.ForeColor = Color.White;
-            btn_editarServico.Location = new Point(501, 27);
-            btn_editarServico.Name = "btn_editarServico";
-            btn_editarServico.Size = new Size(127, 32);
-            btn_editarServico.TabIndex = 7;
-            btn_editarServico.Text = "Editar Serviços";
-            btn_editarServico.UseVisualStyleBackColor = false;
-            btn_editarServico.Click += btn_editarServico_Click;
             // 
             // lbl_precoOrcamento
             // 
@@ -284,9 +254,9 @@
             lbl_servicos.ForeColor = Color.FromArgb(24, 79, 114);
             lbl_servicos.Location = new Point(24, 27);
             lbl_servicos.Name = "lbl_servicos";
-            lbl_servicos.Size = new Size(202, 45);
+            lbl_servicos.Size = new Size(251, 45);
             lbl_servicos.TabIndex = 0;
-            lbl_servicos.Text = "SERVIÇOS";
+            lbl_servicos.Text = "ORÇAMENTO";
             // 
             // panel2
             // 
@@ -306,7 +276,7 @@
             // 
             pictureBox1.BackColor = Color.FromArgb(26, 58, 90);
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(10, 13);
+            pictureBox1.Location = new Point(12, 14);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(227, 121);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -327,6 +297,7 @@
             btn_logout.Text = "Sair";
             btn_logout.TextAlign = ContentAlignment.MiddleLeft;
             btn_logout.UseVisualStyleBackColor = false;
+            btn_logout.Click += btn_logout_Click;
             // 
             // btn_verPerfil
             // 
@@ -342,6 +313,7 @@
             btn_verPerfil.Text = "Perfil";
             btn_verPerfil.TextAlign = ContentAlignment.MiddleLeft;
             btn_verPerfil.UseVisualStyleBackColor = false;
+            btn_verPerfil.Click += btn_verPerfil_Click;
             // 
             // btn_novoOrcamento
             // 
@@ -357,6 +329,7 @@
             btn_novoOrcamento.Text = "Novo Orçamento";
             btn_novoOrcamento.TextAlign = ContentAlignment.MiddleLeft;
             btn_novoOrcamento.UseVisualStyleBackColor = false;
+            btn_novoOrcamento.Click += btn_novoOrcamento_Click;
             // 
             // btn_gerenciarServico
             // 
@@ -372,6 +345,7 @@
             btn_gerenciarServico.Text = "Editar Serviços";
             btn_gerenciarServico.TextAlign = ContentAlignment.MiddleLeft;
             btn_gerenciarServico.UseVisualStyleBackColor = false;
+            btn_gerenciarServico.Click += btn_gerenciarServico_Click;
             // 
             // Servicos
             // 
@@ -393,7 +367,6 @@
         #endregion
 
         private Panel panel1;
-        private Button btn_editarServico;
         private Label lbl_precoOrcamento;
         private Button btn_salvarOrcamento;
         private TextBox txt_altura;
@@ -407,7 +380,6 @@
         private Label lbl_largura;
         private Label lbl_servico;
         private Label lbl_categoria;
-        private Button btn_voltar_servico;
         private Label lbl_cpfCliente;
         private Label lbl_nomeCliente;
         private TextBox txt_nomeCliente;

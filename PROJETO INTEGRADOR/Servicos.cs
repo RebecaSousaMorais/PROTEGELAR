@@ -300,7 +300,7 @@ namespace PROJETO_INTEGRADOR
 
             Sessao.nomeCliente = nomeCliente;
             Sessao.cpfCliente = cpfCliente;
-            
+
 
             Sessao.Carrinho.Add(new ItensCarrinho
             {
@@ -382,6 +382,56 @@ namespace PROJETO_INTEGRADOR
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_novoOrcamento_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Servicos TelaServicos = new Servicos();
+
+            TelaServicos.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+            TelaServicos.Show();
+        }
+
+        private void btn_gerenciarServico_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Editar_Servicos TelaEditar = new Editar_Servicos();
+
+            TelaEditar.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+            TelaEditar.Show();
+        }
+
+        private void btn_verPerfil_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Perfil TelaPerfil = new Perfil();
+
+            TelaPerfil.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+            TelaPerfil.Show();
+        }
+
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            Sessao.Limpar();
+
+            this.Hide();
+
+            Form1 login = new Form1();
+
+            login.Show();
+
+            this.Close();
         }
     }
 }

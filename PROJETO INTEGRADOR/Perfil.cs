@@ -35,7 +35,7 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_editNome_Click(object sender, EventArgs e)
         {
-            txt_nome_perfil.ReadOnly = false; txt_nome_perfil.Focus();
+            //
         }
 
         //private void btn_editEmail_Click(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_editTelefone_Click(object sender, EventArgs e)
         {
-            txt_telefone_perfil.ReadOnly = false; txt_telefone_perfil.Focus();
+            //
         }
 
         private void btn_salvarAlteracoes_Click(object sender, EventArgs e)
@@ -142,7 +142,7 @@ namespace PROJETO_INTEGRADOR
                     "Dados atualizados com sucesso!"
                 );
 
-                BloquearCampos();
+                CarregarDadosDoUsuario();
             }
             catch (Exception ex)
             {
@@ -160,6 +160,9 @@ namespace PROJETO_INTEGRADOR
         {
             txt_telefone_perfil.Mask = "(00) 00000-0000";
             txt_telefone_perfil.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+
+            txt_email_perfil.TabStop = false;
+            txt_senha_perfil.TabStop = false;
 
             CarregarDadosDoUsuario();
         }
@@ -210,10 +213,13 @@ namespace PROJETO_INTEGRADOR
 
         private void BloquearCampos()
         {
-            txt_nome_perfil.ReadOnly = true;
-            txt_email_perfil.ReadOnly=true;
-            txt_telefone_perfil.ReadOnly = true;
+            txt_nome_perfil.ReadOnly = false;
+            txt_email_perfil.ReadOnly = true;
+            txt_telefone_perfil.ReadOnly = false;
             txt_senha_perfil.ReadOnly = true;
+
+            txt_email_perfil.BackColor = Color.WhiteSmoke;
+            txt_senha_perfil.BackColor = Color.WhiteSmoke;
         }
 
         private void btn_voltar_cadastro_Click(object sender, EventArgs e)
@@ -229,6 +235,39 @@ namespace PROJETO_INTEGRADOR
         private void txt_email_perfil_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_novoOrcamento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_gerenciarServico_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_verPerfil_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            Sessao.Limpar();
+
+            this.Hide();
+
+            Form1 login = new Form1();
+
+            login.Show();
+
+            this.Close();
         }
     }
 }
