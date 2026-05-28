@@ -43,7 +43,7 @@ namespace PROJETO_INTEGRADOR
                 {
                     conn.Open();
 
-                    string sql = "SELECT DISTINCT categoria FROM Servicos WHERE categoria IS NOT NULL ORDER BY categoria ASC";
+                    string sql = "SELECT DISTINCT categoria FROM Servicos WHERE categoria IS NOT NULL AND ativo = 1 ORDER BY categoria ASC";
 
                     using (var cmd = new SqliteCommand(sql, conn))
                     using (var reader = cmd.ExecuteReader())
@@ -82,6 +82,7 @@ namespace PROJETO_INTEGRADOR
                     SELECT DISTINCT nome_servico
                     FROM Servicos
                     WHERE categoria = @cat
+                    AND ativo = 1
                     ORDER BY nome_servico ASC
                 ";
 
@@ -157,6 +158,7 @@ namespace PROJETO_INTEGRADOR
                         SELECT preco_m2
                         FROM Servicos
                         WHERE nome_servico = @nome
+                        AND ativo = 1
                     ";
 
                     using (var cmd = new SqliteCommand(sql, conn))
@@ -259,6 +261,7 @@ namespace PROJETO_INTEGRADOR
                         SELECT id_servico ,preco_m2
                         FROM Servicos
                         WHERE nome_servico = @nome
+                        AND ativo = 1
                     ";
 
                     using (var cmd =

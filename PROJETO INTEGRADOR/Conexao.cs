@@ -49,10 +49,11 @@ namespace PROJETO_INTEGRADOR
                     );
 
                     CREATE TABLE IF NOT EXISTS Servicos (
-                        id_servico INTEGER PRIMARY KEY AUTOINCREMENT,
-                        nome_servico TEXT NOT NULL,
-                        preco_m2 REAL NOT NULL,
-                        categoria TEXT
+                    id_servico INTEGER PRIMARY KEY AUTOINCREMENT,
+                    nome_servico TEXT NOT NULL,
+                    preco_m2 REAL NOT NULL,
+                    categoria TEXT,
+                    ativo INTEGER DEFAULT 1
                     );
 
                     CREATE TABLE IF NOT EXISTS Orcamentos (
@@ -102,10 +103,27 @@ namespace PROJETO_INTEGRADOR
                     "TEXT"
                 );
 
+                AdicionarColunaSeNaoExistir(
+                    conn,
+                    "Servicos",
+                    "ativo",
+                    "INTEGER DEFAULT 1"
+                );
+
+                using (var atualizar = conn.CreateCommand())
+                {
+                    atualizar.CommandText =
+                    "UPDATE Servicos " +
+                    "SET ativo = 1 " +
+                    "WHERE ativo IS NULL;";
+
+                    atualizar.ExecuteNonQuery();
+                }
+
                 // Verifica se já existem serviços cadastrados
                 using (var check = conn.CreateCommand())
                 {
-                    check.CommandText = "SELECT COUNT(*) FROM Servicos;";
+                    check.CommandText = "SELECT COUNT(*) FROM Servicos WHERE ativo = 1;";
                     long count = (long)check.ExecuteScalar();
 
                     if (count == 0)

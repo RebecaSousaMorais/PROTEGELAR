@@ -48,7 +48,7 @@ namespace PROJETO_INTEGRADOR
                 Color.White;
 
             dataGridView1.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Arial", 14, FontStyle.Bold);
+                new Font("Arial", 12, FontStyle.Bold);
 
             dataGridView1.ColumnHeadersHeight = 45;
 
@@ -101,6 +101,7 @@ namespace PROJETO_INTEGRADOR
                             nome_servico,
                             preco_m2
                         FROM Servicos
+                        WHERE ativo = 1
                         ORDER BY categoria ASC
                     ";
 
@@ -196,9 +197,9 @@ namespace PROJETO_INTEGRADOR
                     conn.Open();
 
                     string sql =
-                        "UPDATE Servicos " +
-                        "SET preco_m2 = @preco " +
-                        "WHERE id_servico = @id";
+                    "UPDATE Servicos " +
+                    "SET preco_m2 = @preco " +
+                    "WHERE id_servico = @id";
 
                     using (var cmd =
                     new SqliteCommand(sql, conn))
@@ -256,43 +257,10 @@ namespace PROJETO_INTEGRADOR
                 {
                     conn.Open();
 
-                    // VERIFICA USO
-                    string verificarUso =
-                        "SELECT COUNT(*) " +
-                        "FROM itens_orcamento " +
-                        "WHERE id_servico = @id";
-
-
-                    using (var verificarCmd =
-                    new SqliteCommand(
-                    verificarUso,
-                    conn))
-                    {
-                        verificarCmd.Parameters.AddWithValue(
-                        "@id",
-                        id
-                        );
-
-                        long totalUso =
-                        (long)verificarCmd.ExecuteScalar();
-
-                        if (totalUso > 0)
-                        {
-                            MessageBox.Show(
-                            "Este serviço não pode ser excluído porque já foi utilizado em orçamentos.",
-                            "Aviso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning
-                            );
-
-                            return;
-                        }
-                    }
-
-                    // EXCLUI
                     string sql =
-                        "DELETE FROM Servicos " +
-                        "WHERE id_servico = @id";
+                    "UPDATE Servicos " +
+                    "SET ativo = 0 " +
+                    "WHERE id_servico = @id";
 
                     using (var cmd =
                     new SqliteCommand(sql, conn))
