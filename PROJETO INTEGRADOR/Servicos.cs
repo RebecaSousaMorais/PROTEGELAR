@@ -423,15 +423,10 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            Sessao.Limpar();
-
-            this.Hide();
-
             Form1 login = new Form1();
-
+            this.Hide();
             login.Show();
-
-            this.Close();
+            Sessao.Limpar();
         }
 
         private void btn_home_Click(object sender, EventArgs e)

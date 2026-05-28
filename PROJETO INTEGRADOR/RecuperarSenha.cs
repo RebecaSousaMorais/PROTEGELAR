@@ -48,6 +48,7 @@ namespace PROJETO_INTEGRADOR
             {
                 conn.Open();
 
+
                 var cmd = new SqliteCommand(
                     "SELECT COUNT(*) FROM Usuarios WHERE email = @email", conn);
 

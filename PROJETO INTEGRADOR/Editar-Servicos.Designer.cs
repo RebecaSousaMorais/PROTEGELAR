@@ -39,12 +39,12 @@
             col_excluir = new DataGridViewButtonColumn();
             lbl_editarServicos = new Label();
             panel2 = new Panel();
+            btn_home = new Button();
             pictureBox1 = new PictureBox();
             btn_logout = new Button();
             btn_verPerfil = new Button();
             button1 = new Button();
             btn_gerenciarServico = new Button();
-            btn_home = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -65,7 +65,7 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { col_id, col_nomeServico, col_preco, col_categoria, col_editar, col_excluir });
-            dataGridView1.Location = new Point(104, 61);
+            dataGridView1.Location = new Point(85, 61);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(719, 373);
             dataGridView1.TabIndex = 2;
@@ -145,6 +145,22 @@
             panel2.Size = new Size(246, 623);
             panel2.TabIndex = 6;
             // 
+            // btn_home
+            // 
+            btn_home.BackColor = Color.FromArgb(242, 101, 34);
+            btn_home.FlatAppearance.BorderSize = 0;
+            btn_home.FlatStyle = FlatStyle.Flat;
+            btn_home.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_home.ForeColor = Color.White;
+            btn_home.Location = new Point(0, 214);
+            btn_home.Name = "btn_home";
+            btn_home.Size = new Size(246, 36);
+            btn_home.TabIndex = 10;
+            btn_home.Text = "Home";
+            btn_home.TextAlign = ContentAlignment.MiddleLeft;
+            btn_home.UseVisualStyleBackColor = false;
+            btn_home.Click += btn_home_Click;
+            // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.FromArgb(26, 58, 90);
@@ -219,22 +235,6 @@
             btn_gerenciarServico.TextAlign = ContentAlignment.MiddleLeft;
             btn_gerenciarServico.UseVisualStyleBackColor = false;
             btn_gerenciarServico.Click += btn_gerenciarServico_Click;
-            // 
-            // btn_home
-            // 
-            btn_home.BackColor = Color.FromArgb(242, 101, 34);
-            btn_home.FlatAppearance.BorderSize = 0;
-            btn_home.FlatStyle = FlatStyle.Flat;
-            btn_home.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_home.ForeColor = Color.White;
-            btn_home.Location = new Point(0, 214);
-            btn_home.Name = "btn_home";
-            btn_home.Size = new Size(246, 36);
-            btn_home.TabIndex = 10;
-            btn_home.Text = "Home";
-            btn_home.TextAlign = ContentAlignment.MiddleLeft;
-            btn_home.UseVisualStyleBackColor = false;
-            btn_home.Click += btn_home_Click;
             // 
             // Editar_Servicos
             // 

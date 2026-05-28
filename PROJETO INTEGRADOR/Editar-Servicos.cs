@@ -48,12 +48,12 @@ namespace PROJETO_INTEGRADOR
                 Color.White;
 
             dataGridView1.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Segoe UI", 10, FontStyle.Bold);
+                new Font("Arial", 14, FontStyle.Bold);
 
             dataGridView1.ColumnHeadersHeight = 45;
 
             dataGridView1.DefaultCellStyle.Font =
-                new Font("Segoe UI", 10);
+                new Font("Arial", 12);
 
             dataGridView1.DefaultCellStyle.SelectionBackColor =
                 Color.FromArgb(230, 230, 230);
@@ -352,14 +352,7 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_gerenciarServico_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Editar_Servicos TelaEditar = new Editar_Servicos();
-
-            TelaEditar.FormClosed += (s, args) =>
-            {
-                this.Show();
-            };
-            TelaEditar.Show();
+            // Ja esta em Editar Serviço
         }
 
         private void btn_verPerfil_Click(object sender, EventArgs e)
@@ -376,16 +369,24 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            Sessao.Limpar();
-            this.Hide();
             Form1 login = new Form1();
+            this.Hide();
             login.Show();
-            this.Close();
+            Sessao.Limpar();
         }
 
         private void btn_home_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
+            Home TelaHome = new Home();
+
+            TelaHome.FormClosed += (s, args) =>
+            {
+                this.Close();
+            };
+
+            TelaHome.Show();
         }
     }
 }

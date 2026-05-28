@@ -33,15 +33,16 @@
             btn_novoOrcamento = new Button();
             btn_gerenciarServico = new Button();
             panel1 = new Panel();
+            lbl_historicoOrcamento = new Label();
             dataGridView1 = new DataGridView();
-            col_cliente = new DataGridViewTextBoxColumn();
-            col_data = new DataGridViewTextBoxColumn();
-            col_total = new DataGridViewTextBoxColumn();
             btn_logout = new Button();
             btn_verPerfil = new Button();
             panel2 = new Panel();
             btn_home = new Button();
             pictureBox1 = new PictureBox();
+            col_cliente = new DataGridViewTextBoxColumn();
+            col_data = new DataGridViewTextBoxColumn();
+            col_total = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -95,6 +96,7 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(lbl_historicoOrcamento);
             panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(lbl_Home);
             panel1.Location = new Point(245, -1);
@@ -103,39 +105,27 @@
             panel1.TabIndex = 4;
             panel1.Paint += panel1_Paint;
             // 
+            // lbl_historicoOrcamento
+            // 
+            lbl_historicoOrcamento.AutoSize = true;
+            lbl_historicoOrcamento.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_historicoOrcamento.ForeColor = Color.FromArgb(27, 79, 114);
+            lbl_historicoOrcamento.Location = new Point(0, 258);
+            lbl_historicoOrcamento.Name = "lbl_historicoOrcamento";
+            lbl_historicoOrcamento.Size = new Size(260, 24);
+            lbl_historicoOrcamento.TabIndex = 3;
+            lbl_historicoOrcamento.Text = "Histórico de Orçamentos";
+            lbl_historicoOrcamento.Click += lbl_historicoOrcamento_Click;
+            // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { col_cliente, col_data, col_total });
-            dataGridView1.Location = new Point(95, 214);
+            dataGridView1.Location = new Point(0, 282);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(558, 304);
+            dataGridView1.Size = new Size(867, 265);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // col_cliente
-            // 
-            col_cliente.DataPropertyName = "nome_cliente";
-            col_cliente.HeaderText = "Cliente";
-            col_cliente.Name = "col_cliente";
-            col_cliente.ReadOnly = true;
-            col_cliente.Width = 120;
-            // 
-            // col_data
-            // 
-            col_data.DataPropertyName = "data_criacao";
-            col_data.HeaderText = "Data";
-            col_data.Name = "col_data";
-            col_data.ReadOnly = true;
-            col_data.Width = 120;
-            // 
-            // col_total
-            // 
-            col_total.DataPropertyName = "valor_total";
-            col_total.HeaderText = "Valor Total";
-            col_total.Name = "col_total";
-            col_total.ReadOnly = true;
-            col_total.Width = 120;
             // 
             // btn_logout
             // 
@@ -212,6 +202,30 @@
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
             // 
+            // col_cliente
+            // 
+            col_cliente.DataPropertyName = "nome_cliente";
+            col_cliente.HeaderText = "Cliente";
+            col_cliente.Name = "col_cliente";
+            col_cliente.ReadOnly = true;
+            col_cliente.Width = 300;
+            // 
+            // col_data
+            // 
+            col_data.DataPropertyName = "data_criacao";
+            col_data.HeaderText = "Data";
+            col_data.Name = "col_data";
+            col_data.ReadOnly = true;
+            col_data.Width = 120;
+            // 
+            // col_total
+            // 
+            col_total.DataPropertyName = "valor_total";
+            col_total.HeaderText = "Valor Total";
+            col_total.Name = "col_total";
+            col_total.ReadOnly = true;
+            col_total.Width = 120;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -241,9 +255,10 @@
         private Panel panel2;
         private PictureBox pictureBox1;
         private DataGridView dataGridView1;
+        private Button btn_home;
+        private Label lbl_historicoOrcamento;
         private DataGridViewTextBoxColumn col_cliente;
         private DataGridViewTextBoxColumn col_data;
         private DataGridViewTextBoxColumn col_total;
-        private Button btn_home;
     }
 }

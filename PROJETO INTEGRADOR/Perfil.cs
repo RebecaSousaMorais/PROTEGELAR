@@ -239,7 +239,15 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_novoOrcamento_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
+            Servicos TelaServicos = new Servicos();
+
+            TelaServicos.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+            TelaServicos.Show();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -249,25 +257,27 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_gerenciarServico_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            Editar_Servicos TelaEditar = new Editar_Servicos();
 
+            TelaEditar.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+            TelaEditar.Show();
         }
 
         private void btn_verPerfil_Click(object sender, EventArgs e)
         {
-
+            // Ja esta em Perfil
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            Sessao.Limpar();
-
-            this.Hide();
-
             Form1 login = new Form1();
-
+            this.Hide();
             login.Show();
-
-            this.Close();
+            Sessao.Limpar();
         }
 
         private void btn_home_Click(object sender, EventArgs e)

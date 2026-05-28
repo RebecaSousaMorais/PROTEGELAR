@@ -25,15 +25,15 @@ namespace PROJETO_INTEGRADOR
         private void Home_Load(object sender, EventArgs e)
         {
             panel1.Left =
-                (this.ClientSize.Width - panel1.Width) / 2;
+            (this.ClientSize.Width - panel1.Width) / 2;
 
             panel1.Top =
                 (this.ClientSize.Height - panel1.Height) / 2;
 
-            // =========================
-            // VISUAL GRID HISTÓRICO
-            // =========================
+            // NÃO GERAR COLUNAS AUTOMÁTICAS
+            dataGridView1.AutoGenerateColumns = false;
 
+            // VISUAL GRID
             dataGridView1.BorderStyle =
                 BorderStyle.None;
 
@@ -50,10 +50,12 @@ namespace PROJETO_INTEGRADOR
                 Color.White;
 
             dataGridView1.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Segoe UI", 10, FontStyle.Bold);
+                new Font("Arial", 14, FontStyle.Bold);
+
+            dataGridView1.ColumnHeadersHeight = 45;
 
             dataGridView1.DefaultCellStyle.Font =
-                new Font("Segoe UI", 10);
+                new Font("Arial", 12);
 
             dataGridView1.DefaultCellStyle.SelectionBackColor =
                 Color.FromArgb(230, 230, 230);
@@ -64,12 +66,15 @@ namespace PROJETO_INTEGRADOR
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor =
                 Color.FromArgb(245, 245, 245);
 
-            dataGridView1.RowTemplate.Height = 35;
+            dataGridView1.RowTemplate.Height = 38;
 
             dataGridView1.GridColor =
                 Color.LightGray;
 
-            dataGridView1.ReadOnly = true;
+            dataGridView1.CellBorderStyle =
+                DataGridViewCellBorderStyle.SingleHorizontal;
+
+            dataGridView1.RowHeadersVisible = false;
 
             dataGridView1.AllowUserToAddRows = false;
 
@@ -77,17 +82,30 @@ namespace PROJETO_INTEGRADOR
 
             dataGridView1.AllowUserToResizeRows = false;
 
-            dataGridView1.RowHeadersVisible = false;
-
-            dataGridView1.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.Fill;
-
             dataGridView1.SelectionMode =
                 DataGridViewSelectionMode.FullRowSelect;
 
             dataGridView1.MultiSelect = false;
 
-            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.ReadOnly = true;
+
+            // TAMANHO MANUAL DAS COLUNAS
+            dataGridView1.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.None;
+
+            dataGridView1.Columns["col_cliente"].Width = 120;
+
+            dataGridView1.Columns["col_data"].Width = 100;
+
+            dataGridView1.Columns["col_total"].Width = 150;
+
+            // FORMATAÇÃO REAL BR
+            dataGridView1.Columns["col_total"]
+                .DefaultCellStyle.Format = "C2";
+
+            dataGridView1.Columns["col_total"]
+                .DefaultCellStyle.FormatProvider =
+                new System.Globalization.CultureInfo("pt-BR");
 
             CarregarHistorico();
         }
@@ -102,7 +120,7 @@ namespace PROJETO_INTEGRADOR
                     string sql = @"
                     SELECT
                         nome_cliente,
-                        data_criacao,
+                        strftime('%d/%m/%Y', data_criacao) AS data_criacao,
                         valor_total
                     FROM Orcamentos
                     ORDER BY data_criacao DESC
@@ -151,15 +169,10 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            Sessao.Limpar();
-
-            this.Hide();
-
             Form1 login = new Form1();
-
+            this.Hide();
             login.Show();
-
-            this.Close();
+            Sessao.Limpar();
         }
 
         private void btn_novoOrcamento_Click(object sender, EventArgs e)
@@ -221,16 +234,12 @@ namespace PROJETO_INTEGRADOR
 
         private void btn_home_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            // Ja esta na home
+        }
 
-            Home TelaHome = new Home();
+        private void lbl_historicoOrcamento_Click(object sender, EventArgs e)
+        {
 
-            TelaHome.FormClosed += (s, args) =>
-            {
-                this.Close();
-            };
-
-            TelaHome.Show();
         }
     }
 }
