@@ -30,18 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Orcamento));
             panel1 = new Panel();
-            btn_voltar = new Button();
             btn_novoOrcamento = new Button();
-            lbl_valorTotal = new Label();
             btn_salvarOrcamento = new Button();
             lbl_OrcamentoFinal = new Label();
+            lbl_valorTotal = new Label();
             panel2 = new Panel();
+            btn_home = new Button();
             pictureBox1 = new PictureBox();
             btn_logout = new Button();
             btn_verPerfil = new Button();
             button1 = new Button();
             btn_gerenciarServico = new Button();
-            btn_home = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -51,35 +50,21 @@
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.AutoScroll = true;
-            panel1.Controls.Add(btn_voltar);
             panel1.Controls.Add(btn_novoOrcamento);
-            panel1.Controls.Add(lbl_valorTotal);
             panel1.Controls.Add(btn_salvarOrcamento);
             panel1.Controls.Add(lbl_OrcamentoFinal);
-            panel1.Location = new Point(252, 0);
+            panel1.Controls.Add(lbl_valorTotal);
+            panel1.Location = new Point(243, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(874, 565);
+            panel1.Size = new Size(886, 487);
             panel1.TabIndex = 0;
-            // 
-            // btn_voltar
-            // 
-            btn_voltar.BackColor = Color.FromArgb(242, 101, 34);
-            btn_voltar.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_voltar.ForeColor = Color.White;
-            btn_voltar.Location = new Point(622, 75);
-            btn_voltar.Name = "btn_voltar";
-            btn_voltar.Size = new Size(75, 36);
-            btn_voltar.TabIndex = 5;
-            btn_voltar.Text = "Voltar";
-            btn_voltar.UseVisualStyleBackColor = false;
-            btn_voltar.Click += btn_voltar_Click;
             // 
             // btn_novoOrcamento
             // 
             btn_novoOrcamento.BackColor = Color.FromArgb(242, 101, 34);
             btn_novoOrcamento.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_novoOrcamento.ForeColor = Color.White;
-            btn_novoOrcamento.Location = new Point(427, 319);
+            btn_novoOrcamento.Location = new Point(527, 438);
             btn_novoOrcamento.Name = "btn_novoOrcamento";
             btn_novoOrcamento.Size = new Size(155, 36);
             btn_novoOrcamento.TabIndex = 4;
@@ -87,23 +72,12 @@
             btn_novoOrcamento.UseVisualStyleBackColor = false;
             btn_novoOrcamento.Click += btn_novoOrcamento_Click;
             // 
-            // lbl_valorTotal
-            // 
-            lbl_valorTotal.Anchor = AnchorStyles.None;
-            lbl_valorTotal.AutoSize = true;
-            lbl_valorTotal.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_valorTotal.Location = new Point(189, 235);
-            lbl_valorTotal.Name = "lbl_valorTotal";
-            lbl_valorTotal.Size = new Size(130, 19);
-            lbl_valorTotal.TabIndex = 3;
-            lbl_valorTotal.Text = "VALOR TOTAL: ";
-            // 
             // btn_salvarOrcamento
             // 
             btn_salvarOrcamento.BackColor = Color.FromArgb(242, 101, 34);
             btn_salvarOrcamento.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_salvarOrcamento.ForeColor = Color.White;
-            btn_salvarOrcamento.Location = new Point(223, 319);
+            btn_salvarOrcamento.Location = new Point(246, 438);
             btn_salvarOrcamento.Name = "btn_salvarOrcamento";
             btn_salvarOrcamento.Size = new Size(158, 36);
             btn_salvarOrcamento.TabIndex = 2;
@@ -122,6 +96,17 @@
             lbl_OrcamentoFinal.TabIndex = 1;
             lbl_OrcamentoFinal.Text = "ORÇAMENTO FINAL";
             // 
+            // lbl_valorTotal
+            // 
+            lbl_valorTotal.Anchor = AnchorStyles.None;
+            lbl_valorTotal.AutoSize = true;
+            lbl_valorTotal.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_valorTotal.Location = new Point(18, 393);
+            lbl_valorTotal.Name = "lbl_valorTotal";
+            lbl_valorTotal.Size = new Size(167, 24);
+            lbl_valorTotal.TabIndex = 3;
+            lbl_valorTotal.Text = "VALOR TOTAL: ";
+            // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(26, 58, 90);
@@ -134,8 +119,24 @@
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(246, 565);
+            panel2.Size = new Size(246, 624);
             panel2.TabIndex = 6;
+            // 
+            // btn_home
+            // 
+            btn_home.BackColor = Color.FromArgb(242, 101, 34);
+            btn_home.FlatAppearance.BorderSize = 0;
+            btn_home.FlatStyle = FlatStyle.Flat;
+            btn_home.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_home.ForeColor = Color.White;
+            btn_home.Location = new Point(0, 193);
+            btn_home.Name = "btn_home";
+            btn_home.Size = new Size(246, 36);
+            btn_home.TabIndex = 10;
+            btn_home.Text = "Home";
+            btn_home.TextAlign = ContentAlignment.MiddleLeft;
+            btn_home.UseVisualStyleBackColor = false;
+            btn_home.Click += btn_home_Click;
             // 
             // pictureBox1
             // 
@@ -209,27 +210,11 @@
             btn_gerenciarServico.TextAlign = ContentAlignment.MiddleLeft;
             btn_gerenciarServico.UseVisualStyleBackColor = false;
             // 
-            // btn_home
-            // 
-            btn_home.BackColor = Color.FromArgb(242, 101, 34);
-            btn_home.FlatAppearance.BorderSize = 0;
-            btn_home.FlatStyle = FlatStyle.Flat;
-            btn_home.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_home.ForeColor = Color.White;
-            btn_home.Location = new Point(0, 193);
-            btn_home.Name = "btn_home";
-            btn_home.Size = new Size(246, 36);
-            btn_home.TabIndex = 10;
-            btn_home.Text = "Home";
-            btn_home.TextAlign = ContentAlignment.MiddleLeft;
-            btn_home.UseVisualStyleBackColor = false;
-            btn_home.Click += btn_home_Click;
-            // 
             // Orcamento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1129, 565);
+            ClientSize = new Size(1129, 624);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Orcamento";
@@ -249,7 +234,6 @@
         private Button btn_salvarOrcamento;
         private Button btn_novoOrcamento;
         private Label lbl_valorTotal;
-        private Button btn_voltar;
         private Panel panel2;
         private PictureBox pictureBox1;
         private Button btn_logout;

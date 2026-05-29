@@ -528,6 +528,8 @@ namespace PROJETO_INTEGRADOR
         {
             panel1.SuspendLayout();
 
+            panel1.AutoScroll = true;
+
             for (int i = panel1.Controls.Count - 1; i >= 0; i--)
             {
                 if (panel1.Controls[i].Tag?.ToString() == "dinamico")
@@ -535,21 +537,12 @@ namespace PROJETO_INTEGRADOR
             }
 
             int eixoY = 130;
-
             double totalGeral = 0;
 
             Label lblNome = new Label
             {
-                Text =
-                    "Cliente: " +
-                    Sessao.nomeCliente,
-
-                Font =
-                    new System.Drawing.Font(
-                        "Arial",
-                        12F,
-                        FontStyle.Bold),
-
+                Text = "Cliente: " + Sessao.nomeCliente,
+                Font = new System.Drawing.Font("Arial", 12F, FontStyle.Bold),
                 Location = new Point(50, 70),
                 AutoSize = true,
                 Tag = "dinamico"
@@ -557,16 +550,8 @@ namespace PROJETO_INTEGRADOR
 
             Label lblCpf = new Label
             {
-                Text =
-                    "CPF: " +
-                    Sessao.cpfCliente,
-
-                Font =
-                    new System.Drawing.Font(
-                        "Arial",
-                        12F,
-                        FontStyle.Regular),
-
+                Text = "CPF: " + Sessao.cpfCliente,
+                Font = new System.Drawing.Font("Arial", 12F, FontStyle.Regular),
                 Location = new Point(50, 95),
                 AutoSize = true,
                 Tag = "dinamico"
@@ -575,22 +560,17 @@ namespace PROJETO_INTEGRADOR
             panel1.Controls.Add(lblNome);
             panel1.Controls.Add(lblCpf);
 
+            int limiteY = panel1.Height - 140;
+
             foreach (var item in Form1.Sessao.Carrinho.ToList())
             {
+                if (eixoY > limiteY)
+                    break;
+
                 Label lbl = new Label
                 {
-                    Text =
-                        $"• {item.Servico} " +
-                        $"({item.Largura:F2}m x " +
-                        $"{item.Altura:F2}m) ... " +
-                        $"{item.Subtotal:C2}",
-
-                    Font =
-                        new System.Drawing.Font(
-                            "Arial",
-                            12F,
-                            FontStyle.Regular),
-
+                    Text = $"• {item.Servico} ({item.Largura:F2}m x {item.Altura:F2}m) ... {item.Subtotal:C2}",
+                    Font = new System.Drawing.Font("Arial", 12F, FontStyle.Regular),
                     Location = new Point(50, eixoY),
                     AutoSize = true,
                     Tag = "dinamico"
@@ -609,31 +589,29 @@ namespace PROJETO_INTEGRADOR
                 btnRemover.Click += (s, e) =>
                 {
                     var itemRemover = (ItensCarrinho)((Button)s).Tag;
-
                     Form1.Sessao.Carrinho.Remove(itemRemover);
                     DesenharItensNoRecibo();
                 };
 
                 panel1.Controls.Add(lbl);
                 panel1.Controls.Add(btnRemover);
+
                 eixoY += 35;
                 totalGeral += item.Subtotal;
             }
 
-            lbl_valorTotal.Text =
-                totalGeral.ToString("C2");
+            lbl_valorTotal.Text = totalGeral.ToString("C2");
+            lbl_valorTotal.BringToFront();
 
             if (Form1.Sessao.Carrinho.Count == 0)
-            {
                 lbl_valorTotal.Text = "R$ 0,00";
-            }
 
             panel1.ResumeLayout();
         }
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            // this.Close();
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
