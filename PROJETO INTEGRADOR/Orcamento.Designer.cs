@@ -101,7 +101,7 @@
             lbl_valorTotal.Anchor = AnchorStyles.None;
             lbl_valorTotal.AutoSize = true;
             lbl_valorTotal.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_valorTotal.Location = new Point(18, 393);
+            lbl_valorTotal.Location = new Point(9, 395);
             lbl_valorTotal.Name = "lbl_valorTotal";
             lbl_valorTotal.Size = new Size(167, 24);
             lbl_valorTotal.TabIndex = 3;
