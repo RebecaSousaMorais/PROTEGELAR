@@ -25,15 +25,14 @@ namespace PROJETO_INTEGRADOR
         private void Home_Load(object sender, EventArgs e)
         {
             panel1.Left =
-            (this.ClientSize.Width - panel1.Width) / 2;
+       (this.ClientSize.Width - panel1.Width) / 2;
 
             panel1.Top =
                 (this.ClientSize.Height - panel1.Height) / 2;
 
-            // NÃO GERAR COLUNAS AUTOMÁTICAS
-            dataGridView1.AutoGenerateColumns = false;
+            // TESTE
+            dataGridView1.AutoGenerateColumns = true;
 
-            // VISUAL GRID
             dataGridView1.BorderStyle =
                 BorderStyle.None;
 
@@ -57,29 +56,12 @@ namespace PROJETO_INTEGRADOR
             dataGridView1.DefaultCellStyle.Font =
                 new Font("Arial", 12);
 
-            dataGridView1.DefaultCellStyle.SelectionBackColor =
-                Color.FromArgb(230, 230, 230);
-
-            dataGridView1.DefaultCellStyle.SelectionForeColor =
-                Color.Black;
-
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor =
-                Color.FromArgb(245, 245, 245);
-
             dataGridView1.RowTemplate.Height = 38;
-
-            dataGridView1.GridColor =
-                Color.LightGray;
-
-            dataGridView1.CellBorderStyle =
-                DataGridViewCellBorderStyle.SingleHorizontal;
 
             dataGridView1.RowHeadersVisible = false;
 
             dataGridView1.AllowUserToAddRows = false;
-
             dataGridView1.AllowUserToDeleteRows = false;
-
             dataGridView1.AllowUserToResizeRows = false;
 
             dataGridView1.SelectionMode =
@@ -88,24 +70,6 @@ namespace PROJETO_INTEGRADOR
             dataGridView1.MultiSelect = false;
 
             dataGridView1.ReadOnly = true;
-
-            // TAMANHO MANUAL DAS COLUNAS
-            dataGridView1.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.None;
-
-            dataGridView1.Columns["col_cliente"].Width = 120;
-
-            dataGridView1.Columns["col_data"].Width = 100;
-
-            dataGridView1.Columns["col_total"].Width = 150;
-
-            // FORMATAÇÃO REAL BR
-            dataGridView1.Columns["col_total"]
-                .DefaultCellStyle.Format = "C2";
-
-            dataGridView1.Columns["col_total"]
-                .DefaultCellStyle.FormatProvider =
-                new System.Globalization.CultureInfo("pt-BR");
 
             CarregarHistorico();
         }
@@ -117,31 +81,45 @@ namespace PROJETO_INTEGRADOR
                 try
                 {
                     conn.Open();
+
                     string sql = @"
-                    SELECT
-                        nome_cliente,
-                        strftime('%d/%m/%Y', data_criacao) AS data_criacao,
-                        valor_total
-                    FROM Orcamentos
-                    ORDER BY data_criacao DESC
-                    LIMIT 5
-                ";
+            SELECT
+                nome_cliente,
+                strftime('%d/%m/%Y', data_criacao) AS data_criacao,
+                valor_total
+            FROM Orcamentos
+            ORDER BY id_orcamento DESC";
 
-                    using (var cmd =
-                        new SqliteCommand(sql, conn))
-
-                    using (var reader =
-                        cmd.ExecuteReader())
+                    using (var cmd = new SqliteCommand(sql, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        DataTable dt =
-                            new DataTable();
+                        DataTable dt = new DataTable();
 
                         dt.Load(reader);
 
+                        dataGridView1.DataSource = null;
                         dataGridView1.DataSource = dt;
+
+                        if (dataGridView1.Columns.Count >= 3)
+                        {
+                            // Cabeçalhos
+                            dataGridView1.Columns[0].HeaderText = "Cliente";
+                            dataGridView1.Columns[1].HeaderText = "Data";
+                            dataGridView1.Columns[2].HeaderText = "Valor Total";
+
+                            // Larguras
+                            dataGridView1.Columns[0].Width = 250;
+                            dataGridView1.Columns[1].Width = 120;
+                            dataGridView1.Columns[2].Width = 150;
+
+                            // Formatação monetária
+                            dataGridView1.Columns[2].DefaultCellStyle.Format = "C2";
+
+                            dataGridView1.Columns[2].DefaultCellStyle.FormatProvider =
+                                new System.Globalization.CultureInfo("pt-BR");
+                        }
                     }
                 }
-
                 catch (Exception ex)
                 {
                     MessageBox.Show(
