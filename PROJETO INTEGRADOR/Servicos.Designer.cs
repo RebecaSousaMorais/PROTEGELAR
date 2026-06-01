@@ -34,12 +34,10 @@
             txt_nomeCliente = new TextBox();
             lbl_cpfCliente = new Label();
             lbl_nomeCliente = new Label();
-            lbl_observacoes = new Label();
             lbl_altura = new Label();
             lbl_largura = new Label();
             lbl_servico = new Label();
             lbl_categoria = new Label();
-            txt_observacoes = new TextBox();
             lbl_precoOrcamento = new Label();
             btn_salvarOrcamento = new Button();
             txt_altura = new TextBox();
@@ -48,12 +46,12 @@
             cmb_categoria = new ComboBox();
             lbl_servicos = new Label();
             panel2 = new Panel();
+            btn_home = new Button();
             pictureBox1 = new PictureBox();
             btn_logout = new Button();
             btn_verPerfil = new Button();
             btn_novoOrcamento = new Button();
             btn_gerenciarServico = new Button();
-            btn_home = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -66,12 +64,10 @@
             panel1.Controls.Add(txt_nomeCliente);
             panel1.Controls.Add(lbl_cpfCliente);
             panel1.Controls.Add(lbl_nomeCliente);
-            panel1.Controls.Add(lbl_observacoes);
             panel1.Controls.Add(lbl_altura);
             panel1.Controls.Add(lbl_largura);
             panel1.Controls.Add(lbl_servico);
             panel1.Controls.Add(lbl_categoria);
-            panel1.Controls.Add(txt_observacoes);
             panel1.Controls.Add(lbl_precoOrcamento);
             panel1.Controls.Add(btn_salvarOrcamento);
             panel1.Controls.Add(txt_altura);
@@ -124,16 +120,6 @@
             lbl_nomeCliente.TabIndex = 16;
             lbl_nomeCliente.Text = "Nome Cliente";
             // 
-            // lbl_observacoes
-            // 
-            lbl_observacoes.AutoSize = true;
-            lbl_observacoes.Font = new Font("Arial", 12F);
-            lbl_observacoes.Location = new Point(24, 330);
-            lbl_observacoes.Name = "lbl_observacoes";
-            lbl_observacoes.Size = new Size(101, 18);
-            lbl_observacoes.TabIndex = 13;
-            lbl_observacoes.Text = "Observações";
-            // 
             // lbl_altura
             // 
             lbl_altura.AutoSize = true;
@@ -173,16 +159,6 @@
             lbl_categoria.Size = new Size(78, 18);
             lbl_categoria.TabIndex = 9;
             lbl_categoria.Text = "Categoria";
-            // 
-            // txt_observacoes
-            // 
-            txt_observacoes.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_observacoes.Location = new Point(128, 327);
-            txt_observacoes.Multiline = true;
-            txt_observacoes.Name = "txt_observacoes";
-            txt_observacoes.Size = new Size(298, 69);
-            txt_observacoes.TabIndex = 8;
-            txt_observacoes.TextChanged += txt_observacoes_TextChanged;
             // 
             // lbl_precoOrcamento
             // 
@@ -274,6 +250,22 @@
             panel2.Size = new Size(246, 556);
             panel2.TabIndex = 6;
             // 
+            // btn_home
+            // 
+            btn_home.BackColor = Color.FromArgb(242, 101, 34);
+            btn_home.FlatAppearance.BorderSize = 0;
+            btn_home.FlatStyle = FlatStyle.Flat;
+            btn_home.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_home.ForeColor = Color.White;
+            btn_home.Location = new Point(-3, 183);
+            btn_home.Name = "btn_home";
+            btn_home.Size = new Size(246, 36);
+            btn_home.TabIndex = 10;
+            btn_home.Text = "Home";
+            btn_home.TextAlign = ContentAlignment.MiddleLeft;
+            btn_home.UseVisualStyleBackColor = false;
+            btn_home.Click += btn_home_Click;
+            // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.FromArgb(26, 58, 90);
@@ -349,22 +341,6 @@
             btn_gerenciarServico.UseVisualStyleBackColor = false;
             btn_gerenciarServico.Click += btn_gerenciarServico_Click;
             // 
-            // btn_home
-            // 
-            btn_home.BackColor = Color.FromArgb(242, 101, 34);
-            btn_home.FlatAppearance.BorderSize = 0;
-            btn_home.FlatStyle = FlatStyle.Flat;
-            btn_home.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_home.ForeColor = Color.White;
-            btn_home.Location = new Point(-3, 183);
-            btn_home.Name = "btn_home";
-            btn_home.Size = new Size(246, 36);
-            btn_home.TabIndex = 10;
-            btn_home.Text = "Home";
-            btn_home.TextAlign = ContentAlignment.MiddleLeft;
-            btn_home.UseVisualStyleBackColor = false;
-            btn_home.Click += btn_home_Click;
-            // 
             // Servicos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -392,8 +368,6 @@
         private ComboBox cmb_servico;
         private ComboBox cmb_categoria;
         private Label lbl_servicos;
-        private TextBox txt_observacoes;
-        private Label lbl_observacoes;
         private Label lbl_altura;
         private Label lbl_largura;
         private Label lbl_servico;
